@@ -92,6 +92,18 @@ print(f"{num:.2f}")
     list.reverse()
     list.sort()
 ```
+
+`sort()`排序函数配合lambda表达式使用，可自定义按照哪个元素进行排序，sort默认升序，使用参数reverse=True可以改为降序，例如：
+```python
+# 列表list中的元素为[('a',2),('b',3),('b',2)]
+# 先使用数字进行降序排列，再使用字母按照字母表顺序（升序）排列
+result = [('a',2),('b',3),('b',2)]
+result.sort(key=lambda x: (-x[1], x[0]))
+print(result)
+
+=> [('b', 3), ('a', 2), ('b', 2)]
+```
+
 生成字符串的排列
 ```python
 from itertools import permutations
@@ -432,6 +444,22 @@ print(zip(*X))
 `any()` 迭代对象中有一个为True，any函数就返回True。
 
 `all()`迭代对象中全部为True，all函数才返回True。
+
+`groupby()`函数，对连续相同的元素进行分组，例如：
+```python
+from itertools import groupby
+
+data = 'aaabbbccaaa'
+
+for key, group in groupby(data):
+    print(key, list(group))
+
+=>
+a ['a', 'a', 'a']
+b ['b', 'b', 'b']
+c ['c', 'c']
+a ['a', 'a', 'a']
+```
 
 ### 13. python HTML与XML
 HTML解析需要重写handle函数
