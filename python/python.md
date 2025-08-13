@@ -37,6 +37,12 @@ print(abs(complex(s)))
 # 计算φ
 print(phase(complex(s)))
 ```
+
+`pow()`函数，可用于幂计算和模计算
+```python
+pow(base, exp, mod=None)
+```
+
 ### 字符串
 字符串运算符
 * `+` 字符串连接
@@ -189,6 +195,10 @@ if 判断条件：
     执行语句……
 else：
     执行语句……
+```
+条件表达式（三元表达式）
+```python
+结果 = 表达式1 if 条件 else 表达式2
 ```
 
 ## 6. python循环语句

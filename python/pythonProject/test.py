@@ -1,17 +1,15 @@
-# Enter your code here. Read input from STDIN. Print output to STDOUT
-n, m = map(int, input().split())
-array = list(map(int, input().split()))
-listA = set(map(int, input().split()))
-listB = set(map(int, input().split()))
+from itertools import combinations
+length = int(input())
+str_list = input().split()
+number_index = int(input())
 
-interA = listA.intersection(array)
-interB = listB.intersection(array)
-happy = 0
-for i in interA:
-    happy += array.count(i)
-upset = 0
-for j in interB:
-    upset += array.count(j)
-happiness= happy - upset
+comb = list(combinations(str_list,number_index))
 
-print(happiness)
+count = 0
+for c in comb:
+    if 'a' in c:
+        count += 1
+
+comb_length = len(comb) if len(comb) > 0 else 1
+result = count / comb_length
+print(f"{result:.4f}")
