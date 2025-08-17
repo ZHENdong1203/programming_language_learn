@@ -81,6 +81,11 @@ char类型在Java中是一个16位的Unicode字符类型,表示范围是从0到6
     - 复制移动(Copying)：将存活对象复制到另一块内存区域
     - 分代收集(Generational)：根据对象存活时间将内存分为新生代、老年代等，采用不同的回收策略
 * 新创建的对象通常都是在Eden区分配，当Eden区空间不足时，就会触发Minor GC（新生代垃圾回收）。
+* 新生代串行收集器(Serial)使用复制算法将Eden区和一个Survivor区的存活对象复制到另一个Survivor区。
+* 新生代并行回收收集器(ParNew)本质上是Serial收集器的多线程版本,同样采用复制算法进行垃圾回收。
+* 老年代串行收集器使用的是标记-整理算法，老年代并行回收收集器(Parallel Old)采用的是标记-整理算法。
+*  CMS(Concurrent Mark Sweep)收集器采用的是标记-清除算法。
+
 
 9. java的4类流程控制语句
 循环语句：for，while，do-while
@@ -256,6 +261,7 @@ JRE(Java Runtime Environment)是Java运行环境,包含了Java虚拟机(JVM)、�
 * 枚举不能被其他类继承，也不能继承其他类。
 * 枚举是Java中的一种特殊数据类型，用于定义一组固定常量。
 * 枚举可以包含构造函数，但必须为私有（默认隐式私有）。
+* 枚举类型本身 不能定义泛型参数，因为枚举常量是静态实例，而泛型类型擦除会导致运行时类型信息丢失。但枚举的方法中可以使用泛型。
 
 39. throws关键字用于在方法声明中指明该方法可能抛出的检查型异常（非运行时异常）。这是一种异常声明机制，告知方法调用者需要处理这些可能的异常情况。
 
@@ -575,6 +581,11 @@ LinkedBlockingDeque是基于链表的、线程安全的双端阻塞队列。Link
 | LinkedTransferQueue     | unbounded（无界）           |
 | LinkedBlockingDeque     | unbounded（无界）           |
 
+* LinkedBlockingQueue是一个可选有界队列，确实不允许null值。当创建时不指定容量时为无界队列，指定容量时则为有界队列。且它的add()、put()等方法都会对null值进行检查并抛出NullPointerException。
+* PriorityQueue是基于优先级堆的无界优先级队列，不允许插入null值，其入队(offer/add)和出队(poll/remove)操作的时间复杂度确实是O(log(n))，因为需要维护堆的特性。
+* LinkedBlockingQueue是线程安全的阻塞队列，它的操作都是通过ReentrantLock来保证线程安全。而PriorityQueue是非线程安全的。
+* ConcurrentLinkedQueue遵循FIFO原则，但PriorityQueue不遵循FIFO原则。PriorityQueue是按照优先级来确定出队顺序，每次出队都会取出优先级最高（通常是最小值）的元素，而不是先进先出。
+
 78.Java中的局部变量在使用前必须明确赋值，编译器会进行严格的变量初始化检查
 
 79.Socket
@@ -583,6 +594,11 @@ LinkedBlockingDeque是基于链表的、线程安全的双端阻塞队列。Link
 * 调用accept()等待客户端连接
 * 获取输入输出流进行数据交换
 * 完成后调用close()关闭连接
+
+* Socket类是用于客户端创建连接的,不能用于服务器端监听。这种构造方法会尝试连接到指定主机和端口,而不是进行监听。
+* ServerSocket的构造方法不接受主机名参数。服务器套接字在创建时只需要指定要监听的端口号即可。
+* 服务器端首先要通过new ServerSocket()创建服务器套接字对象,然后调用accept()方法获取与客户端通信的Socket对象,而不是直接通过new ServerSocket()创建通信的Socket对象。
+* 客户端是通过new Socket()方法来创建通信的Socket对象。
 
 80.重写和重载的区别
 | 特性       | 重载（Overloading）           | 重写（Overriding）                        |
@@ -710,3 +726,499 @@ Object类默认提供的基本方法包括:
 * 当内部类和外部类存在同名成员时,默认情况下访问的是内部类的成员。如果要访问外部类的同名成员,需要使用"外部类名.this.成员名"的方式。
 
 103.逻辑运算符左右两边必须是布尔类型
+
+104.模版方法模式
+
+优点：
+* 提高复用性
+* 提高扩展性
+* 符合开闭原则
+
+缺点：
+* 类数目增加
+* 增加了系统实现的复杂度
+* 继承关系自身的缺点，如果父类添加新的抽象方法，所有子类都要改一遍。 servlet中的Httprequest的doGet和doPost方法使用了模板方法模式。
+
+105.import java.util.*这个语句的作用是导入java.util包下的所有类，但不包括其子包中的类。
+
+106.静态数据成员
+* 静态成员变量（类变量）允许在类体内直接初始化：
+* 静态数据成员可以被类的对象调用
+* 静态成员受访问控制符约束。若声明为private，则只能在类内部访问
+* 只有非private的静态成员才能在类外部用类名调用
+
+107.Java中的参数传递是值传递，对于对象参数，传递的是对象引用的副本。方法内部改变参数引用不会影响原始对象的引用，但通过引用修改对象的内容会影响原始对象。
+
+108.在Java中，移位运算符>>和>>>有着不同的功能和特点。
+
+`>>` 是算术右移运算符，它使所有的位向右移动，但保持符号位不变。对于负数，左边会自动补1，正数则补0。
+
+`>>>` 是逻辑右移运算符（也称无符号右移），它使所有的位向右移动，并且左边总是补0，不管原来的数是正数还是负数。
+
+109.String字符串
+```java
+String s1 = "coder";     
+String s2 = "coder";     
+String s3 = "coder" + s2;     
+String s4 = "coder" + "coder";     
+String s5 = s1 + s2;            
+System.out.println(s3 == s4); 
+System.out.println(s3 == s5);    
+System.out.println(s4 == "codercoder");
+```
+* s1和s2都是字符串常量"coder"，存储在字符串常量池中，指向同一个对象。
+* s3 = "coder" + s2。这是一个变量和字符串的拼接，在运行时才能确定s2的值，因此会在堆内存中创建新的String对象。
+* s4 = "coder" + "coder"。这是两个字符串常量的拼接，编译时会优化为"codercoder"，直接存入常量池。
+* s5 = s1 + s2。这是两个变量的拼接，会在堆内存中创建新的String对象。
+
+110.Java重载解析遵循"最具体匹配原则"，即当有多个方法可以匹配时，会选择参数类型最接近的那个方法版本。
+```java
+public class Test {
+
+    public void myMethod(Object o) {
+
+        System.out.println("My Object");
+
+ }
+
+public void myMethod(String s) {
+
+    System.out.println("My String");
+
+}
+
+public static void main(String args[]) {
+
+    Test t = new Test();
+
+    t.myMethod(null);
+
+   }
+
+}
+```
+* null可以匹配Object类型参数
+* null也可以匹配String类型参数
+* 由于String是Object的子类，所以String类型更具体，因此编译器会选择myMethod(String s)这个版本.
+
+
+111.
+| 方法     | 是否释放锁 | 原因                               |
+| -------- | ---------- | ---------------------------------- |
+| wait()   | 是         | 必须在同步块中调用，释放对象锁     |
+| join()   | 是         | 底层调用 `wait()`，释放当前线程的锁 |
+| sleep()  | 否         | 仅暂停线程执行，不释放锁           |
+| yield()  | 否         | 仅让出 CPU 时间片，不释放锁        |
+
+112.依赖注入
+* 依赖注入是一种设计模式和编程思想，不依赖于具体的框架实现。除了Spring，还有许多其他框架如Google Guice、PicoContainer等都可以实现依赖注入，甚至可以通过手动编写代码来实现依赖注入。
+* 依赖注入的主要目的确实是为了解耦合。通过依赖注入，我们可以将对象之间的依赖关系从代码中解耦出来，使系统更加灵活，更易于维护和测试。
+* 常见的依赖注入方式包括：
+    * 构造方法注入：通过构造函数传入依赖对象
+    * Setter方法注入：通过setter方法设置依赖对象
+
+此外还有接口注入等其他方式，但最常用的确实是构造方法注入和Setter注入。
+
+113.完整的文件显示过程应该是：
+1. 创建FileInputStream对象
+2. 读取文件数据到缓冲区
+3. 使用System.out.print输出数据
+
+114.MySQL
+MySQL启用 PIPES_AS_CONCAT 模式
+ 
+PIPES_AS_CONCAT 是MySQL中的一个SQL模式，它改变了管道符号(||)的行为。
+
+什么是 PIPES_AS_CONCAT？
+ 
+默认情况下，在MySQL中：`||`表示逻辑OR运算符（与其他一些数据库不同） 
+字符串连接使用 CONCAT() 函数 
+ 
+当启用 PIPES_AS_CONCAT 模式后：`||`被解释为字符串连接运算符（类似于Oracle、PostgreSQL等数据库的行为） 
+逻辑OR必须使用关键字 OR 表示。
+
+115.
+```java
+
+public class Email {
+
+    private String address;
+
+    private String name;
+
+    此处省略  ...get，set方法
+
+    @Override
+
+    public int hashCode() {
+
+        return Objects.hash(address,name);
+
+    }
+
+    @Override
+
+    public boolean equals(Object obj) {
+
+        if(obj instanceof Email){
+
+            Email that = (Email) obj;
+
+            return Objects.equals(this.address,that.address) &&
+
+                    Objects.equals(this.name,that.name);
+
+        }
+
+        return false;
+
+    }
+
+}
+
+public class EmailTest {
+
+    public static void main(String[] args) {
+
+        HashSet<Email> emailSet = new HashSet();
+
+        Email email = new Email("yy.com","Tom");
+
+        emailSet.add(email);
+
+        email.setAddress("xyz.com");
+
+        System.out.println(emailSet.contains(email));
+
+        emailSet.remove(email);
+
+        for(Email email1 : emailSet){
+
+            System.out.println(email1.getAddress());
+
+            System.out.println(email1.getName());
+
+        }
+
+    }
+
+}
+```
+1. 当email对象被添加到HashSet时，HashSet会根据对象的hashCode()方法计算存储位置
+2. 之后修改了email对象的address属性，这导致对象的哈希值发生变化
+3. 由于HashSet查找对象时是先根据hashCode()确定位置，此时email对象的哈希值已改变，导致contains(email)返回false
+4. remove操作也会失败，因为找不到原来的位置
+5. 原来添加的对象仍然存在于HashSet中，所以遍历时能打印出原始属性值：xyz.com和Tom
+* 在使用HashSet时，不应该修改已添加对象中参与计算哈希值的属性，否则会导致对象无法被正确查找和删除，从而产生意料之外的结果。如果必须修改对象属性，应该先从HashSet中删除该对象，修改后再重新添加。
+
+116.
+```java
+package NowCoder;
+class Test {
+    public static void hello() {
+        System.out.println("hello");
+    }
+}
+public class MyApplication {
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Test test=null;
+        test.hello();
+    }
+}
+```
+尽管test被赋值为null，但hello()是静态方法。静态方法的调用不依赖对象实例，因此test.hello()会被编译器隐式转换为Test.hello()。代码能编译通过，运行时也不会因test为null而报错，会正常输出hello。
+
+117.偏向锁
+* 偏向锁是乐观锁 ，不是悲观锁。 
+* 偏向锁适用于只有一个线程执行同步块的场景 ，目的是在无竞争情况下减少锁操作的性能消耗。
+* 线程不需要自旋来获取偏向锁 。偏向锁只有初始化时需要执行一次 CAS（Compare - and - Swap，比较并交换 ）操作，用于在对象头的 Mark Word 中记录获取到锁的线程 ID。后续只要当前线程与记录的线程 ID 一致，就可直接获得锁，无需自旋 。当有其他线程竞争偏向锁时，持有偏向锁的线程若存活，偏向锁升级为轻量级锁，此时竞争线程才会通过自旋尝试获取轻量级锁
+
+118.Thread类的方法
+- sleep() - 使当前线程暂停执行指定时间
+- interrupt() - 中断线程
+- join() - 等待线程终止
+- yield() - 暂时让出CPU执行权给其他线程
+* start() 这是Thread类的关键方法,用于启动一个新线程。调用start()方法后,JVM会调用该线程的run()方法。这个方法是实现多线程的标准方式。
+* run() 这是Thread类的方法,也是Runnable接口中定义的方法。Thread类实现了Runnable接口。run()方法包含线程要执行的代码。
+* getPriority() 这是Thread类的方法,用于获取线程的优先级。线程优先级的范围是1-10,默认优先级是5。
+
+119.HttpServletResponse接口中提供了setHeader()和addHeader()两个方法来设置HTTP响应头
+- setHeader和addHeader方法都接受两个String类型参数:头名称和头值
+- 这两个方法是Servlet规范中定义的标准方法
+- 不需要创建特殊的Header对象,直接传入字符串即可
+- setHeader和addHeader的区别在于是覆盖还是追加已存在的头
+
+120.
+```java
+class Test
+{
+     private int data;
+     int result = 0;
+     public void m()
+     {
+         result += 2;
+         data += 2;
+         System.out.print(result + "  " + data);
+     }
+ }
+ class ThreadExample extends Thread
+ {
+     private Test mv;
+     public ThreadExample(Test mv)
+     {
+         this.mv = mv;
+     }
+     public void run()
+     {
+         synchronized(mv)
+         {
+             mv.m();
+         }
+     }
+ }
+ class ThreadTest
+ {
+     public static void main(String args[])
+     {
+         Test mv = new Test();
+         Thread t1 = new ThreadExample(mv);
+         Thread t2 = new ThreadExample(mv);
+         Thread t3 = new ThreadExample(mv);
+         t1.start();
+         t2.start();
+         t3.start();
+     }
+ }
+ ```
+t1,t2,t3线程使用同一个对象mv,
+
+synchronized(mv) 对象锁（实例锁）
+
+当多个并发线程访问同步synchronized（this）同步代码块时， 某一时刻仅能有一个线程能执行同步，其他线程必须等待。也就是说虽然不能确认t1、t2、t3哪一个线程先执行，但它确实是排队执行的，不会出现变量的覆盖。所以输出结果为分别为2 2、4 4、6 6。
+
+121.Java语言使用Unicode字符集是因为Unicode具有广泛的国际化支持能力，能够表示世界上几乎所有语言的字符。Unicode使用16位编码，可以表示超过65536个字符，这使得Java能够很好地支持多语言开发和国际化应用程序。
+
+122.off-heap
+off-heap内存是指JVM进程管理但不由JVM垃圾回收器管理的内存空间。
+
+off-heap内存主要有以下特点：
+* 它位于JVM堆内存之外
+* 由JVM进程管理和申请
+* 不受JVM垃圾回收器控制
+* 需要手动管理内存的分配和释放
+* 常用于存储大对象,以避免GC压力
+
+123.java8中，用到了解决哈希冲突的开放定址法
+* ThreadLocal类采用了开放定址法来解决哈希冲突。在ThreadLocal中，每个线程都维护了一个ThreadLocalMap，它使用开放定址法处理hash冲突。当发生hash冲突时，ThreadLocalMap会线性探测下一个空位置来存储元素。
+* LinkedHashSet内部实际是基于LinkedHashMap实现的，它使用的是链地址法（拉链法）来解决哈希冲突，维护了一个双向链表来保持插入顺序。
+* HashMap使用的是链地址法（拉链法）来解决哈希冲突。当多个键值对的hash值映射到同一个桶时，这些元素会形成一个链表（当链表长度超过阈值时会转换为红黑树）。
+* TreeMap是基于红黑树实现的，它根本不涉及哈希冲突的问题，因为它是按照键的自然顺序或者自定义比较器来组织数据的。
+
+124.
+* jdb(Java Debugger)是Java官方提供的命令行调试工具,是正确答案。它允许开发人员在程序运行时进行断点调试、单步执行、查看变量值,查看调用堆栈,动态修改变量值等调试操作,帮助定位和修复程序中的错误。
+* java是Java程序的启动命令,用于运行编译后的.class文件,不具备调试功能。Java程序运行时不需要添加.class后缀。
+* javadoc是Java的文档生成工具,用于从Java源代码中提取注释生成API文档,与程序调试无关。
+* javaprof是Java性能分析工具,用于收集程序运行时的性能数据如CPU使用、内存分配等信息,不是用于程序调试的工具。
+
+125.线程
+* 一个线程内部可以创建新的线程,这些线程可以并行执行。这是Java多线程编程的基本特性,体现了线程的独立性和并发性。
+* 在单例模式中,double-check(双重检查锁定)写法并不能完全保证线程安全。由于Java内存模型的原因,指令重排序可能导致对象初始化失败。要实现完全的线程安全,需要使用volatile关键字修饰单例实例。
+* Java中创建线程有多种方式,实现Runnable接口是其中最常用的方式之一。其他方式还包括继承Thread类、使用Callable接口等。
+* HashMap不是线程安全的数据结构。在多线程环境下同时操作HashMap可能会导致数据不一致。如果需要线程安全的Map实现,应该使用ConcurrentHashMap或Collections.synchronizedMap()。
+* 线程池是一种线程使用模式,它可以复用已创建的线程,避免频繁创建和销毁线程带来的系统开销。这种方式能显著提高系统性能,特别是在需要处理大量短期任务的场景下。
+
+126. 线程体是指线程要执行的具体任务代码,这些代码都定义在run()方法中。当我们需要自定义线程类时,必须重写Thread类的run()方法或者实现Runnable接口的run()方法来定义线程要执行的任务。因此,run()方法才是真正的线程执行体方法。
+
+在Java多线程编程中，run()方法是线程执行的入口点，也是新线程执行的起点。当一个类继承Thread类或实现Runnable接口时，必须重写run()方法来定义线程要执行的任务。
+
+start()方法是用来启动线程的方法，但它不是线程执行的入口点。start()方法的作用是使线程进入就绪状态，等待CPU调度
+
+127.java IO
+* 在Java IO中，按照功能可以将流分为节点流和处理流两大类。
+* 节点流是直接与数据源相连,负责读写数据的流。如FileInputStream、FileOutputStream等。
+* 处理流是在节点流基础上对数据进行加工处理的流。如BufferedInputStream、DataInputStream等。
+* 处理流的优点:
+- 性能的提高
+- 操作的便捷
+- 可以提供特定数据类型的读写支持
+
+128. 标签是JSP中的页面转发指令,它会将请求转发到指定的页面,但是在浏览器地址栏中显示的URL不会发生改变,仍然是原始请求的URL。这是因为forward是服务器端的转发,对客户端是透明的。这体现了JSP forward和redirect的一个重要区别:forward是服务器端跳转,地址栏URL不变;而redirect是客户端跳转,会改变地址栏URL。
+
+129.静态变量和实例变量
+* 静态变量是属于类级别的变量，使用static关键字声明，它与类本身关联。而实例变量是属于对象级别的变量，每个对象都持有一份实例变量的副本。
+* 静态变量可以通过类名直接访问，如ClassName.staticVariable，这是因为静态变量属于类而不是对象。实例变量必须通过对象的引用来访问，因为它是对象级别的成员。
+* 由于静态变量属于类，所以在内存中只有一份副本，被该类的所有实例共享。而实例变量属于对象，每创建一个新的对象，就会产生一个新的实例变量副本。
+* 静态变量和实例变量都可以被赋值为null（如果它们是引用类型的话）。这个说法是完全错误的，因为在Java中，任何引用类型的变量，无论是静态的还是实例的，都可以被赋值为null。
+
+130. JDK提供的并发同步器主要包括Semaphore(信号量)、CyclicBarrier(循环栅栏)和CountDownLatch(倒计时器)这三种,它们都是非常重要的并发工具类。
+
+131. Java使用监视器机制实现了线程之间的同步执行。在Java中,每个对象都有一个内部锁,这个锁就是监视器。当一个线程执行被synchronized关键字修饰的方法或代码块时,会自动获取对象的监视器,从而保证同一时刻只有一个线程能够执行该代码。
+
+监视器机制还包含了wait()、notify()、notifyAll()等方法,这些方法都是Object类的方法,可以实现线程之间的通信和协作。这进一步证明了监视器在Java线程同步中的重要作用。
+
+132. 当在遍历HashMap的同时对其进行结构性修改(如删除元素)时,会抛出ConcurrentModificationException异常。
+
+具体分析:
+* 代码使用forEach方法遍历HashMap,在遍历过程中调用map.remove()方法删除元素。
+* HashMap的forEach方法是基于Iterator实现的,在遍历过程中对集合进行结构性修改会导致fail-fast机制触发。
+* fail-fast机制是Java集合的一种错误检测机制,当多个线程同时修改同一个集合时,迭代器会快速失败并抛出ConcurrentModificationException。
+
+正确的修改方式:
+* 使用迭代器的remove()方法删除元素
+* 使用ConcurrentHashMap
+* 将需要删除的元素记录下来,遍历结束后再统一删除
+
+133.
+* Java异常体系的基类是java.lang.Throwable，其下分为Error（严重错误，如OutOfMemoryError）和Exception（可恢复异常）。RuntimeException是Exception的子类，但Error并不属于Exception。
+* finally块在大多数情况下会执行，但以下情况例外：
+    - 调用System.exit(int)终止 JVM。
+    - JVM 崩溃或硬件故障。
+    - 线程被强制终止（如Thread.stop()）。
+* Java 中存在 基本数据类型（如int、double、char），它们直接存储值，而非对象。
+* 垃圾回收时，finalize()方法 不保证一定会执行。
+    - 若对象在finalize()中复活（重新被引用），则可能不会被回收。
+    - 若 JVM 提前终止或发生严重错误，finalize()可能无法执行。
+* Java通过synchronized进行访问的同步，synchronized作用非静态成员方法和静态成员方法上同步的目标是不同的。
+    - 非静态方法：synchronized锁定当前实例对象（this）。
+    - 静态方法：synchronized锁定类的Class对象（如MyClass.class）。
+
+134. equals和hashcode
+* 如果equals()相等,则hashCode()必须相等
+* 如果hashCode()相等,equals()可能相等也可能不相等
+* 如果hashCode()不相等,equals()一定不相等
+* 两个不同的obj， hashCode()可能相等
+
+135.JVM组件
+在Java中，类加载器、垃圾回收器、JIT编译器和解释器均为JVM的组件。
+* 类加载器负责将.class文件加载到JVM内存中，并生成对应的Class对象。JVM的类加载子系统遵循双亲委派模型，确保核心类库的安全性和一致性。
+* 垃圾回收器（GC）是JVM的核心组件，负责自动回收堆内存中的无用对象，避免内存泄漏。常见的垃圾回收算法包括标记-清除、复制、标记-整理等。
+* JIT（即时编译器）是JVM执行引擎的核心组件，负责将热点代码（频繁执行的字节码）动态编译为本地机器码，显著提升执行效率。JIT通过方法内联、逃逸分析、循环展开等优化技术实现性能提升。
+
+JIT编译器的核心作用
+    - 动态编译：在运行时将热点代码编译为本地机器码，减少解释执行的性能损耗。
+    - 自适应优化：根据运行时数据（如方法调用频率、对象分配模式）进行优化，例如方法内联、逃逸分析、锁消除等。
+    - 分层编译：结合C1（快速编译）和C2（深度优化）编译器，平衡启动速度和峰值性能。
+* 解释器是JVM执行引擎的一部分，负责逐条解释执行字节码指令。程序启动时，所有代码由解释器执行，后续热点代码会被JIT编译器优化。
+
+136.类关系
+
+在面向对象设计中,主要存在三种基本的类关系："USES-A"(使用关系)、"HAS-A"(组合关系)和"IS-A"(继承关系)。这三种关系构成了面向对象设计的基础。
+* "USES-A"这种关系表示一个类使用另一个类的服务,但两个类之间是松散耦合的。例如,当一个类的方法使用另一个类的对象作为参数或返回值时。
+* "HAS-A"这种关系表示一个类包含另一个类的实例作为其成员变量,表示整体与部分的关系。例如,汽车类中包含引擎类的实例。
+* "IS-A"这种关系表示继承关系,一个类是另一个类的特殊化。例如,猫类继承自动物类,表示猫是一种动物。
+
+137.executeUpdate()方法用于执行INSERT、UPDATE或DELETE等DML语句,其返回值表示受影响的行数。
+
+executeUpdate()方法返回值的具体含义:
+- 对于INSERT语句:返回新增的记录数
+- 对于UPDATE语句:返回更新的记录数
+- 对于DELETE语句:返回删除的记录数
+- 如果执行失败则会抛出SQLException异常,而不是返回特殊值
+
+138.
+```java
+package test;
+import java.util.Date; 
+public class SuperTest extends Date{ 
+    private static final long serialVersionUID = 1L; 
+    private void test(){ 
+       System.out.println(super.getClass().getName()); 
+    } 
+      
+    public static void main(String[]args){ 
+       new SuperTest().test(); 
+    } 
+}
+```
+* 在代码中，super.getClass()调用的是父类Date中继承的getClass()方法。需要注意的是，不管是调用super.getClass()还是this.getClass()，获取的都是当前运行时类的Class对象，而不是父类的Class对象。这是因为getClass()方法是final的，子类无法重写。
+- getClass()是Object类中的final方法，返回对象运行时的Class实例
+- getName()返回的是类的规范名称，包含完整的包路径
+- 即使通过super调用getClass()，得到的仍然是实际对象（SuperTest实例）的类型信息
+
+139.在Java中:
+- `^` 表示按位异或运算符
+- Math.pow()才是用来进行幂运算的方法
+- 两个数按位异或的规则是:相同位结果为0，不同位结果为1
+
+140.子类的构造方法会隐式去调用父类无参的构造方法（不会在代码中显示）。如果父类没有无参的构造方法，就必须在子类构造方法第一行显示调用父类的有参构造方法，否则编译失败。
+
+140.在 Java 中，TreeSet 的排序方式有两种：
+* 元素自身实现 Comparable 接口
+* 传入 Comparator。TreeSet 的构造函数允许你传入一个 Comparator，这样就不用让元素类实现 Comparable。
+
+141.在JDK8及以上版本中，@FunctionalInterface注解用于标识函数式接口，这是Java 8引入的一个重要特性。函数式接口是只包含一个抽象方法的接口，用于支持Lambda表达式。
+
+142.软件测试计划评审会
+
+软件测试计划评审会议是确保测试计划质量和可执行性的重要环节,需要多个角色的参与才能实现全面的评审。
+* 项目经理:作为项目的总负责人,需要确保测试计划与项目整体目标一致,并对测试资源分配、进度安排等做出决策。
+* SQA负责人:质量保证负责人需要从质量管理的角度评估测试计划是否完整、合理,能否有效保证软件质量。
+* 配置负责人:负责确保测试环境配置、测试数据管理等计划符合配置管理规范,保证测试活动的有序进行。
+* 测试组:作为测试计划的执行者,测试人员需要评估计划的可操作性,并提供实际测试经验的反馈。
+* 这些角色的共同参与可以从不同维度对测试计划进行评审:
+    - 管理层面(项目经理)
+    - 质量保证层面(SQA负责人)
+    - 技术支持层面(配置负责人)
+    - 执行层面(测试组)
+
+143.ThreadLocal
+* ThreadLocal 是一种线程局部变量，它提供了一种线程封闭机制，使得每个线程都可以独立地维护自己的变量副本
+* ThreadLocal 的 set() 方法赋值时会先获取当前线程，并获取线程中的 ThreadLocalMap 属性；如果 map 属性不为空，则直接更新 value 值，如果 map 为空，则实例化 ThreadLocalMap，并将 value 值初始化
+* ThreadLocal并不会随着线程的结束自动销毁。如果不正确处理ThreadLocal,可能会导致内存泄露。主要原因是ThreadLocalMap中的Entry是弱引用,而Value是强引用,如果不主动调用remove()方法清理,即使线程结束,这些对象也可能无法被垃圾回收。
+* 过度使用ThreadLocal确实会带来较大的内存开销,因为:
+    * 每个线程都会维护一份变量副本
+    * 线程数量越多,内存占用就越大
+    * ThreadLocal数量过多会降低程序性能
+* ThreadLocal确实采用哈希表的实现方式，在Thread类中有一个ThreadLocalMap成员变量，用于存储本线程的ThreadLocal变量。每个线程访问ThreadLocal变量时，实际是在操作自己的ThreadLocalMap中的副本。
+* ThreadLocal的设计目的就是为了保证线程安全，它为每个线程提供了独立的变量副本，使得每个线程都可以独立地改变自己的副本，而不会影响其他线程的数据。
+
+144.数组复制方法的效率
+
+System.arraycopy > Arrays.copyOf > clone > for循环
+
+145.java 7
+* SimpleDateFormat是非线程安全的。当多个线程同时使用同一个SimpleDateFormat对象时,可能会导致解析和格式化错误。这是因为SimpleDateFormat的设计中包含了可变的成员变量,在多线程环境下会相互影响。在实际开发中,建议为每个线程创建独立的SimpleDateFormat实例,或使用ThreadLocal来保证线程安全。
+* ConcurrentHashMap在Java 7中使用分段锁(Segment)机制来保证线程安全,而不是synchronized关键字。它将数据分成若干段,每段都由一个锁保护,这样可以支持多个线程同时读写不同段的数据,提高并发性能。
+* Arrays.asList()方法返回的是java.util.Arrays$ArrayList,这是Arrays类的一个内部类,而不是我们常用的java.util.ArrayList类。这个内部类是一个固定大小的List,不支持add()和remove()等修改操作。
+
+146.java类
+* static可以用于修饰内部类(nested class),表示这个内部类不依赖于外部类的实例,可以独立存在。
+* private可以用于修饰内部类,表示这个内部类只能在当前外部类中访问。
+* public是最常用的类访问修饰符,表示这个类可以被任何其他类访问。
+* 一个源文件中只能有一个public类
+- 内部类可以使用所有这些修饰符(static、private、public)
+- 顶级类(top-level class)只能使用public或默认的包访问权限
+- 使用这些修饰符时要注意它们的作用域和访问权限规则
+
+147.Servlet
+
+完整的Servlet初始化阶段包括:
+- 加载Servlet类
+- 创建ServletConfig对象
+- 创建Servlet实例
+- 调用Servlet的init()方法
+
+148. String s = new String("xyz");创建了几个StringObject
+
+* 如果字符串常量池中不存在 "xyz"，则会创建两个对象：
+    - 第一个对象在字符串常量池中创建 "xyz"
+    - 第二个对象在堆内存中创建，即 new 操作创建的对象
+
+* 如果字符串常量池中已经存在 "xyz"，则只会创建一个对象：
+    - 只在堆内存中创建一个新对象，常量池中直接使用已有的 "xyz"
+
+149.J2EE
+在J2EE开发中,配置Servlet过滤器需要在web.xml中同时配置`<filter>`和`<filter-mapping>`这两个元素。
+
+* `<filter>`元素用于声明过滤器,包含过滤器的基本信息:
+    - filter-name:定义过滤器的名称
+    - filter-class:指定过滤器的完整类名
+    - init-param:配置过滤器的初始化参数
+
+* `<filter-mapping>`元素用于映射过滤器的拦截路径:
+    - filter-name:引用filter中定义的名称
+    - url-pattern:指定要拦截的URL模式
+    - servlet-name:指定要拦截的Servlet名称
+
+150. 线程共享的内存区域包括方法区和Java堆，而程序计数器和虚拟机栈则是线程私有的。
