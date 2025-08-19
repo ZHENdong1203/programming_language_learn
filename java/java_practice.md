@@ -1199,6 +1199,10 @@ System.arraycopy > Arrays.copyOf > clone > for循环
 - 创建Servlet实例
 - 调用Servlet的init()方法
 
+* Servlet是Java Web开发中最核心的组件之一,在实际开发中主要使用javax.servlet和javax.servlet.http这两个包。
+* javax.servlet包含了Servlet接口、GenericServlet抽象类等基础接口和类,提供了实现Servlet的基本框架。
+* javax.servlet.http包含了HttpServlet、HttpServletRequest、HttpServletResponse等处理HTTP协议相关的类,是开发Web应用最常用的包。
+
 148. String s = new String("xyz");创建了几个StringObject
 
 * 如果字符串常量池中不存在 "xyz"，则会创建两个对象：
@@ -1222,3 +1226,54 @@ System.arraycopy > Arrays.copyOf > clone > for循环
     - servlet-name:指定要拦截的Servlet名称
 
 150. 线程共享的内存区域包括方法区和Java堆，而程序计数器和虚拟机栈则是线程私有的。
+
+151. 事务隔离级别是由数据库系统来实现的,这是因为数据库系统负责管理并发事务的执行以及事务之间的隔离性。数据库系统通过锁机制、多版本并发控制(MVCC)等技术来实现不同级别的事务隔离。
+
+152. 存根(Stub)是一种与动态链接技术密切相关的程序代码。当程序需要调用动态链接库中的函数时,存根代码充当了程序和实际函数之间的桥梁,负责完成函数调用的重定向工作。
+
+153. 线程间通知和唤醒
+* Object类提供的wait/notify/notifyAll是Java最基础的线程通信机制。任何对象都可以作为锁,当线程持有对象锁时可以调用这些方法进行等待和唤醒操作。
+* Condition是Lock框架中的线程通信工具,提供了await/signal/signalAll方法。它的功能与Object的wait/notify类似,但提供了更强大的功能,如支持多个等待队列。
+* wait/notify必须在synchronized同步块内使用
+* await/signal必须在Lock锁定后使用
+* 这些方法都用于实现线程间的协作和同步
+
+154. Java接口的修饰符只能是public或abstract。其中abstract是接口的默认修饰符
+* 接口中的所有方法默认都是public abstract的
+* 接口中的所有属性默认都是public static final的
+* 接口是一种完全抽象的类型,用于定义类需要实现的方法规范
+* Java 8之后接口中可以有默认方法(default)和静态方法(static)的实现
+
+155.
+* 实现Comparable接口需要重写接口内定义的compareTo方法。
+* Cloneable接口是java提供的少数标记接口，接口内并未定义clone方法，因此实现Cloneable接口并不一定需要重写clone方法，clone方法是Object类的方法。
+* 在JDK8中，Comparator接口内除了default修饰的方法，还有compare方法和equals方法，看起来Comparator内有两个抽象方法，不构成函数式接口的条件。实际上如果接口声明了一个覆盖java.lang.Object的全局方法之一的抽象方法，那么它不会计入接口的抽象方法数量中，因为接口的任何实现都将具有java.lang.Object或其他地方的实现，因此Comparator接口属于函数式接口。
+* 在JDK8中，接口内可以定义静态方法且静态方法必须实现方法体，非静态方法也可以通过default关键字实现方法体，这是JDK8的新特性。
+
+156.IO
+* Java IO确实包含了字符流和字节流两种输入输出方式。字节流以字节为单位进行操作(如InputStream、OutputStream),字符流以字符为单位进行操作(如Reader、Writer)。这是Java IO的基本架构设计。
+* InputStream和OutputStream都是抽象类,它们分别是所有字节输入流和输出流的抽象基类。作为抽象类,它们不能直接实例化使用,必须使用它们的具体子类,如FileInputStream、ByteArrayOutputStream等。
+* Reader和Writer确实是字符流的抽象基类,它们提供了字符流操作的基本接口。所有的字符流类都继承自这两个抽象类。
+* Scanner类不仅可以从键盘读取数据,还可以从文件、字符串等多种数据源读取数据。它是一个通用的数据读取类,可以解析各种格式的输入。例如可以使用Scanner(File file)构造方法来读取文件,使用Scanner(String source)来读取字符串等。
+
+157. 在Java Web开发中获取HTTP请求中的Cookie值有多种方法。
+* request.getHeader("Cookie")方法可以获取请求头中的Cookie字符串,这是一种直接获取原始Cookie信息的方式。
+* request.getCookies()方法返回一个Cookie数组,包含了请求中的所有Cookie对象,这是最常用的获取Cookie的方法,使用起来也最方便。
+
+158.hashmap
+* HashMap 采用链表以及红黑树共同解决hash冲突
+* 红黑树是一种自平衡的二叉排序树，但却不是平衡二叉树
+* HashMap 查询时间复杂度是O(1)
+
+159. this关键字
+* this关键字是Java中的一个重要概念,用于引用当前对象的实例。
+* this关键字可以用来访问当前类的普通成员变量。例如在构造方法或普通方法中,可以使用this.name来访问类的name成员变量,这样可以明确区分成员变量和局部变量。
+* this可以调用本类的成员方法和构造方法。在一个构造方法中可以使用this()调用其他构造方法;在普通方法中可以使用this.methodName()调用其他成员方法。
+* this是对当前对象的引用,代表当前正在执行的对象实例。在实例方法中,this总是指向调用该方法的对象。
+* this不能用来调用静态方法和静态变量。因为静态成员属于类,不属于对象实例,所以不能通过this来访问。静态成员应该通过类名来访问,如ClassName.staticMethod()。
+
+160.
+* java.exe是Java程序的启动程序,要运行一个Java应用程序必须有main()方法作为程序入口点
+* J2SDK是Java开发工具包(Software Development Kit),包含了开发Java程序所需的编译器、工具和类库等。而Java API只是其中的应用程序接口部分,两者不能等同。
+* Appletviewer.exe是用来运行Java小程序(Applet)的工具,不能使用jar选项来运行.jar文件。要运行.jar文件需要使用java -jar命令。
+* Appletviewer用于运行Applet程序,Applet继承自java.applet.Applet类,必须重写init()等生命周期方法,而不是必须有main()方法。实际上Applet程序通常是不需要main()方法的。
