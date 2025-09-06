@@ -1,0 +1,10 @@
+input: .
+output: .retype
+
+branding:
+  title: Programming Language Learn
+  label: Docs
+
+links:
+  - text: GitHub
+    link: https://github.com/ZHENdong1203/programming_language_learn
