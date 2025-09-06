@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.810455018123">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Python</title>
+    <meta name="title" content="Python">
+    <meta name="description" content="标识符可包含数字，字母和下划线，不可以使用数字开头。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="/python/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/python/">
+    <meta property="og:title" content="Python">
+    <meta property="og:description" content="标识符可包含数字，字母和下划线，不可以使用数字开头。">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="/python/">
+    <meta property="twitter:title" content="Python">
+    <meta property="twitter:description" content="标识符可包含数字，字母和下划线，不可以使用数字开头。">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../resources/css/retype.css?v=3.11.0.810455018123" rel="stylesheet">
+
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.810455018123" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.810455018123" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.11.0.810455018123" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../" class="flex items-center leading-snug text-xl">
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Programming Language Learn</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Docs</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://github.com/ZHENdong1203/programming_language_learn">GitHub</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://github.com/ZHENdong1203/programming_language_learn">GitHub</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="python" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#python">#</doc-anchor-trigger>
+        <span>Python</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="1-python-标识符">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#1-python-标识符">#</doc-anchor-trigger>
+        <span>1. python 标识符</span>
+    </h2>
+</doc-anchor-target>
+<p>标识符可包含数字，字母和下划线，不可以使用数字开头。</p>
+<p>以下划线开头有特殊意义。</p>
+<ul>
+<li>单下划线开头代表不能直接访问的类属性，需要通过类提供的接口进行访问，如_foo。</li>
+<li>双下划线开头表示类的私有成员，如__foo</li>
+<li>双下划线开头和结尾代表python里特殊方法专用的标识，如__init__()表示类的构造函数。</li>
+</ul>
+<doc-anchor-target id="2-注释">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2-注释">#</doc-anchor-trigger>
+        <span>2. 注释</span>
+    </h2>
+</doc-anchor-target>
+<p>单行注释，使用#。</p>
+<p>多行注释，使用三引号。</p>
+<doc-anchor-target id="3-python输出">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#3-python输出">#</doc-anchor-trigger>
+        <span>3. python输出</span>
+    </h2>
+</doc-anchor-target>
+<p><code v-pre>print()</code>函数默认换行，不换行需要增加end参数，<code v-pre>print(obj, end='')</code></p>
+<doc-anchor-target id="3-变量类型">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#3-变量类型">#</doc-anchor-trigger>
+        <span>3. 变量类型</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="标准数据类型">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#标准数据类型">#</doc-anchor-trigger>
+        <span>标准数据类型</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>数字</li>
+<li>字符串</li>
+<li>列表</li>
+<li>元组</li>
+<li>字典</li>
+</ul>
+<doc-anchor-target id="数字">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#数字">#</doc-anchor-trigger>
+        <span>数字</span>
+    </h3>
+</doc-anchor-target>
+<p>python支持四种数字类型。</p>
+<ul>
+<li>int 整型</li>
+<li>long 长整型，结尾使用L或l</li>
+<li>float 浮点型</li>
+<li>complex 复数，由实部和虚部组成，可以用a+bj或complex(a,b)表示。复数的实部和虚部都是浮点型。</li>
+</ul>
+<p>一个int类型的数<code v-pre>num</code>，可以通过<code v-pre>oct(num),hex(num)和bin(num)</code>转换为八进制，十六进制和二进制字符串。想要去掉进制前缀，使用<code v-pre>oct(num)[2:]</code>。</p>
+<p><code v-pre>complex()</code>函数可以将复数字符串转化为复数，如<code v-pre>complex(&quot;1+2j&quot;)</code>，下面的函数可以将复数转化为极坐标：</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from cmath import phase
+s= input()
+# 计算r
+print(abs(complex(s)))
+# 计算φ
+print(phase(complex(s)))</code></pre>
+</doc-codeblock></div>
+<p><code v-pre>pow()</code>函数，可用于幂计算和模计算</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">pow(base, exp, mod=None)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="字符串">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#字符串">#</doc-anchor-trigger>
+        <span>字符串</span>
+    </h3>
+</doc-anchor-target>
+<p>字符串运算符</p>
+<ul>
+<li><code v-pre>+</code> 字符串连接</li>
+<li><code v-pre>*</code> 重复输出字符串</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">    str='Hello'
+    print(str * 2)
+
+=&gt; 'HelloHello'</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>[]</code> 通过索引获取字符串中的字符，索引从0开始</li>
+<li><code v-pre>[:]</code> 截取字符串的一部分，左闭右开</li>
+<li><code v-pre>in</code> 成员运算符
+格式化字符串,f-string</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">num = 3.14159
+print(f&quot;{num:.2f}&quot;)
+
+=&gt; 3.14</code></pre>
+</doc-codeblock></div>
+<p>字符串函数</p>
+<ul>
+<li><code v-pre>split()</code> 其中<code v-pre>split(' ')</code>只把一个空格字符当作分隔符。多个连续空格会被视为“空内容”。</li>
+<li><code v-pre>strip(), lstrip(), rstrip()</code></li>
+<li><code v-pre>isupper()</code>和<code v-pre>islower()</code> 判断是否为大小写</li>
+<li><code v-pre>upper()</code>和<code v-pre>lower()</code> 转换为大写或小写</li>
+<li><code v-pre>join()</code> 把一个列表（或可迭代对象）中的元素用指定的分隔符连接成一个字符串。</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">'分隔符'.join(可迭代对象)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="列表">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#列表">#</doc-anchor-trigger>
+        <span>列表</span>
+    </h3>
+</doc-anchor-target>
+<p>列表的数据项不需要有相同的类型，使用中括号。</p>
+<p>操作符</p>
+<ul>
+<li><code v-pre>+</code> 组合</li>
+<li><code v-pre>*</code> 重复</li>
+<li><code v-pre>in</code> 元素是否存在于列表中</li>
+<li><code v-pre>for x in list: print(x)</code> 遍历</li>
+<li><code v-pre>[]</code> 通过索引访问列表元素，左边索引从0开始，右边索引从-1开始</li>
+<li><code v-pre>[:]</code> 切片，左闭右开
+<code v-pre>[::-1]</code>倒序切片</li>
+</ul>
+<p>列表方法</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">    list.append()
+    list.count()
+    list.extend()
+    list.insert(index,obj)
+    list.index()
+    list.pop()
+    list.remove()
+    list.reverse()
+    list.sort()</code></pre>
+</doc-codeblock></div>
+<p><code v-pre>sort()</code>排序函数配合lambda表达式使用，可自定义按照哪个元素进行排序，sort默认升序，使用参数reverse=True可以改为降序，例如：</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python"># 列表list中的元素为[('a',2),('b',3),('b',2)]
+# 先使用数字进行降序排列，再使用字母按照字母表顺序（升序）排列
+result = [('a',2),('b',3),('b',2)]
+result.sort(key=lambda x: (-x[1], x[0]))
+print(result)
+
+=&gt; [('b', 3), ('a', 2), ('b', 2)]</code></pre>
+</doc-codeblock></div>
+<p>生成字符串的排列</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from itertools import permutations
+print list(permutations('abc',3))
+
+=&gt; [('a', 'b', 'c'), ('a', 'c', 'b'), ('b', 'a', 'c'), ('b', 'c', 'a'), ('c', 'a', 'b'), ('c', 'b', 'a')]</code></pre>
+</doc-codeblock></div>
+<p>生成字符串的组合</p>
+<p>如果输入是有序的，输出的组合也是有序的。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from itertools import combinations 
+print(list(combinations('12345',2)))
+
+=&gt; [('1', '2'), ('1', '3'), ('1', '4'), ('1', '5'), ('2', '3'), ('2', '4'), ('2', '5'), ('3', '4'), ('3', '5'), ('4', '5')]</code></pre>
+</doc-codeblock></div>
+<p>有放回的组合</p>
+<p>允许重复</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from itertools import combinations_with_replacement
+print(list(combinations_with_replacement('12345',2)))
+
+=&gt; [('1', '1'), ('1', '2'), ('1', '3'), ('1', '4'), ('1', '5'), ('2', '2'), ('2', '3'), ('2', '4'), ('2', '5'), ('3', '3'), ('3', '4'), ('3', '5'), ('4', '4'), ('4', '5'), ('5', '5')]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="元组">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#元组">#</doc-anchor-trigger>
+        <span>元组</span>
+    </h3>
+</doc-anchor-target>
+<p>元组和列表类似，不要求元素的类型一致，但是元组不允许修改，同时使用小括号。</p>
+<p><code v-pre>namedtuple()</code>不需要整数索引来访问元组元素</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pyhton</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">from collections import namedtuple
+Car = namedtuple('Car','Price Mileage Colour Class')
+xyz = Car(Price = 100000, Mileage = 30, Colour = 'Cyan', Class = 'Y')
+print(xyz)
+print(xyz.Class)
+
+=&gt; Car(Price=100000, Mileage=30, Colour='Cyan', Class='Y')
+=&gt; Y</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="字典">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#字典">#</doc-anchor-trigger>
+        <span>字典</span>
+    </h3>
+</doc-anchor-target>
+<p>字典是键值对，使用大括号。
+其中字典的键唯一，并且不可变，所以键要使用数字，字符串或元组。</p>
+<p><code v-pre>defaultdict</code> 在插入时不需要检查key是否存在。<code v-pre>from collections import defaultdict </code></p>
+<p><code v-pre>OrderedDict</code> 输出时可以保留键插入的循序<code v-pre>from collections import OrderedDict</code></p>
+<doc-anchor-target id="4-python运算符">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4-python运算符">#</doc-anchor-trigger>
+        <span>4. python运算符</span>
+    </h2>
+</doc-anchor-target>
+<p>算术运算符<code v-pre>+, -, *, /, %, **, //(向下取整)</code></p>
+<p>比较运算符<code v-pre>==, !=, &gt;, &lt;, &gt;=, &lt;=</code></p>
+<p>逻辑运算符<code v-pre>and, or, not</code></p>
+<p>成员运算符<code v-pre>in, not in</code></p>
+<p>身份运算符<code v-pre>is, not is</code>判断两个标识符是不是引用自一个对象</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">a = 20
+b = 20
+
+if (a is b):
+    print(&quot;a 和 b 有相同的标识&quot;)
+else:
+    print(&quot;a 和 b 没有相同的标识&quot;)
+
+# 修改变量 b 的值
+b = 30
+if (a is b):
+    print(&quot;a 和 b 有相同的标识&quot;)
+else:
+    print(&quot;a 和 b 没有相同的标识&quot;)
+
+=&gt; a 和 b 有相同的标识  
+=&gt; a 和 b 没有相同的标识   </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="5-python-条件语句">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#5-python-条件语句">#</doc-anchor-trigger>
+        <span>5. python 条件语句</span>
+    </h2>
+</doc-anchor-target>
+<p>if-else</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">if 判断条件：
+    执行语句……
+else：
+    执行语句……</code></pre>
+</doc-codeblock></div>
+<p>条件表达式（三元表达式）</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">结果 = 表达式1 if 条件 else 表达式2</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="6-python循环语句">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6-python循环语句">#</doc-anchor-trigger>
+        <span>6. python循环语句</span>
+    </h2>
+</doc-anchor-target>
+<p>while循环</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">while 判断条件(condition)：
+    执行语句(statements)……</code></pre>
+</doc-codeblock></div>
+<p>while-else，在循环条件为false时执行else语句块。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">count = 0
+while count &lt; 5:
+   print count, &quot; is  less than 5&quot;
+   count = count + 1
+else:
+   print count, &quot; is not less than 5&quot;
+
+0 is less than 5
+1 is less than 5
+2 is less than 5
+3 is less than 5
+4 is less than 5
+5 is not less than 5</code></pre>
+</doc-codeblock></div>
+<p>for循环</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">for iterating_var in sequence:
+   statements(s)</code></pre>
+</doc-codeblock></div>
+<p>for-else,else中的语句会在循环正常执行完后执行</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">for num in range(10,20):  # 迭代 10 到 20 (不包含) 之间的数字
+   for i in range(2,num): # 根据因子迭代
+      if num%i == 0:      # 确定第一个因子
+         j=num/i          # 计算第二个因子
+         print ('%d 等于 %d * %d' % (num,i,j))
+         break            # 跳出当前循环
+   else:                  # 循环的 else 部分
+      print ('%d 是一个质数' % num)
+
+10 等于 2 * 5
+11 是一个质数
+12 等于 2 * 6
+13 是一个质数
+14 等于 2 * 7
+15 等于 3 * 5
+16 等于 2 * 8
+17 是一个质数
+18 等于 2 * 9
+19 是一个质数</code></pre>
+</doc-codeblock></div>
+<p><code v-pre>break</code>跳出整个循环</p>
+<p><code v-pre>continue</code>跳出当前循环，开始下一次循环</p>
+<p><code v-pre>pass</code>不做任何事情，用于占位</p>
+<doc-anchor-target id="7-python函数">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#7-python函数">#</doc-anchor-trigger>
+        <span>7. python函数</span>
+    </h3>
+</doc-anchor-target>
+<p>定义函数</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">def functionname( parameters ):
+   &quot;&quot;&quot;函数文档&quot;&quot;&quot;
+   function_suite
+   return [expression]</code></pre>
+</doc-codeblock></div>
+<p>函数的参数</p>
+<ul>
+<li>必备参数</li>
+<li>关键字参数</li>
+<li>默认参数</li>
+<li>不定长参数</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python"># 必备参数
+def printme(str):
+   &quot;打印任何传入的字符串&quot;
+   print str
+   return
+ 
+#调用printme函数
+printme()
+
+# 关键字参数
+def printinfo( name, age ):
+   &quot;打印任何传入的字符串&quot;
+   print &quot;Name: &quot;, name
+   print &quot;Age &quot;, age
+   return
+ 
+#调用printinfo函数
+printinfo( age=50, name=&quot;miki&quot; )
+
+# 默认参数
+def printinfo( name, age = 35 ):
+   &quot;打印任何传入的字符串&quot;
+   print &quot;Name: &quot;, name
+   print &quot;Age &quot;, age
+   return
+ 
+#调用printinfo函数
+printinfo( age=50, name=&quot;miki&quot; )
+printinfo( name=&quot;miki&quot; )
+
+# 不定长参数
+def printinfo( arg1, *vartuple ):
+   &quot;打印任何传入的参数&quot;
+   print &quot;输出: &quot;
+   print arg1
+   for var in vartuple:
+      print var
+   return
+ 
+# 调用printinfo 函数
+printinfo( 10 )
+printinfo( 70, 60, 50 )</code></pre>
+</doc-codeblock></div>
+<p>匿名函数，python使用lambda创建匿名函数</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">lambda [arg1 [,arg2,.....argn]]:expression</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">sum = lambda arg1, arg2: arg1 + arg2
+ 
+# 调用sum函数
+print &quot;相加后的值为 : &quot;, sum( 10, 20 )
+print &quot;相加后的值为 : &quot;, sum( 20, 20 )</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8-python文件">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8-python文件">#</doc-anchor-trigger>
+        <span>8. python文件</span>
+    </h3>
+</doc-anchor-target>
+<p>打开文件</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">open(file, mode='r')</code></pre>
+</doc-codeblock></div>
+<p>mode默认文本模式，r是读，w是写，a是追加，加b是二进制模式，加+是读写。r和w指针在开始，a指针在结尾。</p>
+<p>方法</p>
+<ul>
+<li>close()</li>
+<li>write() 不会在字符串结尾加<code v-pre>\n</code></li>
+<li>read()</li>
+<li>tell() 返回文件内的当前位置，即下次读写会发生在文件开头多少字节之后</li>
+<li>seek(offset [,from]) offset表示要移动的字节数，from指定开始移动字节的参考位置。from是0，将文件开头作为移动字节的参考位置。是1，将当前位置作为参考位置。是2，将文件结尾作为参考位置。</li>
+</ul>
+<doc-anchor-target id="9-python异常处理">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#9-python异常处理">#</doc-anchor-trigger>
+        <span>9. python异常处理</span>
+    </h3>
+</doc-anchor-target>
+<p>except可以写特定的异常类型，也可以不写，else是当try执行没有发生异常时，才会执行。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">try:
+    正常的操作
+   ......................
+except:
+    发生异常，执行这块代码
+   ......................
+else:
+    如果没有异常执行这块代码</code></pre>
+</doc-codeblock></div>
+<p>finally是无论是否发生异常，都会执行。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">try:
+    正常的操作
+   ......................
+except:
+    发生异常，执行这块代码
+   ......................
+finally:
+    如果没有异常执行这块代码</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="10-python面向对象">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#10-python面向对象">#</doc-anchor-trigger>
+        <span>10. python面向对象</span>
+    </h3>
+</doc-anchor-target>
+<p>类定义</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">class ClassName:
+   &quot;&quot;&quot;类的帮助信息&quot;&quot;&quot;   #类文档字符串
+   class_suite  #类体</code></pre>
+</doc-codeblock></div>
+<p>类的方法与普通函数有一个区别，必须有额外的第一个参数self。self代表类的实例，代表当前对象的地址。</p>
+<p>内置类属性</p>
+<ul>
+<li><code v-pre>__dict__</code> 类的属性，包含一个字典，由该类的数据属性组成</li>
+<li><code v-pre>__doc__</code> 类的文档字符串</li>
+<li><code v-pre>__name__</code> 类名</li>
+<li><code v-pre>__moudle__</code> 类定义所在的模块</li>
+<li><code v-pre>__bases__</code> 类的所有父类构成元素，包含了由所有父类组成的元组。</li>
+</ul>
+<p>类的继承</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">class 派生类名(基类名)
+    ...</code></pre>
+</doc-codeblock></div>
+<p>方法重写，如果父类方法的功能不能满足需求，可以在子类中重写父类的方法。</p>
+<p>基础重载方法</p>
+<ul>
+<li><code v-pre>__init__</code> 构造函数</li>
+<li><code v-pre>__del__</code> 析构方法，删除一个对象</li>
+<li><code v-pre>__str__</code> toString</li>
+<li><code v-pre>__cmp__</code> 对象比较
+运算符重载</li>
+</ul>
+<p>类属性</p>
+<ul>
+<li><code v-pre>_foo</code> 单下划线开头表示的是protected类型的变量，只允许本身和子类访问。不能用于<code v-pre>from module import *</code>。</li>
+<li><code v-pre>__foo</code> 双下划线开头表示private类型，只允许这个类本身访问。python不允许实例化的类访问私有数据，但可以通过类名来访问，即<code v-pre>obj._className__attrName</code></li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">class Runoob:
+    __site = &quot;www.runoob.com&quot;
+
+runoob = Runoob()
+print runoob._Runoob__site
+
+=&gt; www.runoob.com</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="11-python日历">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#11-python日历">#</doc-anchor-trigger>
+        <span>11. python日历</span>
+    </h3>
+</doc-anchor-target>
+<p>输入年月日，输出星期几，返回的是索引，0是Monday</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">daynum = calendar.weekday(year, month, day)
+
+=&gt; 2</code></pre>
+</doc-codeblock></div>
+<p>输入星期索引，返回名字</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">day_name = calendar.day_name[daynum]
+
+=&gt; Wednesday</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="12-python集合">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#12-python集合">#</doc-anchor-trigger>
+        <span>12. python集合</span>
+    </h3>
+</doc-anchor-target>
+<p>set是无序的数据结构，使用大括号。</p>
+<p>集合的操作</p>
+<ul>
+<li><code v-pre>s.union(t)</code> s和t的并集</li>
+<li><code v-pre>s.intersection(t)</code> s和t的交集</li>
+<li><code v-pre>s.difference(t)</code> 在s但是不在t</li>
+<li><code v-pre>s.symmetric_difference(t)</code> 在s中但是不在t，同时还包括在t中但是不在s。</li>
+<li><code v-pre>s.issubset(t)</code> s是否是t的子集</li>
+</ul>
+<p>双端队列</p>
+<p>左右两端都可以进行插入和删除<code v-pre>from collections import deque</code></p>
+<p><code v-pre>zip()</code>函数
+返回一个元组列表，第i个元组包含输入的序列或可迭代对象的第i个元素</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">print(zip([1,2,3,4,5,6],[0,9,8,7,6,5,4,3,2,1]))
+
+=&gt; [(1, 0), (2, 9), (3, 8), (4, 7), (5, 6), (6, 5)]
+
+A = [1,2,3]
+B = [6,5,4]
+C = [7,8,9]
+X = [A] + [B] + [C]
+print(zip(*X))
+
+=&gt; [(1, 6, 7), (2, 5, 8), (3, 4, 9)]</code></pre>
+</doc-codeblock></div>
+<p><code v-pre>eval()</code>函数会执行所有输入的python表达式</p>
+<p><code v-pre>any()</code> 迭代对象中有一个为True，any函数就返回True。</p>
+<p><code v-pre>all()</code>迭代对象中全部为True，all函数才返回True。</p>
+<p><code v-pre>groupby()</code>函数，对连续相同的元素进行分组，例如：</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from itertools import groupby
+
+data = 'aaabbbccaaa'
+
+for key, group in groupby(data):
+    print(key, list(group))
+
+=&gt;
+a ['a', 'a', 'a']
+b ['b', 'b', 'b']
+c ['c', 'c']
+a ['a', 'a', 'a']</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="13-python-html与xml">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#13-python-html与xml">#</doc-anchor-trigger>
+        <span>13. python HTML与XML</span>
+    </h3>
+</doc-anchor-target>
+<p>HTML解析需要重写handle函数</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from html.parser import HTMLParser
+
+class MyHTMLParser(HTMLParser):
+    def handle_comment(self, data):
+          if '\n' in data:
+              print(&quot;&gt;&gt;&gt; Multi-line Comment&quot;)
+              print(data)
+          else:
+              print(&quot;&gt;&gt;&gt; Single-line Comment&quot;)
+              print(data)
+
+    def handle_data(self, data):
+        print(&quot;&gt;&gt;&gt; Data&quot;)
+        print(&quot; &quot; + data)
+
+    def handle_starttag(self, tag, attrs):
+        print(&quot;Start :&quot;, tag)
+        for attr in attrs:
+            print(&quot;-&gt; &quot; + str(attr[0]) + &quot; &gt; &quot; + str(attr[1]))
+
+    def handle_endtag(self, tag):
+        print(&quot;End   :&quot;, tag)
+
+    def handle_startendtag(self, tag,attrs):
+        print(&quot;Empty :&quot;, tag)
+        for attr in attrs:
+            print(&quot;-&gt; &quot; + str(attr[0]) + &quot; &gt; &quot; + str(attr[1]))
+
+parser = MyHTMLParser()
+number = int(input())
+strList = &quot;&quot;
+for i in range(number):
+    strList += input()
+
+parser.feed(strList)</code></pre>
+</doc-codeblock></div>
+<p>xml解析为树结构</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import xml.etree.ElementTree as etree
+tree = etree.ElementTree(etree.fromstring(xml))
+root = tree.getroot()</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="14-python装饰器">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#14-python装饰器">#</doc-anchor-trigger>
+        <span>14. python装饰器</span>
+    </h3>
+</doc-anchor-target>
+<p>用于在不修改函数或类定义的前提下，增加额外的功能。一个函数，增加另一个函数作为参数，并返回一个增强后的函数。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">def decorator(func):
+    def wrapper():
+        print(&quot;开始执行&quot;)
+        func()
+        print(&quot;执行结束&quot;)
+    return wrapper
+
+@decorator
+def say_hello():
+    print(&quot;Hello&quot;)
+
+say_hello()</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="15-python-numpy">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#15-python-numpy">#</doc-anchor-trigger>
+        <span>15. python numpy</span>
+    </h3>
+</doc-anchor-target>
+<p>Arrays</p>
+<p>numpy数组接受一个list，并将其转化为一个numpy数组，list中所有元素的类型必须一致。第二个参数可以设置numpy数组元素的类型。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import numpy
+
+a = numpy.array([1,2,3,4,5])
+print a[1]          
+
+=&gt; 2
+
+b = numpy.array([1,2,3,4,5],float)
+print b[1]          
+
+=&gt; 2.0</code></pre>
+</doc-codeblock></div>
+<p><code v-pre>arr.shape</code>可以输出当前数组<code v-pre>arr</code>的维度.</p>
+<p><code v-pre>arr.shape = (a,b)</code>可以将数组<code v-pre>arr</code>的维度设置为<code v-pre>a*b</code>.</p>
+<p><code v-pre>numpy.reshape(arr, (a,b))</code>可以将数组<code v-pre>arr</code>的维度设置为<code v-pre>a*b</code>。</p>
+<p><code v-pre>numpy.transpose(arr)</code>转置数组。</p>
+<p><code v-pre>arr.flatten()</code>将数组变化为一维。</p>
+<p><code v-pre>numpy.concatenate((array_1, array_2), axis = 1)</code> 拼接多个数组，axis参数默认是0，即按行拼接。为1是按列拼接。</p>
+<p>零矩阵和一矩阵
+<code v-pre>numpy.zeros((m,n))</code> 生成m行n列的零矩阵，<code v-pre>(m,n)</code>也可以作为元组传进去。可通过<code v-pre>dtype=float或int32</code>参数设置生成矩阵中元素的类型。</p>
+<p><code v-pre>numpy.ones((m,n))</code> 生成m行n列的一矩阵，<code v-pre>(m,n)</code>也可以作为元组传进去。</p>
+<p><code v-pre>numpy.identity(n)</code> 生成n行n列的单位矩阵，即对角线元素为1，其他元素为0。默认生成的元素为float类型。</p>
+<p><code v-pre>numpy.eye(m, n, k = 1)</code> 生成一个m行n列的矩阵，k=0就是单位矩阵，对角线元素为1，其他元素为0。k&gt;0时，如果k=1，那么对角线的上一格斜线元素为1，其他元素为0.k=2即对角线上两格斜线元素为1。k&lt;0时，即对角线下方。</p>
+<p>numpy数组计算</p>
+<p>可使用数学符号，也可以使用numpy的函数进行，以加法为例：</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import numpy
+
+a = numpy.array([1,2,3,4], float)
+b = numpy.array([5,6,7,8], float)
+print a + b                     
+
+=&gt; [  6.   8.  10.  12.]
+
+print numpy.add(a, b)           
+
+=&gt; [  6.   8.  10.  12.]</code></pre>
+</doc-codeblock></div>
+<p><code v-pre>numpy.floor(arr)</code> 返回每个元素的下界。</p>
+<p><code v-pre>numpy.ceil(arr)</code> 返回每个元素的上界。</p>
+<p><code v-pre>numpy.rint(arr)</code> 返回每个元素四舍五入的整数。</p>
+<p><code v-pre>numpy.sum(arr, axis=0)</code> 数组按行求和。axis=1时，数组按列求和。默认axis=None，数组按所有维度求和。</p>
+<p><code v-pre>numpy.prod(arr, axis=0)</code> 数组按行求积。axis=1时，数组按列求积。默认axis=None,数组按所有维度求积。</p>
+<p><code v-pre>numpy.min(arr, axis=0)</code> 数组按行求最小值。axis=1时，数组按列求最小值。默认axis=None，数组按所有维度求最小值。</p>
+<p><code v-pre>numpy.max(arr, axis=0)</code> 数组按行求最大值。axis=1时，数组按列求最大值。默认axis=None，数组按所有维度求最大值。</p>
+<p><code v-pre>numpy.mean(arr, axis=0)</code> 数组按行求平均值。axis=1时，数组按列求平均值。默认axis=None，数组按所有维度求平均值。</p>
+<p><code v-pre>numpy.var(arr, axis=0)</code> 数组按行求方差。axis=1时，数组按列求方差。默认axis=None，数组按所有维度求方差。</p>
+<p><code v-pre>numpy.std(arr, axis=0)</code> 数组按行求标准差。axis=1时，数组按列求标准差。默认axis=None，数组按所有维度求标准差。</p>
+<doc-anchor-target id="16-python-时间">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#16-python-时间">#</doc-anchor-trigger>
+        <span>16. python 时间</span>
+    </h3>
+</doc-anchor-target>
+<p>将时间字符串转换为datetime格式,对应的格式代码为：</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>格式代码</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>%a</code></td>
+<td>缩写的星期几</td>
+<td><code v-pre>Sun</code></td>
+</tr>
+<tr>
+<td><code v-pre>%A</code></td>
+<td>全写的星期几</td>
+<td><code v-pre>Sunday</code></td>
+</tr>
+<tr>
+<td><code v-pre>%w</code></td>
+<td>星期几（0-6，0是周日）</td>
+<td><code v-pre>0</code></td>
+</tr>
+<tr>
+<td><code v-pre>%d</code></td>
+<td>日（01-31）</td>
+<td><code v-pre>05</code></td>
+</tr>
+<tr>
+<td><code v-pre>%b</code></td>
+<td>缩写的月份</td>
+<td><code v-pre>May</code></td>
+</tr>
+<tr>
+<td><code v-pre>%B</code></td>
+<td>全写的月份</td>
+<td><code v-pre>May</code></td>
+</tr>
+<tr>
+<td><code v-pre>%m</code></td>
+<td>月（01-12）</td>
+<td><code v-pre>05</code></td>
+</tr>
+<tr>
+<td><code v-pre>%y</code></td>
+<td>年的后两位（00-99）</td>
+<td><code v-pre>25</code></td>
+</tr>
+<tr>
+<td><code v-pre>%Y</code></td>
+<td>年的完整四位</td>
+<td><code v-pre>2025</code></td>
+</tr>
+<tr>
+<td><code v-pre>%H</code></td>
+<td>小时（24小时制，00-23）</td>
+<td><code v-pre>13</code></td>
+</tr>
+<tr>
+<td><code v-pre>%I</code></td>
+<td>小时（12小时制，01-12）</td>
+<td><code v-pre>01</code></td>
+</tr>
+<tr>
+<td><code v-pre>%p</code></td>
+<td>AM或PM（大写）</td>
+<td><code v-pre>PM</code></td>
+</tr>
+<tr>
+<td><code v-pre>%M</code></td>
+<td>分钟（00-59）</td>
+<td><code v-pre>09</code></td>
+</tr>
+<tr>
+<td><code v-pre>%S</code></td>
+<td>秒（00-59）</td>
+<td><code v-pre>36</code></td>
+</tr>
+<tr>
+<td><code v-pre>%f</code></td>
+<td>微秒（000000-999999）</td>
+<td><code v-pre>000123</code></td>
+</tr>
+<tr>
+<td><code v-pre>%z</code></td>
+<td>UTC偏移（±HHMM）</td>
+<td><code v-pre>+1000</code> / <code v-pre>-0700</code></td>
+</tr>
+<tr>
+<td><code v-pre>%Z</code></td>
+<td>时区名称（系统定义）</td>
+<td><code v-pre>UTC</code>, <code v-pre>EST</code>（不推荐）</td>
+</tr>
+<tr>
+<td><code v-pre>%j</code></td>
+<td>一年中的第几天（001-366）</td>
+<td><code v-pre>123</code></td>
+</tr>
+<tr>
+<td><code v-pre>%U</code></td>
+<td>一年中的第几周（周日为一周的开始）</td>
+<td><code v-pre>18</code></td>
+</tr>
+<tr>
+<td><code v-pre>%W</code></td>
+<td>一年中的第几周（周一为一周的开始）</td>
+<td><code v-pre>19</code></td>
+</tr>
+<tr>
+<td><code v-pre>%c</code></td>
+<td>本地日期和时间表示法</td>
+<td><code v-pre>Tue Aug  5 23:00:00 2025</code></td>
+</tr>
+<tr>
+<td><code v-pre>%x</code></td>
+<td>本地日期表示</td>
+<td><code v-pre>08/05/25</code></td>
+</tr>
+<tr>
+<td><code v-pre>%X</code></td>
+<td>本地时间表示</td>
+<td><code v-pre>23:00:00</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例如：</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">t1 = &quot;Sun 10 May 2015 13:54:36 -0700&quot;
+fmt = '%a %d %b %Y %H:%M:%S %z'
+dt1 = datetime.strptime(t1, fmt)</code></pre>
+</doc-codeblock></div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../operation-system/opration_system/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Opration system</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Python", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

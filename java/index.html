@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.810455018123">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Java</title>
+    <meta name="title" content="Java">
+    <meta name="description" content="标识符以字母，美元符号和下划线开头">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="/java/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/java/">
+    <meta property="og:title" content="Java">
+    <meta property="og:description" content="标识符以字母，美元符号和下划线开头">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="/java/">
+    <meta property="twitter:title" content="Java">
+    <meta property="twitter:description" content="标识符以字母，美元符号和下划线开头">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../resources/css/retype.css?v=3.11.0.810455018123" rel="stylesheet">
+
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.810455018123" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.810455018123" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.11.0.810455018123" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../" class="flex items-center leading-snug text-xl">
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Programming Language Learn</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">Docs</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://github.com/ZHENdong1203/programming_language_learn">GitHub</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-base-border">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://github.com/ZHENdong1203/programming_language_learn">GitHub</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-350 dark:text-dark-400 hover:text-gray-600 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="java" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#java">#</doc-anchor-trigger>
+        <span>Java</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="1-java标识符">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#1-java标识符">#</doc-anchor-trigger>
+        <span>1. java标识符</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>标识符以字母，美元符号和下划线开头</li>
+<li>首字符之后可以是字母，美元符号，下划线和数字的任意组合</li>
+<li>大小写敏感</li>
+<li>关键字不能做标识符</li>
+</ul>
+<doc-anchor-target id="2-java注释">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2-java注释">#</doc-anchor-trigger>
+        <span>2. java注释</span>
+    </h2>
+</doc-anchor-target>
+<p>单行注释
+使用<code v-pre>//</code>开始</p>
+<p>多行注释
+以<code v-pre>/*</code>开始，以<code v-pre>*/</code>结束</p>
+<p>文档注释
+以<code v-pre>/**</code>开始，以<code v-pre>*/</code>结束</p>
+<doc-anchor-target id="3-java对象和类">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#3-java对象和类">#</doc-anchor-trigger>
+        <span>3. java对象和类</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>类（Class），定义对象的属性和方法。</li>
+<li>对象（Object），类的实例。</li>
+<li>继承，一个类可以继承另一个类的属性和方法。</li>
+<li>封装，将对象的字段私有化，通过公共方法访问。</li>
+<li>多态，通过方法重载和方法重写实现。</li>
+<li>抽象，使用抽象类和接口来定义必须实现的方法，不提供具体实现。</li>
+<li>接口（Interface），定义类必须实现的方法，支持多重继承。</li>
+<li>方法，定义类的行为，包含类中的函数。</li>
+<li>方法重载（overload），同一个类中可以有多个同名的方法，但是参数不同。</li>
+</ul>
+<p>类的变量</p>
+<ul>
+<li>局部变量：在方法，构造方法或者语句块中定义的变量为局部变量。变量声明和初始化都在方法中，方法结束后，变量就会自动销毁。</li>
+<li>成员变量：成员变量定义在类中，方法体之外的变量。这种变量在创建对象的时候实例化。成员变量可以被类中的方法，构造方法和特定类的语句块访问。</li>
+<li>类变量：类变量也声明在类中，方法体之外，但必须声明为static类型。类变量与类相关，无论创建多少个类实例，静态变量在内存中只有一份，被所有实例共享。可通过类名或实例名访问。</li>
+<li>参数变量：用于接收传递给方法或构造函数的值。参数变量的值传递有两种方式：（1）值传递，java基本数据类型都是采用值传递。值传递传递的是参数的值的副本，只会修改副本而不会影响原始值。（2）引用传递，java中的对象类型采用引用传递。传递的是实际参数的引用，会修改原始值的内容。</li>
+</ul>
+<p>构造方法中的this关键字</p>
+<ul>
+<li>引用当前对象的属性或方法</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">public Person(String name, int age) {
+    this.name = name; // this.name 表示类的属性
+    this.age = age;
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>调用另一个构造方法。使用this()调用当前类的其他构造方法，必须放在当前构造方法的第一行。</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">public Person(String name) {
+    this(name, 0); // 调用另一个双参数的构造方法
+}
+
+public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4-java基本数据类型">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4-java基本数据类型">#</doc-anchor-trigger>
+        <span>4. java基本数据类型</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="内置数据类型">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#内置数据类型">#</doc-anchor-trigger>
+        <span>内置数据类型</span>
+    </h3>
+</doc-anchor-target>
+<p>六种数字类型（四个整数类型，两个浮点型），一种字符类型，一种布尔型。</p>
+<p>整数类型</p>
+<ul>
+<li>byte（8位）</li>
+<li>short（16位）</li>
+<li>int（32位），整型默认为int类型。</li>
+<li>long（64位），使用&quot;L&quot;或&quot;l&quot;后缀。
+浮点型</li>
+<li>float（单精度，32位）</li>
+<li>double（双精度，64位），浮点型默认为double类型。
+字符型</li>
+<li>char
+布尔型</li>
+<li>boolean</li>
+</ul>
+<doc-anchor-target id="引用数据类型">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#引用数据类型">#</doc-anchor-trigger>
+        <span>引用数据类型</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>引用类型指向一个对象，指向对象的变量是引用变量。变量被声明后，类型就不能改变了。</li>
+<li>对象，数组都是引用数据类型。</li>
+<li>所有引用类型的默认值都是null。</li>
+</ul>
+<doc-anchor-target id="常量">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#常量">#</doc-anchor-trigger>
+        <span>常量</span>
+    </h3>
+</doc-anchor-target>
+<p>使用final关键字来定义常量，常量标识符通常全是大写。</p>
+<doc-anchor-target id="5-java修饰符">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#5-java修饰符">#</doc-anchor-trigger>
+        <span>5. java修饰符</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="访问控制修饰符">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#访问控制修饰符">#</doc-anchor-trigger>
+        <span>访问控制修饰符</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>public，类，变量，接口，方法。</li>
+<li>private，变量，方法。不能修饰类。</li>
+<li>default，类，接口，变量，方法。</li>
+<li>protected，变量，方法。不能修饰类，内部类除外。</li>
+</ul>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>修饰符</th>
+<th>当前类</th>
+<th>同一包内</th>
+<th>子孙类(同一包)</th>
+<th>子孙类(不同包)</th>
+<th>其他包</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>public</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td><code v-pre>protected</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y/N</td>
+<td>N</td>
+</tr>
+<tr>
+<td><code v-pre>default</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr>
+<td><code v-pre>private</code></td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>子类与基类不在同一包，在子类中，子类实例可以访问从基类继承而来的protected方法，而不能访问基类实例的protected方法。</p>
+<doc-anchor-target id="非访问修饰符">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#非访问修饰符">#</doc-anchor-trigger>
+        <span>非访问修饰符</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>static，静态变量，静态方法。静态方法不能使用类的非静态变量。</li>
+<li>final，final变量，一旦赋值后，不能被重新赋值。final方法，父类中的final方法可以被子类继承，但不能被重写。final类，不能被继承。</li>
+<li>abstract，抽象类不能用来实例化对象，声明抽象类是为了将来对该类进行扩充。一个类包含抽象方法，一定要声明为抽象类。一个抽象类可以包含抽象方法和非抽象方法。抽象方法是没有任何实现的方法，该方法的具体实现由子类提供。
+任何继承抽象类的子类必须实现父类的所有抽象方法。</li>
+<li>synchronized，被该关键字修饰的方法同一时间只能被一个线程访问。</li>
+<li>transient，序列化对象中包含transient修饰的变量，该变量不会被持久化。</li>
+<li>volatile，被该关键字修饰的成员变量在每次被线程访问时，都强制从共享内存中重新读取该成员变量的值。而且，当成员变量发生变化时，以强制线程将变化值回写到共享内存。因此，在任何时刻，两个不同的线程总是看到某个成员变量的同一个值。</li>
+</ul>
+<doc-anchor-target id="6-java运算符">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6-java运算符">#</doc-anchor-trigger>
+        <span>6. Java运算符</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>算术运算符（+,-,*,/,%,++,--）</li>
+<li>关系运算符（==,!=,&gt;,&lt;,&gt;=,&lt;=）</li>
+<li>逻辑运算符（&amp;&amp;,||,!）</li>
+<li>条件运算符（三元运算符）</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">variable x = (expression) ? value if true : value if false</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>instance of运算符，检查对象是否是一个特定类型。</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">( Object reference variable ) instanceof  (class/interface type)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="7-java循环结构">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#7-java循环结构">#</doc-anchor-trigger>
+        <span>7. java循环结构</span>
+    </h3>
+</doc-anchor-target>
+<p>while循环</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">while( 布尔表达式 ) {
+  //循环内容
+}</code></pre>
+</doc-codeblock></div>
+<p>do-while循环</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">do {
+       //代码语句
+}while(布尔表达式);</code></pre>
+</doc-codeblock></div>
+<p>for循环</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">for(初始化; 布尔表达式; 更新) {
+    //代码语句
+}</code></pre>
+</doc-codeblock></div>
+<p>增强for循环</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">for(循环变量声明语句 : 集合对象)
+{
+   //代码句子
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8-java条件语句">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8-java条件语句">#</doc-anchor-trigger>
+        <span>8. java条件语句</span>
+    </h3>
+</doc-anchor-target>
+<p>if-else</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">if(布尔表达式){
+   //如果布尔表达式的值为true
+}else{
+   //如果布尔表达式的值为false
+}</code></pre>
+</doc-codeblock></div>
+<p>if-else if-esle</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">if(布尔表达式 1){
+   //如果布尔表达式 1的值为true执行代码
+}else if(布尔表达式 2){
+   //如果布尔表达式 2的值为true执行代码
+}else if(布尔表达式 3){
+   //如果布尔表达式 3的值为true执行代码
+}else {
+   //如果以上布尔表达式都不为true执行代码
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="9-switch-case语句">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#9-switch-case语句">#</doc-anchor-trigger>
+        <span>9. switch case语句</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">switch(expression){
+    case value :
+       //语句
+       break; //可选
+    case value :
+       //语句
+       break; //可选
+    //你可以有任意数量的case语句
+    default : //可选
+       //语句
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="10java-number类">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#10java-number类">#</doc-anchor-trigger>
+        <span>10.java Number类</span>
+    </h3>
+</doc-anchor-target>
+<p>所有包装类（Interger，Long，Byte，Double，Float，Short）都是抽象类Number的子类。
+| 类名        | 对应基本类型 | 描述                     |
+|-------------|----------------|--------------------------|
+| Byte        | byte           | 字节型包装类             |
+| Short       | short          | 短整型包装类             |
+| Integer     | int            | 整型包装类               |
+| Long        | long           | 长整型包装类             |
+| Float       | float          | 单精度浮点型包装类       |
+| Double      | double         | 双精度浮点型包装类       |
+| BigInteger  | -              | 不可变任意精度整数       |
+| BigDecimal  | -              | 不可变任意精度有符号十进制数 |</p>
+<p>基本数据类型的强制类型转换</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">int x = 10;
+System.out.println((double)x);
+
+=&gt; 10.0</code></pre>
+</doc-codeblock></div>
+<p>包装类的类型转换，使用<code v-pre>.xxxValue()</code>函数</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">Double num = 1234.56; // 实际是Double类型
+
+System.out.println(num.intValue());    // 1234 (截断小数)
+System.out.println(num.longValue());   // 1234
+System.out.println(num.floatValue());  // 1234.56</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="11java-string类">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#11java-string类">#</doc-anchor-trigger>
+        <span>11.java String类</span>
+    </h3>
+</doc-anchor-target>
+<p>String创建的字符串存储在公共池（常量池）中，而new创建的字符串对象在堆上。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">String s1 = &quot;Runoob&quot;; //常量池
+String s4 = new String(&quot;Runoob&quot;); //堆</code></pre>
+</doc-codeblock></div>
+<p>String类是不可变的，一旦创建，它的值就无法改变了。要做修改，可使用StringBuffer或StringBuilder类。</p>
+<p>StringBuffer和StringBuilder类的对象能被多次修改，并且不产生新的未使用的对象。StringBuffer是线程安全的，StringBuilder不是线程安全的，但是StringBuilder有速度优势。</p>
+<p><code v-pre>.length()</code>返回字符串长度
+<code v-pre>string1.concat(string2);</code> 连接两个字符串，也可以直接使用+来连接字符串。</p>
+<doc-anchor-target id="12-java数组">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#12-java数组">#</doc-anchor-trigger>
+        <span>12. java数组</span>
+    </h3>
+</doc-anchor-target>
+<p>声明数组</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">dataType[] arrayRefVar; </code></pre>
+</doc-codeblock></div>
+<p>创建数组</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">arrayRefVar = new dataType[arraySize];</code></pre>
+</doc-codeblock></div>
+<p>声明和创建</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">dataType[] arrayRefVar = new dataType[arraySize];
+
+dataType[] arrayRefVar = {value0, value1, ..., valuek};</code></pre>
+</doc-codeblock></div>
+<p>数组索引从0开始。</p>
+<p>多维数组（二维数组为例）</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">type[][] typeName = new type[typeLength1][typeLength2];</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="13java方法">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#13java方法">#</doc-anchor-trigger>
+        <span>13.java方法</span>
+    </h3>
+</doc-anchor-target>
+<p>方法的定义</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">修饰符 返回值类型 方法名(参数类型 参数名){
+    ...
+    方法体
+    ...
+    return 返回值;
+}</code></pre>
+</doc-codeblock></div>
+<p>可变参数</p>
+<p>声明方式</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">typeName... parameterName</code></pre>
+</doc-codeblock></div>
+<p>一个方法只能指定一个可变参数，它必须是方法的最后一个参数。任何普通的参数必须在它之前声明。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">public class VarargsDemo {
+    public static void main(String[] args) {
+        // 调用可变参数的方法
+        printMax(34, 3, 3, 2, 56.5);
+        printMax(new double[]{1, 2, 3});
+    }
+ 
+    public static void printMax( double... numbers) {
+        if (numbers.length == 0) {
+            System.out.println(&quot;No argument passed&quot;);
+            return;
+        }
+ 
+        double result = numbers[0];
+ 
+        for (int i = 1; i &lt;  numbers.length; i++){
+            if (numbers[i] &gt;  result) {
+                result = numbers[i];
+            }
+        }
+        System.out.println(&quot;The max value is &quot; + result);
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="14java异常">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#14java异常">#</doc-anchor-trigger>
+        <span>14.java异常</span>
+    </h3>
+</doc-anchor-target>
+<p>try-catch</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">try
+{
+   // 程序代码
+}catch(ExceptionName e1)
+{
+   //Catch 块
+}</code></pre>
+</doc-codeblock></div>
+<p>多重捕获</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">try{
+   // 程序代码
+}catch(异常类型1 异常的变量名1){
+  // 程序代码
+}catch(异常类型2 异常的变量名2){
+  // 程序代码
+}catch(异常类型3 异常的变量名3){
+  // 程序代码
+}</code></pre>
+</doc-codeblock></div>
+<p>多异常合并捕获，可以用一个 catch 块处理多个无继承关系的异常。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">try {
+    // 可能抛出多个不同类型异常的代码
+} catch (异常类型1 | 异常类型2 | 异常类型3 异常变量) {
+    // 统一处理
+}</code></pre>
+</doc-codeblock></div>
+<p>throw 关键字用于在代码中抛出异常，而 throws 关键字用于在方法声明中指定可能会抛出的异常类型。</p>
+<p>try-with-resource</p>
+<ul>
+<li>try-with-resources 是一种异常处理机制，它能够自动关闭在 try 块中声明的资源，无需显式地在 finally 块中关闭。</li>
+<li>在 try-with-resources 语句中，只需要在 try 关键字后面声明资源，然后跟随一个代码块。无论代码块中的操作是否成功，资源都会在 try 代码块执行完毕后自动关闭。</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">try (resource declaration) {
+  // 使用的资源
+} catch (ExceptionType e1) {
+  // 异常块
+}</code></pre>
+</doc-codeblock></div>
+<p>可以声明多个资源，使用<code v-pre>;</code>分隔每个资源。</p>
+<doc-anchor-target id="15java继承">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#15java继承">#</doc-anchor-trigger>
+        <span>15.java继承</span>
+    </h3>
+</doc-anchor-target>
+<p>继承的关系是“is-a”，父类更通用，子类更具体。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">class 父类 {
+}
+ 
+class 子类 extends 父类 {
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>super关键字：实现对父类成员的访问，用来引用当前对象的父类。</li>
+<li>this关键字：指向自己的引用，引用当前对象，即它所在方法或构造函数所属的对象实例。</li>
+<li>子类不继承父类的构造器，只是调用。如果父类的构造器带参数，必须在子类的构造器中显式的通过super关键字调用父类的构造器并配以适当的参数列表。</li>
+</ul>
+<doc-anchor-target id="16重写和重载">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#16重写和重载">#</doc-anchor-trigger>
+        <span>16.重写和重载</span>
+    </h3>
+</doc-anchor-target>
+<p>重写是指子类定义了一个与其父类中具有相同名称、参数列表和返回类型的方法，并且子类方法的实现覆盖了父类方法的实现。 即外壳不变，核心重写！</p>
+<p>重写的规则：</p>
+<ul>
+<li>参数列表与被重写方法的参数列表必须完全相同。</li>
+<li>返回类型与被重写方法的返回类型可以不相同，但是必须是父类返回值的子类。</li>
+<li>访问权限不能比父类中被重写的方法的访问权限更低。例如：如果父类的一个方法被声明为 public，那么在子类中重写该方法就不能声明为 protected。</li>
+<li>父类的成员方法只能被它的子类重写。</li>
+<li>声明为 final 的方法不能被重写。</li>
+<li>声明为 static 的方法不能被重写，但是能够被再次声明。</li>
+<li>子类和父类在同一个包中，那么子类可以重写父类所有方法，除了声明为 private 和 final 的方法。</li>
+<li>子类和父类不在同一个包中，那么子类只能够重写父类的声明为 public 和 protected 的非 final 方法。</li>
+<li>重写的方法能够抛出任何非强制异常，无论被重写的方法是否抛出异常。但是，重写的方法不能抛出新的强制性异常，或者比被重写方法声明的更广泛的强制性异常，反之则可以。</li>
+<li>构造方法不能被重写。</li>
+<li>如果不能继承一个类，则不能重写该类的方法。
+重载(overloading) 是在一个类里面，方法名字相同，而参数不同。返回类型可以相同也可以不同。每个重载的方法（或者构造函数）都必须有一个独一无二的参数类型列表。</li>
+</ul>
+<p>重载的规则：</p>
+<ul>
+<li>被重载的方法必须改变参数列表(参数个数或类型不一样)；</li>
+<li>被重载的方法可以改变返回类型；</li>
+<li>被重载的方法可以改变访问修饰符；</li>
+<li>被重载的方法可以声明新的或更广的检查异常；</li>
+<li>方法能够在同一个类中或者在一个子类中被重载。</li>
+<li>无法以返回值类型作为重载函数的区分标准。</li>
+</ul>
+<doc-anchor-target id="17java抽象类">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#17java抽象类">#</doc-anchor-trigger>
+        <span>17.java抽象类</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>抽象类除了不能实例化对象之外，类的其他功能依然存在，成员变量，成员方法和构造方法的访问方式和普通类一样。抽象类不能实例化对象，所以抽象类必须被继承。</li>
+<li>抽象方法只包含方法名，没有方法体。该方法的具体实现由他的子类确定。</li>
+<li>声明抽象方法会造成下面两个结果：
+<ul>
+<li>如果一个类包含抽象方法，那么该类必须是抽象类。</li>
+<li>任何子类必须重写父类的抽象方法，或者声明自身为抽象类。</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="18java接口">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#18java接口">#</doc-anchor-trigger>
+        <span>18.java接口</span>
+    </h3>
+</doc-anchor-target>
+<p>接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就声明为抽象类。</p>
+<p>接口与类的相似点：</p>
+<ul>
+<li>一个接口可以有多个方法。</li>
+<li>接口文件保存在.java结尾的文件中，文件名使用接口名。</li>
+<li>接口的字节码文件保存在.class结尾的文件中。</li>
+<li>接口相应的字节码文件必须在与包名称相匹配的目录结构中。
+接口与类的区别：</li>
+<li>接口不能用于实例化对象。</li>
+<li>接口没有构造方法。</li>
+<li>接口中所有的方法必须是抽象方法，Java 8 之后 接口中可以使用 default 关键字修饰的非抽象方法。可以有静态方法和方法体。允许有私有方法。</li>
+<li>接口不能包含成员变量，除了 static 和 final 变量。</li>
+<li>接口不是被类继承了，而是要被类实现。</li>
+<li>接口支持多继承。
+接口的特性：</li>
+<li>接口中每一个方法也是隐式抽象的,接口中的方法会被隐式的指定为 public abstract（只能是 public abstract，其他修饰符都会报错）。</li>
+<li>接口中可以含有变量，但是接口中的变量会被隐式的指定为 public static final 变量（并且只能是 public，用 private 修饰会报编译错误）。</li>
+<li>接口中的方法是不能在接口中实现的，只能由实现接口的类来实现接口中的方法。
+接口和抽象类的区别：</li>
+<li>抽象类中的方法可以有方法体，就是能实现方法的具体功能，但是接口中的方法不行。（java 8之后，接口中可以有静态方法，默认方法和私有方法）。</li>
+<li>抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是 public static final 类型的。</li>
+<li>一个类只能继承一个抽象类，而一个类却可以实现多个接口。</li>
+</ul>
+<p>接口的声明：</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">[可见度] interface 接口名称 [extends 其他的接口名] {
+        // 声明变量
+        // 抽象方法
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="19java枚举">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#19java枚举">#</doc-anchor-trigger>
+        <span>19.java枚举</span>
+    </h3>
+</doc-anchor-target>
+<p>枚举一般表示一组常量。</p>
+<ul>
+<li><code v-pre>values()</code>  返回枚举类中的所有值</li>
+<li><code v-pre>ordinal()</code> 找到每个枚举常量的索引</li>
+<li><code v-pre>valueOf()</code> 返回指定字符串值的枚举常量。</li>
+</ul>
+<doc-anchor-target id="20java集合">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#20java集合">#</doc-anchor-trigger>
+        <span>20.java集合</span>
+    </h3>
+</doc-anchor-target>
+<p>ArrayList可动态修改的数组，没有固定大小的限制，可以添加或删除元素。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.util.ArrayList; // 引入 ArrayList 类
+
+ArrayList&lt;E&gt; objectName =new ArrayList&lt;&gt;();　 // 初始化</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>add()</code> 添加元素</li>
+<li><code v-pre>get()</code> 访问元素</li>
+<li><code v-pre>set()</code> 修改元素</li>
+<li><code v-pre>remove()</code> 删除元素</li>
+<li><code v-pre>size()</code> 计算大小
+LinkedList可在开头，结尾或中间插入和添加元素</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">// 引入 LinkedList 类
+import java.util.LinkedList; 
+
+LinkedList&lt;E&gt; list = new LinkedList&lt;E&gt;();   // 普通创建方法
+或者
+LinkedList&lt;E&gt; list = new LinkedList(Collection&lt;? extends E&gt; c); // 使用集合创建链表</code></pre>
+</doc-codeblock></div>
+<p>HashSet，无序集合，不允许有重复元素，不是线程安全。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.util.HashSet; // 引入 HashSet 类
+HashSet&lt;String&gt; sites = new HashSet&lt;String&gt;();</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>add()</code>添加元素</li>
+<li><code v-pre>contains()</code> 判断元素是否存在</li>
+<li><code v-pre>remove()</code> 删除元素</li>
+<li><code v-pre>clear()</code> 删除集合中所有元素</li>
+<li><code v-pre>size()</code> 计算大小
+*HashMap，存储key-value键值对，允许key为null，不支持线程同步，无序。</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.util.HashMap; // 引入 HashMap 类
+HashMap&lt;Integer, String&gt; Sites = new HashMap&lt;Integer, String&gt;();</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>put()</code>添加元素</li>
+<li><code v-pre>get(key)</code> 获取key对应的value</li>
+<li><code v-pre>remove(key)</code> 删除key对应的value</li>
+<li><code v-pre>clear()</code> 删除所有元素</li>
+<li><code v-pre>size()</code> 计算大小</li>
+</ul>
+<p>Iterator迭代器，用于遍历集合。只能从前往后遍历集合的元素，不能往回遍历。</p>
+<doc-anchor-target id="21java泛型">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#21java泛型">#</doc-anchor-trigger>
+        <span>21.java泛型</span>
+    </h3>
+</doc-anchor-target>
+<p>泛型方法，在调用时可以接收不同类型的参数。
+定义泛型方法的规则：</p>
+<ul>
+<li>所有泛型方法声明都有一个类型参数声明部分（由尖括号分隔），该类型参数声明部分在方法返回类型之前（在下面例子中的<code v-pre>&lt;E&gt;</code>）。</li>
+<li>每一个类型参数声明部分包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符。</li>
+<li>类型参数能被用来声明返回值类型，并且能作为泛型方法得到的实际参数类型的占位符。</li>
+<li>泛型方法体的声明和其他方法一样。注意类型参数只能代表引用型类型，不能是原始类型（像 int、double、char 等）。</li>
+</ul>
+<p>java 中泛型标记符：</p>
+<ul>
+<li>E - Element (在集合中使用，因为集合中存放的是元素)</li>
+<li>T - Type（Java 类）</li>
+<li>K - Key（键）</li>
+<li>V - Value（值）</li>
+<li>N - Number（数值类型）</li>
+<li>? - 表示不确定的 java 类型</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">public class GenericMethodTest
+{
+   // 泛型方法 printArray                         
+   public static &lt; E &gt; void printArray( E[] inputArray )
+   {
+      // 输出数组元素            
+         for ( E element : inputArray ){        
+            System.out.printf( &quot;%s &quot;, element );
+         }
+         System.out.println();
+    }
+ 
+    public static void main( String args[] )
+    {
+        // 创建不同类型数组： Integer, Double 和 Character
+        Integer[] intArray = { 1, 2, 3, 4, 5 };
+        Double[] doubleArray = { 1.1, 2.2, 3.3, 4.4 };
+        Character[] charArray = { 'H', 'E', 'L', 'L', 'O' };
+ 
+        System.out.println( &quot;整型数组元素为:&quot; );
+        printArray( intArray  ); // 传递一个整型数组
+ 
+        System.out.println( &quot;\n双精度型数组元素为:&quot; );
+        printArray( doubleArray ); // 传递一个双精度型数组
+ 
+        System.out.println( &quot;\n字符型数组元素为:&quot; );
+        printArray( charArray ); // 传递一个字符型数组
+    } 
+}</code></pre>
+</doc-codeblock></div>
+<p>有界的类型参数，声明一个有界类型参数，首先列出类型参数的名称，后跟extends关键字，最后紧跟它的上界。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">public class MaximumTest
+{
+   // 比较三个值并返回最大值
+   public static &lt;T extends Comparable&lt;T&gt;&gt; T maximum(T x, T y, T z)
+   {                     
+      T max = x; // 假设x是初始最大值
+      if ( y.compareTo( max ) &gt; 0 ){
+         max = y; //y 更大
+      }
+      if ( z.compareTo( max ) &gt; 0 ){
+         max = z; // 现在 z 更大           
+      }
+      return max; // 返回最大对象
+   }
+   public static void main( String args[] )
+   {
+      System.out.printf( &quot;%d, %d 和 %d 中最大的数为 %d\n\n&quot;,
+                   3, 4, 5, maximum( 3, 4, 5 ) );
+ 
+      System.out.printf( &quot;%.1f, %.1f 和 %.1f 中最大的数为 %.1f\n\n&quot;,
+                   6.6, 8.8, 7.7, maximum( 6.6, 8.8, 7.7 ) );
+ 
+      System.out.printf( &quot;%s, %s 和 %s 中最大的数为 %s\n&quot;,&quot;pear&quot;,
+         &quot;apple&quot;, &quot;orange&quot;, maximum( &quot;pear&quot;, &quot;apple&quot;, &quot;orange&quot; ) );
+   }
+}</code></pre>
+</doc-codeblock></div>
+<p>泛型类，声明方式和普通类类似，要在类名后添加类型参数声明部分。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">public class Box&lt;T&gt; {
+   
+  private T t;
+ 
+  public void add(T t) {
+    this.t = t;
+  }
+ 
+  public T get() {
+    return t;
+  }
+ 
+  public static void main(String[] args) {
+    Box&lt;Integer&gt; integerBox = new Box&lt;Integer&gt;();
+    Box&lt;String&gt; stringBox = new Box&lt;String&gt;();
+ 
+    integerBox.add(new Integer(10));
+    stringBox.add(new String(&quot;菜鸟教程&quot;));
+ 
+    System.out.printf(&quot;整型值为 :%d\n\n&quot;, integerBox.get());
+    System.out.printf(&quot;字符串为 :%s\n&quot;, stringBox.get());
+  }
+}</code></pre>
+</doc-codeblock></div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../design-pattern/factory/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">简单工厂模式</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../java/java_practice/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Java practice</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Java", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>
