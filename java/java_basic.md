@@ -173,6 +173,7 @@ switch(expression){
 
 ### 10.java Number类
 所有包装类（Interger，Long，Byte，Double，Float，Short）都是抽象类Number的子类。
+
 | 类名       | 对应基本类型 | 描述                     |
 |------------|-------------|--------------------------|
 | Byte       | byte        | 字节型包装类             |
