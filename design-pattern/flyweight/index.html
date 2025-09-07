@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
-    <title>Momento</title>
-    <meta name="title" content="Momento">
-    <meta name="description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <title>Flyweight</title>
+    <meta name="title" content="Flyweight">
+    <meta name="description" content="享元模式（Flyweight Pattern） 是一种 结构型设计模式：通过共享对象来避免大量拥有相同内容对象的开销；把对象的状态分为 内部状态（可共享，不会随环境改变）和 外部状态（依赖环境，不能共享）；">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/design-pattern/momento/">
+    <link rel="canonical" href="/design-pattern/flyweight/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/design-pattern/momento/">
-    <meta property="og:title" content="Momento">
-    <meta property="og:description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <meta property="og:url" content="/design-pattern/flyweight/">
+    <meta property="og:title" content="Flyweight">
+    <meta property="og:description" content="享元模式（Flyweight Pattern） 是一种 结构型设计模式：通过共享对象来避免大量拥有相同内容对象的开销；把对象的状态分为 内部状态（可共享，不会随环境改变）和 外部状态（依赖环境，不能共享）；">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/design-pattern/momento/">
-    <meta property="twitter:title" content="Momento">
-    <meta property="twitter:description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <meta property="twitter:url" content="/design-pattern/flyweight/">
+    <meta property="twitter:title" content="Flyweight">
+    <meta property="twitter:description" content="享元模式（Flyweight Pattern） 是一种 结构型设计模式：通过共享对象来避免大量拥有相同内容对象的开销；把对象的状态分为 内部状态（可共享，不会随环境改变）和 外部状态（依赖环境，不能共享）；">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -164,10 +164,10 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="momento" class="break-words">
+<doc-anchor-target id="flyweight" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#momento">#</doc-anchor-trigger>
-        <span>Momento</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#flyweight">#</doc-anchor-trigger>
+        <span>Flyweight</span>
     </h1>
 </doc-anchor-target>
 <doc-anchor-target id="概念">
@@ -176,12 +176,12 @@
         <span>概念</span>
     </h2>
 </doc-anchor-target>
-<p>备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。</p>
-<p>常见的应用场景：</p>
+<p>享元模式（Flyweight Pattern） 是一种 结构型设计模式：通过共享对象来避免大量拥有相同内容对象的开销；把对象的状态分为 内部状态（可共享，不会随环境改变）和 外部状态（依赖环境，不能共享）；</p>
+<p>典型应用场景：</p>
 <ul>
-<li>编辑器的撤销/恢复 (Undo/Redo)功能</li>
-<li>游戏的存档/读档</li>
-<li>事务操作的回滚</li>
+<li>Java 字符串池（String.intern()）</li>
+<li>数据库连接池</li>
+<li>游戏中重复元素（树木、子弹、棋子）</li>
 </ul>
 <doc-anchor-target id="结构">
     <h2>
@@ -189,205 +189,162 @@
         <span>结构</span>
     </h2>
 </doc-anchor-target>
-<p>备忘录模式通常包含三个角色：</p>
+<p><figure class="content-center">
+    <img src="../flyweight.png" alt="享元模式" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">享元模式</figcaption>
+</figure>
+</p>
 <ul>
-<li>Originator（发起人/原发器）
-<ul>
-<li>负责创建一个备忘录，用于记录当前对象的状态。</li>
-<li>也可以使用备忘录恢复状态。</li>
+<li>Flyweight（享元接口）: 定义对象的公共方法。</li>
+<li>ConcreteFlyweight（具体享元类）: 实现享元接口，包含可共享的内部状态。</li>
+<li>UnsharedConcreteFlyweight（非共享享元类）（可选）: 外部状态无法共享的对象。</li>
+<li>FlyweightFactory（享元工厂类）: 负责创建和管理享元对象，保证共享性。</li>
 </ul>
-</li>
-<li>Memento（备忘录）
-<ul>
-<li>用来存储 Originator 的内部状态。</li>
-<li>一般是只读的，不允许外部随意修改。</li>
-</ul>
-</li>
-<li>Caretaker（管理者/负责人）
-<ul>
-<li>负责保存和恢复备忘录。</li>
-<li>本身并不修改备忘录内容，只负责“看管”。</li>
-</ul>
-</li>
-</ul>
+<p>外部状态 是一个 概念，它代表不可以共享的那部分数据。</p>
+<p>UnsharedConcreteFlyweight 是 实现外部状态的一种类结构，用对象来承载外部状态。</p>
 <doc-anchor-target id="例子">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#例子">#</doc-anchor-trigger>
         <span>例子</span>
     </h2>
 </doc-anchor-target>
+<p>内部状态：颜色（共享，不会变）。</p>
+<p>外部状态：坐标、半径（每次使用时传入）。</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 备忘录
-class Memento {
-    private final String state;
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.util.HashMap;
+import java.util.Map;
 
-    public Memento(String state) {
-        this.state = state;
+// 享元接口
+interface Shape {
+    void draw(int x, int y, int radius);
+}
+
+// 具体享元类：圆
+class Circle implements Shape {
+    private final String color; // 内部状态（共享）
+
+    public Circle(String color) {
+        this.color = color;
     }
 
-    public String getState() {
-        return state;
+    @Override
+    public void draw(int x, int y, int radius) {
+        System.out.println(&quot;绘制一个 &quot; + color + &quot; 的圆，位置(&quot; + x + &quot;,&quot; + y + &quot;)，半径 &quot; + radius);
     }
 }
 
-// 发起人
-class Originator {
-    private String state;
+// 享元工厂
+class ShapeFactory {
+    private static final Map&lt;String, Shape&gt; circleMap = new HashMap&lt;&gt;();
 
-    public void setState(String state) {
-        System.out.println(&quot;设置状态: &quot; + state);
-        this.state = state;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    // 创建备忘录
-    public Memento saveStateToMemento() {
-        return new Memento(state);
-    }
-
-    // 从备忘录恢复状态
-    public void getStateFromMemento(Memento memento) {
-        this.state = memento.getState();
-        System.out.println(&quot;恢复状态: &quot; + state);
-    }
-}
-
-// 管理者
-class Caretaker {
-    private final java.util.Stack&lt;Memento&gt; mementoStack = new java.util.Stack&lt;&gt;();
-
-    public void add(Memento state) {
-        mementoStack.push(state);
-    }
-
-    public Memento undo() {
-        if (!mementoStack.isEmpty()) {
-            return mementoStack.pop();
+    public static Shape getCircle(String color) {
+        Circle circle = (Circle) circleMap.get(color);
+        if (circle == null) {
+            circle = new Circle(color);
+            circleMap.put(color, circle);
+            System.out.println(&quot;创建新的 Circle 对象，颜色：&quot; + color);
         }
-        return null;
+        return circle;
     }
 }
 
 // 测试类
-public class MementoPatternDemo {
+public class FlyweightPatternDemo {
+    private static final String[] colors = {&quot;红色&quot;, &quot;绿色&quot;, &quot;蓝色&quot;, &quot;黑色&quot;, &quot;白色&quot;};
+
     public static void main(String[] args) {
-        Originator originator = new Originator();
-        Caretaker caretaker = new Caretaker();
+        for (int i = 0; i &lt; 10; i++) {
+            Shape circle = ShapeFactory.getCircle(getRandomColor());
+            circle.draw(getRandomX(), getRandomY(), getRandomRadius());
+        }
+    }
 
-        originator.setState(&quot;状态 #1&quot;);
-        caretaker.add(originator.saveStateToMemento());
+    private static String getRandomColor() {
+        return colors[(int) (Math.random() * colors.length)];
+    }
 
-        originator.setState(&quot;状态 #2&quot;);
-        caretaker.add(originator.saveStateToMemento());
+    private static int getRandomX() {
+        return (int) (Math.random() * 100);
+    }
 
-        originator.setState(&quot;状态 #3&quot;);
-        System.out.println(&quot;当前状态: &quot; + originator.getState());
+    private static int getRandomY() {
+        return (int) (Math.random() * 100);
+    }
 
-        // 撤销操作
-        originator.getStateFromMemento(caretaker.undo());
-        originator.getStateFromMemento(caretaker.undo());
+    private static int getRandomRadius() {
+        return (int) (Math.random() * 50);
     }
 }</code></pre>
 </doc-codeblock></div>
+<p>内部状态（可共享）：棋子的颜色（黑/白）。</p>
+<p>外部状态（不可共享）：棋子的坐标位置（每颗棋子的位置都不同）。</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 备忘录类：保存游戏状态
-class GameMemento {
-    private final int level;
-    private final int hp;
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.util.HashMap;
+import java.util.Map;
 
-    public GameMemento(int level, int hp) {
-        this.level = level;
-        this.hp = hp;
+// 享元接口
+interface ChessPiece {
+    void draw(Position position);  // 外部状态由参数传入
+}
+
+// 具体享元类（共享）：黑棋、白棋
+class ConcreteChessPiece implements ChessPiece {
+    private final String color;  // 内部状态（共享）
+
+    public ConcreteChessPiece(String color) {
+        this.color = color;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public int getHp() {
-        return hp;
+    @Override
+    public void draw(Position position) {
+        System.out.println(&quot;绘制 &quot; + color + &quot; 棋子，位置: &quot; + position.getX() + &quot;,&quot; + position.getY());
     }
 }
 
-// 发起人：游戏角色
-class Game {
-    private int level;
-    private int hp;
+// 非共享享元类：棋子的位置
+class Position {  // UnsharedConcreteFlyweight
+    private final int x;
+    private final int y;
 
-    public Game(int level, int hp) {
-        this.level = level;
-        this.hp = hp;
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public void play() {
-        System.out.println(&quot;正在游戏... 当前等级: &quot; + level + &quot; 血量: &quot; + hp);
-        level++;
-        hp -= 10; // 假设玩游戏会掉血
-    }
-
-    public void showState() {
-        System.out.println(&quot;当前角色 -&gt; 等级: &quot; + level + &quot; 血量: &quot; + hp);
-    }
-
-    // 存档
-    public GameMemento save() {
-        System.out.println(&quot;存档成功！等级: &quot; + level + &quot; 血量: &quot; + hp);
-        return new GameMemento(level, hp);
-    }
-
-    // 读档
-    public void load(GameMemento memento) {
-        this.level = memento.getLevel();
-        this.hp = memento.getHp();
-        System.out.println(&quot;读档成功！恢复到 -&gt; 等级: &quot; + level + &quot; 血量: &quot; + hp);
-    }
+    public int getX() { return x; }
+    public int getY() { return y; }
 }
 
-// 管理者：存档管理器
-class Caretaker {
-    private final java.util.Stack&lt;GameMemento&gt; saves = new java.util.Stack&lt;&gt;();
+// 享元工厂
+class ChessPieceFactory {
+    private static final Map&lt;String, ChessPiece&gt; chessMap = new HashMap&lt;&gt;();
 
-    public void add(GameMemento memento) {
-        saves.push(memento);
-    }
-
-    public GameMemento undo() {
-        if (!saves.isEmpty()) {
-            return saves.pop();
+    public static ChessPiece getChessPiece(String color) {
+        ChessPiece piece = chessMap.get(color);
+        if (piece == null) {
+            piece = new ConcreteChessPiece(color);
+            chessMap.put(color, piece);
+            System.out.println(&quot;创建新的棋子对象: &quot; + color);
         }
-        return null;
+        return piece;
     }
 }
 
 // 测试类
-public class GameMementoDemo {
+public class FlyweightWithUnsharedDemo {
     public static void main(String[] args) {
-        Game game = new Game(1, 100);
-        Caretaker caretaker = new Caretaker();
+        // 获取共享对象：黑棋
+        ChessPiece black = ChessPieceFactory.getChessPiece(&quot;黑棋&quot;);
+        // 获取共享对象：白棋
+        ChessPiece white = ChessPieceFactory.getChessPiece(&quot;白棋&quot;);
 
-        game.showState();
-        caretaker.add(game.save()); // 存档 1
-
-        game.play();
-        caretaker.add(game.save()); // 存档 2
-
-        game.play();
-        game.play();
-        game.showState();
-
-        // 读档（回退到上一次存档）
-        game.load(caretaker.undo());
-        game.showState();
-
-        // 再次读档（回退到更早的存档）
-        game.load(caretaker.undo());
-        game.showState();
+        // 每个棋子的位置是外部状态（不可共享）
+        black.draw(new Position(2, 3));
+        black.draw(new Position(3, 4));
+        white.draw(new Position(4, 5));
+        white.draw(new Position(5, 6));
     }
-}
-</code></pre>
+}</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="优点">
     <h2>
@@ -396,8 +353,8 @@ public class GameMementoDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可以实现对象状态的保存与恢复，支持撤销/回滚。</li>
-<li>封装性好，状态存储在 Memento 中，不会暴露给外部。</li>
+<li>大幅减少内存占用，提升性能。</li>
+<li>内部状态可共享，降低对象数量。</li>
 </ul>
 <doc-anchor-target id="缺点">
     <h2>
@@ -406,8 +363,8 @@ public class GameMementoDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可能会占用大量内存（特别是频繁保存时）。</li>
-<li>如果对象状态过于复杂，保存和恢复的开销会比较大</li>
+<li>需要区分内部状态和外部状态，增加复杂度。</li>
+<li>系统逻辑可能更复杂（外部状态必须由客户端管理）。</li>
 </ul>
 
                                 
@@ -418,20 +375,20 @@ public class GameMementoDemo {
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/mediator/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/factory_method/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">Mediator</span>
+                                                <span class="block mt-1">Factory method</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/observer/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/interpreter/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">Observer</span>
+                                                <span class="block mt-1">Interpreter</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -475,6 +432,6 @@ public class GameMementoDemo {
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Momento", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Flyweight", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

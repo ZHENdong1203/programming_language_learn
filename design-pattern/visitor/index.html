@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
-    <title>Momento</title>
-    <meta name="title" content="Momento">
-    <meta name="description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <title>Visitor</title>
+    <meta name="title" content="Visitor">
+    <meta name="description" content="访问者模式（Visitor Pattern） 是一种 行为型设计模式：允许在不修改对象结构的前提下，定义作用于这些对象的新操作。适用于 数据结构稳定、但 操作经常变化 的场景。">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/design-pattern/momento/">
+    <link rel="canonical" href="/design-pattern/visitor/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/design-pattern/momento/">
-    <meta property="og:title" content="Momento">
-    <meta property="og:description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <meta property="og:url" content="/design-pattern/visitor/">
+    <meta property="og:title" content="Visitor">
+    <meta property="og:description" content="访问者模式（Visitor Pattern） 是一种 行为型设计模式：允许在不修改对象结构的前提下，定义作用于这些对象的新操作。适用于 数据结构稳定、但 操作经常变化 的场景。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/design-pattern/momento/">
-    <meta property="twitter:title" content="Momento">
-    <meta property="twitter:description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <meta property="twitter:url" content="/design-pattern/visitor/">
+    <meta property="twitter:title" content="Visitor">
+    <meta property="twitter:description" content="访问者模式（Visitor Pattern） 是一种 行为型设计模式：允许在不修改对象结构的前提下，定义作用于这些对象的新操作。适用于 数据结构稳定、但 操作经常变化 的场景。">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -164,10 +164,10 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="momento" class="break-words">
+<doc-anchor-target id="visitor" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#momento">#</doc-anchor-trigger>
-        <span>Momento</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#visitor">#</doc-anchor-trigger>
+        <span>Visitor</span>
     </h1>
 </doc-anchor-target>
 <doc-anchor-target id="概念">
@@ -176,12 +176,12 @@
         <span>概念</span>
     </h2>
 </doc-anchor-target>
-<p>备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。</p>
-<p>常见的应用场景：</p>
+<p>访问者模式（Visitor Pattern） 是一种 行为型设计模式：允许在不修改对象结构的前提下，定义作用于这些对象的新操作。适用于 数据结构稳定、但 操作经常变化 的场景。</p>
+<p>常见应用：</p>
 <ul>
-<li>编辑器的撤销/恢复 (Undo/Redo)功能</li>
-<li>游戏的存档/读档</li>
-<li>事务操作的回滚</li>
+<li>编译器语法树处理（遍历 AST 做不同分析）</li>
+<li>报表生成（不同统计方式）</li>
+<li>XML/JSON 文档处理</li>
 </ul>
 <doc-anchor-target id="结构">
     <h2>
@@ -189,26 +189,17 @@
         <span>结构</span>
     </h2>
 </doc-anchor-target>
-<p>备忘录模式通常包含三个角色：</p>
+<p><figure class="content-center">
+    <img src="../visitor.png" alt="访问者模式" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">访问者模式</figcaption>
+</figure>
+</p>
 <ul>
-<li>Originator（发起人/原发器）
-<ul>
-<li>负责创建一个备忘录，用于记录当前对象的状态。</li>
-<li>也可以使用备忘录恢复状态。</li>
-</ul>
-</li>
-<li>Memento（备忘录）
-<ul>
-<li>用来存储 Originator 的内部状态。</li>
-<li>一般是只读的，不允许外部随意修改。</li>
-</ul>
-</li>
-<li>Caretaker（管理者/负责人）
-<ul>
-<li>负责保存和恢复备忘录。</li>
-<li>本身并不修改备忘录内容，只负责“看管”。</li>
-</ul>
-</li>
+<li>Visitor（抽象访问者）: 定义对元素的访问操作接口。</li>
+<li>ConcreteVisitor（具体访问者）: 实现不同的访问逻辑。</li>
+<li>Element（抽象元素）: 接受访问者的 accept 方法。</li>
+<li>ConcreteElement（具体元素）: 实现 accept 方法，并调用访问者的方法。</li>
+<li>ObjectStructure（对象结构）: 提供元素集合，允许访问者遍历。</li>
 </ul>
 <doc-anchor-target id="例子">
     <h2>
@@ -217,177 +208,122 @@
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 备忘录
-class Memento {
-    private final String state;
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.util.*;
 
-    public Memento(String state) {
-        this.state = state;
+// 抽象访问者
+interface Visitor {
+    void visit(Programmer programmer);
+    void visit(Designer designer);
+}
+
+// 具体访问者：HR 统计薪资
+class HRVisitor implements Visitor {
+    @Override
+    public void visit(Programmer programmer) {
+        System.out.println(&quot;HR 统计程序员薪资，姓名：&quot; + programmer.getName() + &quot;，工资：&quot; + programmer.getSalary());
     }
 
-    public String getState() {
-        return state;
+    @Override
+    public void visit(Designer designer) {
+        System.out.println(&quot;HR 统计设计师薪资，姓名：&quot; + designer.getName() + &quot;，工资：&quot; + designer.getSalary());
     }
 }
 
-// 发起人
-class Originator {
-    private String state;
-
-    public void setState(String state) {
-        System.out.println(&quot;设置状态: &quot; + state);
-        this.state = state;
+// 具体访问者：CEO 绩效评估
+class CEOVisitor implements Visitor {
+    @Override
+    public void visit(Programmer programmer) {
+        System.out.println(&quot;CEO 评估程序员绩效，姓名：&quot; + programmer.getName() + &quot;，代码行数：&quot; + programmer.getCodeLines());
     }
 
-    public String getState() {
-        return state;
-    }
-
-    // 创建备忘录
-    public Memento saveStateToMemento() {
-        return new Memento(state);
-    }
-
-    // 从备忘录恢复状态
-    public void getStateFromMemento(Memento memento) {
-        this.state = memento.getState();
-        System.out.println(&quot;恢复状态: &quot; + state);
+    @Override
+    public void visit(Designer designer) {
+        System.out.println(&quot;CEO 评估设计师绩效，姓名：&quot; + designer.getName() + &quot;，作品数：&quot; + designer.getDesigns());
     }
 }
 
-// 管理者
-class Caretaker {
-    private final java.util.Stack&lt;Memento&gt; mementoStack = new java.util.Stack&lt;&gt;();
+// 抽象元素
+interface Employee {
+    void accept(Visitor visitor);
+}
 
-    public void add(Memento state) {
-        mementoStack.push(state);
+// 具体元素：程序员
+class Programmer implements Employee {
+    private String name;
+    private int salary;
+    private int codeLines;
+
+    public Programmer(String name, int salary, int codeLines) {
+        this.name = name;
+        this.salary = salary;
+        this.codeLines = codeLines;
     }
 
-    public Memento undo() {
-        if (!mementoStack.isEmpty()) {
-            return mementoStack.pop();
+    public String getName() { return name; }
+    public int getSalary() { return salary; }
+    public int getCodeLines() { return codeLines; }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+// 具体元素：设计师
+class Designer implements Employee {
+    private String name;
+    private int salary;
+    private int designs;
+
+    public Designer(String name, int salary, int designs) {
+        this.name = name;
+        this.salary = salary;
+        this.designs = designs;
+    }
+
+    public String getName() { return name; }
+    public int getSalary() { return salary; }
+    public int getDesigns() { return designs; }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+// 对象结构：员工集合
+class Company {
+    private List&lt;Employee&gt; employees = new ArrayList&lt;&gt;();
+
+    public void addEmployee(Employee e) {
+        employees.add(e);
+    }
+
+    public void accept(Visitor visitor) {
+        for (Employee e : employees) {
+            e.accept(visitor);
         }
-        return null;
     }
 }
 
 // 测试类
-public class MementoPatternDemo {
+public class VisitorPatternDemo {
     public static void main(String[] args) {
-        Originator originator = new Originator();
-        Caretaker caretaker = new Caretaker();
+        Company company = new Company();
 
-        originator.setState(&quot;状态 #1&quot;);
-        caretaker.add(originator.saveStateToMemento());
+        company.addEmployee(new Programmer(&quot;Alice&quot;, 10000, 5000));
+        company.addEmployee(new Designer(&quot;Bob&quot;, 8000, 20));
 
-        originator.setState(&quot;状态 #2&quot;);
-        caretaker.add(originator.saveStateToMemento());
+        Visitor hr = new HRVisitor();
+        Visitor ceo = new CEOVisitor();
 
-        originator.setState(&quot;状态 #3&quot;);
-        System.out.println(&quot;当前状态: &quot; + originator.getState());
+        System.out.println(&quot;=== HR 统计薪资 ===&quot;);
+        company.accept(hr);
 
-        // 撤销操作
-        originator.getStateFromMemento(caretaker.undo());
-        originator.getStateFromMemento(caretaker.undo());
+        System.out.println(&quot;\n=== CEO 绩效评估 ===&quot;);
+        company.accept(ceo);
     }
 }</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 备忘录类：保存游戏状态
-class GameMemento {
-    private final int level;
-    private final int hp;
-
-    public GameMemento(int level, int hp) {
-        this.level = level;
-        this.hp = hp;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-}
-
-// 发起人：游戏角色
-class Game {
-    private int level;
-    private int hp;
-
-    public Game(int level, int hp) {
-        this.level = level;
-        this.hp = hp;
-    }
-
-    public void play() {
-        System.out.println(&quot;正在游戏... 当前等级: &quot; + level + &quot; 血量: &quot; + hp);
-        level++;
-        hp -= 10; // 假设玩游戏会掉血
-    }
-
-    public void showState() {
-        System.out.println(&quot;当前角色 -&gt; 等级: &quot; + level + &quot; 血量: &quot; + hp);
-    }
-
-    // 存档
-    public GameMemento save() {
-        System.out.println(&quot;存档成功！等级: &quot; + level + &quot; 血量: &quot; + hp);
-        return new GameMemento(level, hp);
-    }
-
-    // 读档
-    public void load(GameMemento memento) {
-        this.level = memento.getLevel();
-        this.hp = memento.getHp();
-        System.out.println(&quot;读档成功！恢复到 -&gt; 等级: &quot; + level + &quot; 血量: &quot; + hp);
-    }
-}
-
-// 管理者：存档管理器
-class Caretaker {
-    private final java.util.Stack&lt;GameMemento&gt; saves = new java.util.Stack&lt;&gt;();
-
-    public void add(GameMemento memento) {
-        saves.push(memento);
-    }
-
-    public GameMemento undo() {
-        if (!saves.isEmpty()) {
-            return saves.pop();
-        }
-        return null;
-    }
-}
-
-// 测试类
-public class GameMementoDemo {
-    public static void main(String[] args) {
-        Game game = new Game(1, 100);
-        Caretaker caretaker = new Caretaker();
-
-        game.showState();
-        caretaker.add(game.save()); // 存档 1
-
-        game.play();
-        caretaker.add(game.save()); // 存档 2
-
-        game.play();
-        game.play();
-        game.showState();
-
-        // 读档（回退到上一次存档）
-        game.load(caretaker.undo());
-        game.showState();
-
-        // 再次读档（回退到更早的存档）
-        game.load(caretaker.undo());
-        game.showState();
-    }
-}
-</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="优点">
     <h2>
@@ -396,8 +332,8 @@ public class GameMementoDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可以实现对象状态的保存与恢复，支持撤销/回滚。</li>
-<li>封装性好，状态存储在 Memento 中，不会暴露给外部。</li>
+<li>新增操作非常方便（只需增加新的 Visitor）。</li>
+<li>解耦数据结构和操作，职责分明。</li>
 </ul>
 <doc-anchor-target id="缺点">
     <h2>
@@ -406,8 +342,8 @@ public class GameMementoDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可能会占用大量内存（特别是频繁保存时）。</li>
-<li>如果对象状态过于复杂，保存和恢复的开销会比较大</li>
+<li>新增元素类型困难（需要修改所有 Visitor）。</li>
+<li>可能导致访问者类过多。</li>
 </ul>
 
                                 
@@ -418,20 +354,20 @@ public class GameMementoDemo {
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/mediator/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/template_method/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">Mediator</span>
+                                                <span class="block mt-1">Template method</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/observer/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/singleinstance/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">Observer</span>
+                                                <span class="block mt-1">单例设计模式</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -475,6 +411,6 @@ public class GameMementoDemo {
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Momento", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Visitor", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

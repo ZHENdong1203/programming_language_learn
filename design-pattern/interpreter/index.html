@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
-    <title>Momento</title>
-    <meta name="title" content="Momento">
-    <meta name="description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <title>Interpreter</title>
+    <meta name="title" content="Interpreter">
+    <meta name="description" content="解释器模式（Interpreter Pattern） 是一种 行为型设计模式：定义一个语言的文法表示，并提供一个解释器来解释语言中的句子。">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/design-pattern/momento/">
+    <link rel="canonical" href="/design-pattern/interpreter/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/design-pattern/momento/">
-    <meta property="og:title" content="Momento">
-    <meta property="og:description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <meta property="og:url" content="/design-pattern/interpreter/">
+    <meta property="og:title" content="Interpreter">
+    <meta property="og:description" content="解释器模式（Interpreter Pattern） 是一种 行为型设计模式：定义一个语言的文法表示，并提供一个解释器来解释语言中的句子。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/design-pattern/momento/">
-    <meta property="twitter:title" content="Momento">
-    <meta property="twitter:description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <meta property="twitter:url" content="/design-pattern/interpreter/">
+    <meta property="twitter:title" content="Interpreter">
+    <meta property="twitter:description" content="解释器模式（Interpreter Pattern） 是一种 行为型设计模式：定义一个语言的文法表示，并提供一个解释器来解释语言中的句子。">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -164,10 +164,10 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="momento" class="break-words">
+<doc-anchor-target id="interpreter" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#momento">#</doc-anchor-trigger>
-        <span>Momento</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#interpreter">#</doc-anchor-trigger>
+        <span>Interpreter</span>
     </h1>
 </doc-anchor-target>
 <doc-anchor-target id="概念">
@@ -176,12 +176,12 @@
         <span>概念</span>
     </h2>
 </doc-anchor-target>
-<p>备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。</p>
-<p>常见的应用场景：</p>
+<p>解释器模式（Interpreter Pattern） 是一种 行为型设计模式：定义一个语言的文法表示，并提供一个解释器来解释语言中的句子。</p>
+<p>适用于某些 规则反复出现 的场景，比如：</p>
 <ul>
-<li>编辑器的撤销/恢复 (Undo/Redo)功能</li>
-<li>游戏的存档/读档</li>
-<li>事务操作的回滚</li>
+<li>正则表达式解释器</li>
+<li>SQL 解析器</li>
+<li>数学表达式计算器</li>
 </ul>
 <doc-anchor-target id="结构">
     <h2>
@@ -189,26 +189,17 @@
         <span>结构</span>
     </h2>
 </doc-anchor-target>
-<p>备忘录模式通常包含三个角色：</p>
+<p><figure class="content-center">
+    <img src="../interpreter.png" alt="解释器模式" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">解释器模式</figcaption>
+</figure>
+</p>
 <ul>
-<li>Originator（发起人/原发器）
-<ul>
-<li>负责创建一个备忘录，用于记录当前对象的状态。</li>
-<li>也可以使用备忘录恢复状态。</li>
-</ul>
-</li>
-<li>Memento（备忘录）
-<ul>
-<li>用来存储 Originator 的内部状态。</li>
-<li>一般是只读的，不允许外部随意修改。</li>
-</ul>
-</li>
-<li>Caretaker（管理者/负责人）
-<ul>
-<li>负责保存和恢复备忘录。</li>
-<li>本身并不修改备忘录内容，只负责“看管”。</li>
-</ul>
-</li>
+<li>AbstractExpression（抽象表达式）: 声明解释操作的接口。</li>
+<li>TerminalExpression（终结符表达式）: 文法中的基本元素解释器。</li>
+<li>NonTerminalExpression（非终结符表达式）: 文法规则的组合解释器，包含其他表达式。</li>
+<li>Context（上下文环境类）: 存储解释器需要的全局信息。
+_ Client（客户端）: 构建语法树，并调用解释操作。</li>
 </ul>
 <doc-anchor-target id="例子">
     <h2>
@@ -217,177 +208,79 @@
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 备忘录
-class Memento {
-    private final String state;
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.util.*;
 
-    public Memento(String state) {
-        this.state = state;
+// 抽象表达式
+interface Expression {
+    boolean interpret(Map&lt;String, Boolean&gt; context);
+}
+
+// 终结符表达式：变量
+class VariableExpression implements Expression {
+    private String name;
+
+    public VariableExpression(String name) {
+        this.name = name;
     }
 
-    public String getState() {
-        return state;
+    @Override
+    public boolean interpret(Map&lt;String, Boolean&gt; context) {
+        return context.getOrDefault(name, false);
     }
 }
 
-// 发起人
-class Originator {
-    private String state;
+// 非终结符表达式：AND
+class AndExpression implements Expression {
+    private Expression expr1;
+    private Expression expr2;
 
-    public void setState(String state) {
-        System.out.println(&quot;设置状态: &quot; + state);
-        this.state = state;
+    public AndExpression(Expression expr1, Expression expr2) {
+        this.expr1 = expr1;
+        this.expr2 = expr2;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    // 创建备忘录
-    public Memento saveStateToMemento() {
-        return new Memento(state);
-    }
-
-    // 从备忘录恢复状态
-    public void getStateFromMemento(Memento memento) {
-        this.state = memento.getState();
-        System.out.println(&quot;恢复状态: &quot; + state);
+    @Override
+    public boolean interpret(Map&lt;String, Boolean&gt; context) {
+        return expr1.interpret(context) &amp;&amp; expr2.interpret(context);
     }
 }
 
-// 管理者
-class Caretaker {
-    private final java.util.Stack&lt;Memento&gt; mementoStack = new java.util.Stack&lt;&gt;();
+// 非终结符表达式：OR
+class OrExpression implements Expression {
+    private Expression expr1;
+    private Expression expr2;
 
-    public void add(Memento state) {
-        mementoStack.push(state);
+    public OrExpression(Expression expr1, Expression expr2) {
+        this.expr1 = expr1;
+        this.expr2 = expr2;
     }
 
-    public Memento undo() {
-        if (!mementoStack.isEmpty()) {
-            return mementoStack.pop();
-        }
-        return null;
+    @Override
+    public boolean interpret(Map&lt;String, Boolean&gt; context) {
+        return expr1.interpret(context) || expr2.interpret(context);
     }
 }
 
 // 测试类
-public class MementoPatternDemo {
+public class InterpreterPatternDemo {
     public static void main(String[] args) {
-        Originator originator = new Originator();
-        Caretaker caretaker = new Caretaker();
+        // 构建表达式：(A AND B) OR C
+        Expression A = new VariableExpression(&quot;A&quot;);
+        Expression B = new VariableExpression(&quot;B&quot;);
+        Expression C = new VariableExpression(&quot;C&quot;);
 
-        originator.setState(&quot;状态 #1&quot;);
-        caretaker.add(originator.saveStateToMemento());
+        Expression expr = new OrExpression(new AndExpression(A, B), C);
 
-        originator.setState(&quot;状态 #2&quot;);
-        caretaker.add(originator.saveStateToMemento());
+        // 上下文赋值
+        Map&lt;String, Boolean&gt; context = new HashMap&lt;&gt;();
+        context.put(&quot;A&quot;, true);
+        context.put(&quot;B&quot;, false);
+        context.put(&quot;C&quot;, true);
 
-        originator.setState(&quot;状态 #3&quot;);
-        System.out.println(&quot;当前状态: &quot; + originator.getState());
-
-        // 撤销操作
-        originator.getStateFromMemento(caretaker.undo());
-        originator.getStateFromMemento(caretaker.undo());
+        boolean result = expr.interpret(context);
+        System.out.println(&quot;(A AND B) OR C = &quot; + result);
     }
 }</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 备忘录类：保存游戏状态
-class GameMemento {
-    private final int level;
-    private final int hp;
-
-    public GameMemento(int level, int hp) {
-        this.level = level;
-        this.hp = hp;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-}
-
-// 发起人：游戏角色
-class Game {
-    private int level;
-    private int hp;
-
-    public Game(int level, int hp) {
-        this.level = level;
-        this.hp = hp;
-    }
-
-    public void play() {
-        System.out.println(&quot;正在游戏... 当前等级: &quot; + level + &quot; 血量: &quot; + hp);
-        level++;
-        hp -= 10; // 假设玩游戏会掉血
-    }
-
-    public void showState() {
-        System.out.println(&quot;当前角色 -&gt; 等级: &quot; + level + &quot; 血量: &quot; + hp);
-    }
-
-    // 存档
-    public GameMemento save() {
-        System.out.println(&quot;存档成功！等级: &quot; + level + &quot; 血量: &quot; + hp);
-        return new GameMemento(level, hp);
-    }
-
-    // 读档
-    public void load(GameMemento memento) {
-        this.level = memento.getLevel();
-        this.hp = memento.getHp();
-        System.out.println(&quot;读档成功！恢复到 -&gt; 等级: &quot; + level + &quot; 血量: &quot; + hp);
-    }
-}
-
-// 管理者：存档管理器
-class Caretaker {
-    private final java.util.Stack&lt;GameMemento&gt; saves = new java.util.Stack&lt;&gt;();
-
-    public void add(GameMemento memento) {
-        saves.push(memento);
-    }
-
-    public GameMemento undo() {
-        if (!saves.isEmpty()) {
-            return saves.pop();
-        }
-        return null;
-    }
-}
-
-// 测试类
-public class GameMementoDemo {
-    public static void main(String[] args) {
-        Game game = new Game(1, 100);
-        Caretaker caretaker = new Caretaker();
-
-        game.showState();
-        caretaker.add(game.save()); // 存档 1
-
-        game.play();
-        caretaker.add(game.save()); // 存档 2
-
-        game.play();
-        game.play();
-        game.showState();
-
-        // 读档（回退到上一次存档）
-        game.load(caretaker.undo());
-        game.showState();
-
-        // 再次读档（回退到更早的存档）
-        game.load(caretaker.undo());
-        game.showState();
-    }
-}
-</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="优点">
     <h2>
@@ -396,8 +289,8 @@ public class GameMementoDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可以实现对象状态的保存与恢复，支持撤销/回滚。</li>
-<li>封装性好，状态存储在 Memento 中，不会暴露给外部。</li>
+<li>易于扩展新规则（增加一个表达式类即可）。</li>
+<li>灵活，可以动态组合表达式形成语法树。</li>
 </ul>
 <doc-anchor-target id="缺点">
     <h2>
@@ -406,8 +299,8 @@ public class GameMementoDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可能会占用大量内存（特别是频繁保存时）。</li>
-<li>如果对象状态过于复杂，保存和恢复的开销会比较大</li>
+<li>语法规则复杂时，类的数量会急剧增加。</li>
+<li>性能可能较低，不适合复杂语言解释。</li>
 </ul>
 
                                 
@@ -418,20 +311,20 @@ public class GameMementoDemo {
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/mediator/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/flyweight/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">Mediator</span>
+                                                <span class="block mt-1">Flyweight</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/observer/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/iterator/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">Observer</span>
+                                                <span class="block mt-1">Iterator</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -475,6 +368,6 @@ public class GameMementoDemo {
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Momento", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Interpreter", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

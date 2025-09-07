@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
-    <title>Momento</title>
-    <meta name="title" content="Momento">
-    <meta name="description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <title>Responsibility</title>
+    <meta name="title" content="Responsibility">
+    <meta name="description" content="责任链模式（Chain of Responsibility Pattern） 是一种行为型设计模式：将请求沿着一条链传递，直到有对象处理它为止；请求的发送者与接收者解耦；常用于请求的过滤、拦截、审批等场景。">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/design-pattern/momento/">
+    <link rel="canonical" href="/design-pattern/responsibility/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/design-pattern/momento/">
-    <meta property="og:title" content="Momento">
-    <meta property="og:description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <meta property="og:url" content="/design-pattern/responsibility/">
+    <meta property="og:title" content="Responsibility">
+    <meta property="og:description" content="责任链模式（Chain of Responsibility Pattern） 是一种行为型设计模式：将请求沿着一条链传递，直到有对象处理它为止；请求的发送者与接收者解耦；常用于请求的过滤、拦截、审批等场景。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/design-pattern/momento/">
-    <meta property="twitter:title" content="Momento">
-    <meta property="twitter:description" content="备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。">
+    <meta property="twitter:url" content="/design-pattern/responsibility/">
+    <meta property="twitter:title" content="Responsibility">
+    <meta property="twitter:description" content="责任链模式（Chain of Responsibility Pattern） 是一种行为型设计模式：将请求沿着一条链传递，直到有对象处理它为止；请求的发送者与接收者解耦；常用于请求的过滤、拦截、审批等场景。">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -164,10 +164,10 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="momento" class="break-words">
+<doc-anchor-target id="responsibility" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#momento">#</doc-anchor-trigger>
-        <span>Momento</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#responsibility">#</doc-anchor-trigger>
+        <span>Responsibility</span>
     </h1>
 </doc-anchor-target>
 <doc-anchor-target id="概念">
@@ -176,12 +176,12 @@
         <span>概念</span>
     </h2>
 </doc-anchor-target>
-<p>备忘录模式（Memento Pattern）是一种行为型设计模式，主要用于在不破坏对象封装的前提下，捕获并保存对象的内部状态，以便之后可以将对象恢复到之前的状态。</p>
-<p>常见的应用场景：</p>
+<p>责任链模式（Chain of Responsibility Pattern） 是一种行为型设计模式：将请求沿着一条链传递，直到有对象处理它为止；请求的发送者与接收者解耦；常用于请求的过滤、拦截、审批等场景。</p>
+<p>典型应用：</p>
 <ul>
-<li>编辑器的撤销/恢复 (Undo/Redo)功能</li>
-<li>游戏的存档/读档</li>
-<li>事务操作的回滚</li>
+<li>Java Web Servlet Filter 链</li>
+<li>日志处理（不同级别日志不同处理器）</li>
+<li>OA 审批流程（员工 → 经理 → 总监 → 董事长）</li>
 </ul>
 <doc-anchor-target id="结构">
     <h2>
@@ -189,26 +189,15 @@
         <span>结构</span>
     </h2>
 </doc-anchor-target>
-<p>备忘录模式通常包含三个角色：</p>
+<p><figure class="content-center">
+    <img src="../responsibility.png" alt="责任链模式" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">责任链模式</figcaption>
+</figure>
+</p>
 <ul>
-<li>Originator（发起人/原发器）
-<ul>
-<li>负责创建一个备忘录，用于记录当前对象的状态。</li>
-<li>也可以使用备忘录恢复状态。</li>
-</ul>
-</li>
-<li>Memento（备忘录）
-<ul>
-<li>用来存储 Originator 的内部状态。</li>
-<li>一般是只读的，不允许外部随意修改。</li>
-</ul>
-</li>
-<li>Caretaker（管理者/负责人）
-<ul>
-<li>负责保存和恢复备忘录。</li>
-<li>本身并不修改备忘录内容，只负责“看管”。</li>
-</ul>
-</li>
+<li>Handler（抽象处理者）: 定义处理请求的接口, 持有下一个处理者的引用</li>
+<li>ConcreteHandler（具体处理者）: 处理自己能处理的请求，否则交给下一个处理者</li>
+<li>Client（客户端）: 创建责任链并提交请求</li>
 </ul>
 <doc-anchor-target id="例子">
     <h2>
@@ -217,177 +206,68 @@
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 备忘录
-class Memento {
-    private final String state;
+<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象处理者
+abstract class LeaveHandler {
+    protected LeaveHandler nextHandler;
 
-    public Memento(String state) {
-        this.state = state;
+    public void setNextHandler(LeaveHandler nextHandler) {
+        this.nextHandler = nextHandler;
     }
 
-    public String getState() {
-        return state;
-    }
+    public abstract void handleRequest(int days);
 }
 
-// 发起人
-class Originator {
-    private String state;
-
-    public void setState(String state) {
-        System.out.println(&quot;设置状态: &quot; + state);
-        this.state = state;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    // 创建备忘录
-    public Memento saveStateToMemento() {
-        return new Memento(state);
-    }
-
-    // 从备忘录恢复状态
-    public void getStateFromMemento(Memento memento) {
-        this.state = memento.getState();
-        System.out.println(&quot;恢复状态: &quot; + state);
-    }
-}
-
-// 管理者
-class Caretaker {
-    private final java.util.Stack&lt;Memento&gt; mementoStack = new java.util.Stack&lt;&gt;();
-
-    public void add(Memento state) {
-        mementoStack.push(state);
-    }
-
-    public Memento undo() {
-        if (!mementoStack.isEmpty()) {
-            return mementoStack.pop();
+// 具体处理者：主管
+class Supervisor extends LeaveHandler {
+    @Override
+    public void handleRequest(int days) {
+        if (days &lt;= 2) {
+            System.out.println(&quot;主管批准了 &quot; + days + &quot; 天的请假。&quot;);
+        } else if (nextHandler != null) {
+            nextHandler.handleRequest(days);
         }
-        return null;
+    }
+}
+
+// 具体处理者：经理
+class Manager extends LeaveHandler {
+    @Override
+    public void handleRequest(int days) {
+        if (days &lt;= 5) {
+            System.out.println(&quot;经理批准了 &quot; + days + &quot; 天的请假。&quot;);
+        } else if (nextHandler != null) {
+            nextHandler.handleRequest(days);
+        }
+    }
+}
+
+// 具体处理者：总经理
+class GeneralManager extends LeaveHandler {
+    @Override
+    public void handleRequest(int days) {
+        if (days &gt; 5) {
+            System.out.println(&quot;总经理批准了 &quot; + days + &quot; 天的请假。&quot;);
+        }
     }
 }
 
 // 测试类
-public class MementoPatternDemo {
+public class ChainOfResponsibilityDemo {
     public static void main(String[] args) {
-        Originator originator = new Originator();
-        Caretaker caretaker = new Caretaker();
+        // 创建处理链
+        LeaveHandler supervisor = new Supervisor();
+        LeaveHandler manager = new Manager();
+        LeaveHandler generalManager = new GeneralManager();
 
-        originator.setState(&quot;状态 #1&quot;);
-        caretaker.add(originator.saveStateToMemento());
+        supervisor.setNextHandler(manager);
+        manager.setNextHandler(generalManager);
 
-        originator.setState(&quot;状态 #2&quot;);
-        caretaker.add(originator.saveStateToMemento());
-
-        originator.setState(&quot;状态 #3&quot;);
-        System.out.println(&quot;当前状态: &quot; + originator.getState());
-
-        // 撤销操作
-        originator.getStateFromMemento(caretaker.undo());
-        originator.getStateFromMemento(caretaker.undo());
+        // 提交请求
+        supervisor.handleRequest(1);
+        supervisor.handleRequest(3);
+        supervisor.handleRequest(7);
     }
 }</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 备忘录类：保存游戏状态
-class GameMemento {
-    private final int level;
-    private final int hp;
-
-    public GameMemento(int level, int hp) {
-        this.level = level;
-        this.hp = hp;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-}
-
-// 发起人：游戏角色
-class Game {
-    private int level;
-    private int hp;
-
-    public Game(int level, int hp) {
-        this.level = level;
-        this.hp = hp;
-    }
-
-    public void play() {
-        System.out.println(&quot;正在游戏... 当前等级: &quot; + level + &quot; 血量: &quot; + hp);
-        level++;
-        hp -= 10; // 假设玩游戏会掉血
-    }
-
-    public void showState() {
-        System.out.println(&quot;当前角色 -&gt; 等级: &quot; + level + &quot; 血量: &quot; + hp);
-    }
-
-    // 存档
-    public GameMemento save() {
-        System.out.println(&quot;存档成功！等级: &quot; + level + &quot; 血量: &quot; + hp);
-        return new GameMemento(level, hp);
-    }
-
-    // 读档
-    public void load(GameMemento memento) {
-        this.level = memento.getLevel();
-        this.hp = memento.getHp();
-        System.out.println(&quot;读档成功！恢复到 -&gt; 等级: &quot; + level + &quot; 血量: &quot; + hp);
-    }
-}
-
-// 管理者：存档管理器
-class Caretaker {
-    private final java.util.Stack&lt;GameMemento&gt; saves = new java.util.Stack&lt;&gt;();
-
-    public void add(GameMemento memento) {
-        saves.push(memento);
-    }
-
-    public GameMemento undo() {
-        if (!saves.isEmpty()) {
-            return saves.pop();
-        }
-        return null;
-    }
-}
-
-// 测试类
-public class GameMementoDemo {
-    public static void main(String[] args) {
-        Game game = new Game(1, 100);
-        Caretaker caretaker = new Caretaker();
-
-        game.showState();
-        caretaker.add(game.save()); // 存档 1
-
-        game.play();
-        caretaker.add(game.save()); // 存档 2
-
-        game.play();
-        game.play();
-        game.showState();
-
-        // 读档（回退到上一次存档）
-        game.load(caretaker.undo());
-        game.showState();
-
-        // 再次读档（回退到更早的存档）
-        game.load(caretaker.undo());
-        game.showState();
-    }
-}
-</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="优点">
     <h2>
@@ -396,8 +276,9 @@ public class GameMementoDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可以实现对象状态的保存与恢复，支持撤销/回滚。</li>
-<li>封装性好，状态存储在 Memento 中，不会暴露给外部。</li>
+<li>请求与处理解耦，灵活可扩展。</li>
+<li>可以动态组合责任链。</li>
+<li>符合 开闭原则（新增处理者不影响原有代码）。</li>
 </ul>
 <doc-anchor-target id="缺点">
     <h2>
@@ -406,8 +287,8 @@ public class GameMementoDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可能会占用大量内存（特别是频繁保存时）。</li>
-<li>如果对象状态过于复杂，保存和恢复的开销会比较大</li>
+<li>可能导致责任链过长，影响性能。</li>
+<li>不保证一定会有处理者接收请求。</li>
 </ul>
 
                                 
@@ -418,20 +299,20 @@ public class GameMementoDemo {
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/mediator/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/proxy/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">Mediator</span>
+                                                <span class="block mt-1">Proxy</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/observer/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/state/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">Observer</span>
+                                                <span class="block mt-1">State</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -475,6 +356,6 @@ public class GameMementoDemo {
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Momento", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Responsibility", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
