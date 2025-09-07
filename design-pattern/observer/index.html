@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
-    <title>Decorator</title>
-    <meta name="title" content="Decorator">
-    <meta name="description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <title>Observer</title>
+    <meta name="title" content="Observer">
+    <meta name="description" content="定义对象之间 一对多的依赖关系，当一个对象（主题/被观察者）的状态发生变化时，所有依赖它的对象（观察者）都会收到通知并自动更新。">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/design-pattern/decorator/">
+    <link rel="canonical" href="/design-pattern/observer/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/design-pattern/decorator/">
-    <meta property="og:title" content="Decorator">
-    <meta property="og:description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <meta property="og:url" content="/design-pattern/observer/">
+    <meta property="og:title" content="Observer">
+    <meta property="og:description" content="定义对象之间 一对多的依赖关系，当一个对象（主题/被观察者）的状态发生变化时，所有依赖它的对象（观察者）都会收到通知并自动更新。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/design-pattern/decorator/">
-    <meta property="twitter:title" content="Decorator">
-    <meta property="twitter:description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <meta property="twitter:url" content="/design-pattern/observer/">
+    <meta property="twitter:title" content="Observer">
+    <meta property="twitter:description" content="定义对象之间 一对多的依赖关系，当一个对象（主题/被观察者）的状态发生变化时，所有依赖它的对象（观察者）都会收到通知并自动更新。">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -164,10 +164,10 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="decorator" class="break-words">
+<doc-anchor-target id="observer" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#decorator">#</doc-anchor-trigger>
-        <span>Decorator</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#observer">#</doc-anchor-trigger>
+        <span>Observer</span>
     </h1>
 </doc-anchor-target>
 <doc-anchor-target id="概念">
@@ -176,7 +176,7 @@
         <span>概念</span>
     </h2>
 </doc-anchor-target>
-<p>在不改变原有类的基础上，动态地给对象添加新的功能。</p>
+<p>定义对象之间 一对多的依赖关系，当一个对象（主题/被观察者）的状态发生变化时，所有依赖它的对象（观察者）都会收到通知并自动更新。</p>
 <doc-anchor-target id="结构">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#结构">#</doc-anchor-trigger>
@@ -184,17 +184,10 @@
     </h2>
 </doc-anchor-target>
 <p><figure class="content-center">
-    <img src="../decorator_structure.png" alt="装饰器模式" class="rounded-image-rounded border-image-border border-image-border-width" />
-    <figcaption class="caption">装饰器模式</figcaption>
+    <img src="../observer.png" alt="观察者模式" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">观察者模式</figcaption>
 </figure>
-装饰器模式主要包含四个角色：</p>
-<ul>
-<li>抽象组件（Component）：定义对象的接口。</li>
-<li>具体组件（ConcreteComponent）：被装饰的原始对象。</li>
-<li>抽象装饰器（Decorator）：持有一个 Component 对象，并实现 Component 接口。</li>
-<li>具体装饰器（ConcreteDecorator）：扩展装饰器，增加新功能。</li>
-</ul>
-<p>如果只有一个ConcreteComponent类而没有抽象的Component类，那么Decorator类可以是ConcreteComponent的一个子类。同样道理，如果只有一个ConcreteDecorator类，那么就没有必要建立一个单独的Decorator类，而可以把Decorator和ConcreteDecorator的责任合并成一个类。</p>
+</p>
 <doc-anchor-target id="例子">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#例子">#</doc-anchor-trigger>
@@ -202,91 +195,84 @@
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象组件
-interface Coffee {
-    String getDescription();
-    double getCost();
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.util.ArrayList;
+import java.util.List;
+
+// 抽象观察者
+interface Observer {
+    void update(float temperature, float humidity);
 }
 
-// 具体组件 - 基础咖啡
-class SimpleCoffee implements Coffee {
-    @Override
-    public String getDescription() {
-        return &quot;普通咖啡&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return 5.0;
-    }
+// 抽象主题
+interface Subject {
+    void attach(Observer o);
+    void detach(Observer o);
+    void notifyObservers();
 }
 
-// 抽象装饰器
-abstract class CoffeeDecorator implements Coffee {
-    protected Coffee decoratedCoffee; // 被包装的咖啡
+// 具体主题：气象站
+class WeatherData implements Subject {
+    private List&lt;Observer&gt; observers = new ArrayList&lt;&gt;();
+    private float temperature;
+    private float humidity;
 
-    public CoffeeDecorator(Coffee coffee) {
-        this.decoratedCoffee = coffee;
+    @Override
+    public void attach(Observer o) {
+        observers.add(o);
     }
 
     @Override
-    public String getDescription() {
-        return decoratedCoffee.getDescription();
+    public void detach(Observer o) {
+        observers.remove(o);
     }
 
     @Override
-    public double getCost() {
-        return decoratedCoffee.getCost();
-    }
-}
-
-// 具体装饰器 - 牛奶
-class MilkDecorator extends CoffeeDecorator {
-    public MilkDecorator(Coffee coffee) {
-        super(coffee);
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update(temperature, humidity);
+        }
     }
 
-    @Override
-    public String getDescription() {
-        return super.getDescription() + &quot; + 牛奶&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return super.getCost() + 2.0;
+    // 设置新数据时，自动通知观察者
+    public void setMeasurements(float temperature, float humidity) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        notifyObservers();
     }
 }
 
-// 具体装饰器 - 糖
-class SugarDecorator extends CoffeeDecorator {
-    public SugarDecorator(Coffee coffee) {
-        super(coffee);
-    }
-
+// 具体观察者：手机显示屏
+class PhoneDisplay implements Observer {
     @Override
-    public String getDescription() {
-        return super.getDescription() + &quot; + 糖&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return super.getCost() + 1.0;
+    public void update(float temperature, float humidity) {
+        System.out.println(&quot;手机显示屏 -&gt; 温度: &quot; + temperature + &quot;°C, 湿度: &quot; + humidity + &quot;%&quot;);
     }
 }
 
-// 客户端
-public class DecoratorDemo {
+// 具体观察者：电视显示屏
+class TVDisplay implements Observer {
+    @Override
+    public void update(float temperature, float humidity) {
+        System.out.println(&quot;电视显示屏 -&gt; 温度: &quot; + temperature + &quot;°C, 湿度: &quot; + humidity + &quot;%&quot;);
+    }
+}
+
+// 测试
+public class ObserverDemo {
     public static void main(String[] args) {
-        Coffee coffee = new SimpleCoffee();
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+        WeatherData weatherData = new WeatherData();
 
-        // 加牛奶
-        coffee = new MilkDecorator(coffee);
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+        Observer phone = new PhoneDisplay();
+        Observer tv = new TVDisplay();
 
-        // 再加糖
-        coffee = new SugarDecorator(coffee);
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+        // 注册观察者
+        weatherData.attach(phone);
+        weatherData.attach(tv);
+
+        // 更新天气数据
+        weatherData.setMeasurements(28.5f, 65.0f);
+        System.out.println(&quot;---- 天气更新 ----&quot;);
+        weatherData.setMeasurements(30.0f, 70.0f);
     }
 }</code></pre>
 </doc-codeblock></div>
@@ -297,9 +283,9 @@ public class DecoratorDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可以在运行时动态组合功能（想加什么装饰就加什么）。</li>
-<li>避免了继承带来的类爆炸问题。</li>
-<li>符合开闭原则（扩展功能时无需修改已有代码）。</li>
+<li>主题和观察者之间 松耦合（只依赖接口）。</li>
+<li>可以自由增加或删除观察者，扩展性好。</li>
+<li>实现了“事件驱动”模型。</li>
 </ul>
 <doc-anchor-target id="缺点">
     <h2>
@@ -308,8 +294,8 @@ public class DecoratorDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>会产生很多小类，结构较复杂。</li>
-<li>多层装饰时调试比较困难。</li>
+<li>通知是广播式的，观察者越多，开销越大。</li>
+<li>通知链可能导致性能问题或循环依赖。</li>
 </ul>
 <doc-anchor-target id="使用场景">
     <h2>
@@ -318,8 +304,10 @@ public class DecoratorDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>Java IO 库（BufferedInputStream、DataInputStream）就是典型的装饰器模式。</li>
-<li>需要在运行时动态地组合对象的功能，而不是通过继承固定组合。</li>
+<li>GUI 事件监听（按钮点击 → 通知监听器）。</li>
+<li>消息队列 / 发布订阅。</li>
+<li>Model-View 分离（MVC 模式里的 Observer）。</li>
+<li>日志监听、缓存刷新、异步消息通知。</li>
 </ul>
 
                                 
@@ -330,20 +318,20 @@ public class DecoratorDemo {
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/composite/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/momento/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">Composite</span>
+                                                <span class="block mt-1">Momento</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/facade/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/prototype/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">Facade</span>
+                                                <span class="block mt-1">Prototype</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -387,6 +375,6 @@ public class DecoratorDemo {
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Decorator", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Observer", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

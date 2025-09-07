@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
-    <title>Decorator</title>
-    <meta name="title" content="Decorator">
-    <meta name="description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <title>Abstract factory</title>
+    <meta name="title" content="Abstract factory">
+    <meta name="description" content="抽象工厂模式（Abstract Factory Pattern）：提供一个创建一组相关或相互依赖对象的接口，而无需指定它们的具体实现类。">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/design-pattern/decorator/">
+    <link rel="canonical" href="/design-pattern/abstract_factory/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/design-pattern/decorator/">
-    <meta property="og:title" content="Decorator">
-    <meta property="og:description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <meta property="og:url" content="/design-pattern/abstract_factory/">
+    <meta property="og:title" content="Abstract factory">
+    <meta property="og:description" content="抽象工厂模式（Abstract Factory Pattern）：提供一个创建一组相关或相互依赖对象的接口，而无需指定它们的具体实现类。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/design-pattern/decorator/">
-    <meta property="twitter:title" content="Decorator">
-    <meta property="twitter:description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <meta property="twitter:url" content="/design-pattern/abstract_factory/">
+    <meta property="twitter:title" content="Abstract factory">
+    <meta property="twitter:description" content="抽象工厂模式（Abstract Factory Pattern）：提供一个创建一组相关或相互依赖对象的接口，而无需指定它们的具体实现类。">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -164,10 +164,10 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="decorator" class="break-words">
+<doc-anchor-target id="abstract-factory" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#decorator">#</doc-anchor-trigger>
-        <span>Decorator</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#abstract-factory">#</doc-anchor-trigger>
+        <span>Abstract factory</span>
     </h1>
 </doc-anchor-target>
 <doc-anchor-target id="概念">
@@ -176,7 +176,12 @@
         <span>概念</span>
     </h2>
 </doc-anchor-target>
-<p>在不改变原有类的基础上，动态地给对象添加新的功能。</p>
+<p>抽象工厂模式（Abstract Factory Pattern）：提供一个创建一组相关或相互依赖对象的接口，而无需指定它们的具体实现类。</p>
+<p>和工厂方法模式的区别：</p>
+<ul>
+<li>工厂方法：一个工厂只生产一种产品。</li>
+<li>抽象工厂：一个工厂生产多个相关产品（产品族）。</li>
+</ul>
 <doc-anchor-target id="结构">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#结构">#</doc-anchor-trigger>
@@ -184,17 +189,10 @@
     </h2>
 </doc-anchor-target>
 <p><figure class="content-center">
-    <img src="../decorator_structure.png" alt="装饰器模式" class="rounded-image-rounded border-image-border border-image-border-width" />
-    <figcaption class="caption">装饰器模式</figcaption>
+    <img src="../abstract_factory.png" alt="抽象工厂模式" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">抽象工厂模式</figcaption>
 </figure>
-装饰器模式主要包含四个角色：</p>
-<ul>
-<li>抽象组件（Component）：定义对象的接口。</li>
-<li>具体组件（ConcreteComponent）：被装饰的原始对象。</li>
-<li>抽象装饰器（Decorator）：持有一个 Component 对象，并实现 Component 接口。</li>
-<li>具体装饰器（ConcreteDecorator）：扩展装饰器，增加新功能。</li>
-</ul>
-<p>如果只有一个ConcreteComponent类而没有抽象的Component类，那么Decorator类可以是ConcreteComponent的一个子类。同样道理，如果只有一个ConcreteDecorator类，那么就没有必要建立一个单独的Decorator类，而可以把Decorator和ConcreteDecorator的责任合并成一个类。</p>
+</p>
 <doc-anchor-target id="例子">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#例子">#</doc-anchor-trigger>
@@ -202,91 +200,100 @@
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象组件
-interface Coffee {
-    String getDescription();
-    double getCost();
+<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象产品 A：按钮
+interface Button {
+    void paint();
 }
 
-// 具体组件 - 基础咖啡
-class SimpleCoffee implements Coffee {
-    @Override
-    public String getDescription() {
-        return &quot;普通咖啡&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return 5.0;
-    }
+// 抽象产品 B：复选框
+interface Checkbox {
+    void paint();
 }
 
-// 抽象装饰器
-abstract class CoffeeDecorator implements Coffee {
-    protected Coffee decoratedCoffee; // 被包装的咖啡
-
-    public CoffeeDecorator(Coffee coffee) {
-        this.decoratedCoffee = coffee;
-    }
-
+// 具体产品：Windows 按钮
+class WindowsButton implements Button {
     @Override
-    public String getDescription() {
-        return decoratedCoffee.getDescription();
-    }
-
-    @Override
-    public double getCost() {
-        return decoratedCoffee.getCost();
+    public void paint() {
+        System.out.println(&quot;Windows 风格的按钮&quot;);
     }
 }
 
-// 具体装饰器 - 牛奶
-class MilkDecorator extends CoffeeDecorator {
-    public MilkDecorator(Coffee coffee) {
-        super(coffee);
-    }
-
+// 具体产品：Windows 复选框
+class WindowsCheckbox implements Checkbox {
     @Override
-    public String getDescription() {
-        return super.getDescription() + &quot; + 牛奶&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return super.getCost() + 2.0;
+    public void paint() {
+        System.out.println(&quot;Windows 风格的复选框&quot;);
     }
 }
 
-// 具体装饰器 - 糖
-class SugarDecorator extends CoffeeDecorator {
-    public SugarDecorator(Coffee coffee) {
-        super(coffee);
+// 具体产品：Mac 按钮
+class MacButton implements Button {
+    @Override
+    public void paint() {
+        System.out.println(&quot;Mac 风格的按钮&quot;);
+    }
+}
+
+// 具体产品：Mac 复选框
+class MacCheckbox implements Checkbox {
+    @Override
+    public void paint() {
+        System.out.println(&quot;Mac 风格的复选框&quot;);
+    }
+}
+
+// 抽象工厂
+interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+
+// 具体工厂：Windows 工厂
+class WindowsFactory implements GUIFactory {
+    @Override
+    public Button createButton() {
+        return new WindowsButton();
     }
 
     @Override
-    public String getDescription() {
-        return super.getDescription() + &quot; + 糖&quot;;
+    public Checkbox createCheckbox() {
+        return new WindowsCheckbox();
+    }
+}
+
+// 具体工厂：Mac 工厂
+class MacFactory implements GUIFactory {
+    @Override
+    public Button createButton() {
+        return new MacButton();
     }
 
     @Override
-    public double getCost() {
-        return super.getCost() + 1.0;
+    public Checkbox createCheckbox() {
+        return new MacCheckbox();
     }
 }
 
 // 客户端
-public class DecoratorDemo {
+public class AbstractFactoryDemo {
     public static void main(String[] args) {
-        Coffee coffee = new SimpleCoffee();
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+        // 假设当前系统是 Mac
+        GUIFactory factory = new MacFactory();
+        Button button = factory.createButton();
+        Checkbox checkbox = factory.createCheckbox();
 
-        // 加牛奶
-        coffee = new MilkDecorator(coffee);
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+        button.paint();
+        checkbox.paint();
 
-        // 再加糖
-        coffee = new SugarDecorator(coffee);
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+        System.out.println(&quot;---- 切换到 Windows 风格 ----&quot;);
+
+        // 切换到 Windows
+        factory = new WindowsFactory();
+        button = factory.createButton();
+        checkbox = factory.createCheckbox();
+
+        button.paint();
+        checkbox.paint();
     }
 }</code></pre>
 </doc-codeblock></div>
@@ -297,9 +304,8 @@ public class DecoratorDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可以在运行时动态组合功能（想加什么装饰就加什么）。</li>
-<li>避免了继承带来的类爆炸问题。</li>
-<li>符合开闭原则（扩展功能时无需修改已有代码）。</li>
+<li>保证同一产品族的一致性（不会出现 Windows 按钮配 Mac 复选框）。</li>
+<li>符合开闭原则，新增产品族时只需增加工厂类。</li>
 </ul>
 <doc-anchor-target id="缺点">
     <h2>
@@ -308,19 +314,247 @@ public class DecoratorDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>会产生很多小类，结构较复杂。</li>
-<li>多层装饰时调试比较困难。</li>
+<li>难以支持新种类的产品，因为要修改抽象工厂接口（违反开闭原则）。</li>
 </ul>
-<doc-anchor-target id="使用场景">
+<doc-anchor-target id="改进">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#使用场景">#</doc-anchor-trigger>
-        <span>使用场景</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#改进">#</doc-anchor-trigger>
+        <span>改进</span>
     </h2>
 </doc-anchor-target>
-<ul>
-<li>Java IO 库（BufferedInputStream、DataInputStream）就是典型的装饰器模式。</li>
-<li>需要在运行时动态地组合对象的功能，而不是通过继承固定组合。</li>
-</ul>
+<p>简单工厂模式可以简化客户端代码，客户端不会出现具体工厂的字样，达到了解耦的目的。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">// ===== 抽象工厂部分 =====
+
+// 抽象产品 A：按钮
+interface Button {
+    void paint();
+}
+
+// 抽象产品 B：复选框
+interface Checkbox {
+    void paint();
+}
+
+// 抽象工厂
+interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+
+// Windows 产品族
+class WindowsButton implements Button {
+    public void paint() { System.out.println(&quot;Windows 按钮&quot;); }
+}
+class WindowsCheckbox implements Checkbox {
+    public void paint() { System.out.println(&quot;Windows 复选框&quot;); }
+}
+class WindowsFactory implements GUIFactory {
+    public Button createButton() { return new WindowsButton(); }
+    public Checkbox createCheckbox() { return new WindowsCheckbox(); }
+}
+
+// Mac 产品族
+class MacButton implements Button {
+    public void paint() { System.out.println(&quot;Mac 按钮&quot;); }
+}
+class MacCheckbox implements Checkbox {
+    public void paint() { System.out.println(&quot;Mac 复选框&quot;); }
+}
+class MacFactory implements GUIFactory {
+    public Button createButton() { return new MacButton(); }
+    public Checkbox createCheckbox() { return new MacCheckbox(); }
+}
+
+// ===== 简单工厂部分（工厂选择器）=====
+class FactoryProducer {
+    public static GUIFactory getFactory(String osType) {
+        if (&quot;Windows&quot;.equalsIgnoreCase(osType)) {
+            return new WindowsFactory();
+        } else if (&quot;Mac&quot;.equalsIgnoreCase(osType)) {
+            return new MacFactory();
+        }
+        throw new IllegalArgumentException(&quot;未知的操作系统类型&quot;);
+    }
+}
+
+// ===== 客户端 =====
+public class CombinedFactoryDemo {
+    public static void main(String[] args) {
+        // 通过简单工厂选择具体工厂
+        GUIFactory factory = FactoryProducer.getFactory(&quot;Mac&quot;);
+
+        Button button = factory.createButton();
+        Checkbox checkbox = factory.createCheckbox();
+
+        button.paint();
+        checkbox.paint();
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="再次改进">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#再次改进">#</doc-anchor-trigger>
+        <span>再次改进</span>
+    </h2>
+</doc-anchor-target>
+<p>所有在用简单工厂的地方，都可以考虑用反射技术来去除switch或if，解除分支判断带来的耦合。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象产品
+interface Button {
+    void paint();
+}
+interface Checkbox {
+    void paint();
+}
+
+// Windows 产品
+class WindowsButton implements Button {
+    public void paint() { System.out.println(&quot;Windows 按钮&quot;); }
+}
+class WindowsCheckbox implements Checkbox {
+    public void paint() { System.out.println(&quot;Windows 复选框&quot;); }
+}
+
+// Mac 产品
+class MacButton implements Button {
+    public void paint() { System.out.println(&quot;Mac 按钮&quot;); }
+}
+class MacCheckbox implements Checkbox {
+    public void paint() { System.out.println(&quot;Mac 复选框&quot;); }
+}
+
+// 抽象工厂
+interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+
+// Windows 工厂
+class WindowsFactory implements GUIFactory {
+    public Button createButton() { return new WindowsButton(); }
+    public Checkbox createCheckbox() { return new WindowsCheckbox(); }
+}
+
+// Mac 工厂
+class MacFactory implements GUIFactory {
+    public Button createButton() { return new MacButton(); }
+    public Checkbox createCheckbox() { return new MacCheckbox(); }
+}
+
+// 工厂提供者（反射版，不写 if/switch）
+class FactoryProducer {
+    public static GUIFactory getFactory(String factoryClassName) {
+        try {
+            Class&lt;?&gt; clazz = Class.forName(factoryClassName);
+            return (GUIFactory) clazz.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(&quot;无法创建工厂: &quot; + factoryClassName, e);
+        }
+    }
+}
+
+// 测试
+public class ReflectionFactoryDemo {
+    public static void main(String[] args) {
+        // 直接传工厂类名
+        GUIFactory factory = FactoryProducer.getFactory(&quot;MacFactory&quot;);
+
+        Button button = factory.createButton();
+        Checkbox checkbox = factory.createCheckbox();
+
+        button.paint();
+        checkbox.paint();
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="使用配置文件改进">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#使用配置文件改进">#</doc-anchor-trigger>
+        <span>使用配置文件改进</span>
+    </h2>
+</doc-anchor-target>
+<p>通过读取配置文件，避免将工厂类名写死在客户端代码中。</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-properties"><code v-pre class="language-properties">factoryClass=MacFactory</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+// 抽象产品
+interface Button {
+    void paint();
+}
+interface Checkbox {
+    void paint();
+}
+
+// Windows 产品
+class WindowsButton implements Button {
+    public void paint() { System.out.println(&quot;Windows 按钮&quot;); }
+}
+class WindowsCheckbox implements Checkbox {
+    public void paint() { System.out.println(&quot;Windows 复选框&quot;); }
+}
+
+// Mac 产品
+class MacButton implements Button {
+    public void paint() { System.out.println(&quot;Mac 按钮&quot;); }
+}
+class MacCheckbox implements Checkbox {
+    public void paint() { System.out.println(&quot;Mac 复选框&quot;); }
+}
+
+// 抽象工厂
+interface GUIFactory {
+    Button createButton();
+    Checkbox createCheckbox();
+}
+
+// Windows 工厂
+class WindowsFactory implements GUIFactory {
+    public Button createButton() { return new WindowsButton(); }
+    public Checkbox createCheckbox() { return new WindowsCheckbox(); }
+}
+
+// Mac 工厂
+class MacFactory implements GUIFactory {
+    public Button createButton() { return new MacButton(); }
+    public Checkbox createCheckbox() { return new MacCheckbox(); }
+}
+
+// 工厂提供者（反射版，不写 if/switch）
+class FactoryProducer {
+    public static GUIFactory getFactory(String factoryClassName) {
+        try {
+            Class&lt;?&gt; clazz = Class.forName(factoryClassName);
+            return (GUIFactory) clazz.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(&quot;无法创建工厂: &quot; + factoryClassName, e);
+        }
+    }
+}
+
+public class ConfigFactoryDemo {
+    public static void main(String[] args) throws IOException {
+        // 读取配置文件
+        Properties props = new Properties();
+        props.load(new FileInputStream(&quot;config.properties&quot;));
+
+        String factoryClassName = props.getProperty(&quot;factoryClass&quot;);
+
+        // 用反射创建工厂
+        GUIFactory factory = FactoryProducer.getFactory(factoryClassName);
+
+        Button button = factory.createButton();
+        Checkbox checkbox = factory.createCheckbox();
+
+        button.paint();
+        checkbox.paint();
+    }
+}</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -330,20 +564,20 @@ public class DecoratorDemo {
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/composite/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../data-structure/array/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">Composite</span>
+                                                <span class="block mt-1">Array</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/facade/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/adapter/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">Facade</span>
+                                                <span class="block mt-1">Adapter</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -387,6 +621,6 @@ public class DecoratorDemo {
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Decorator", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Abstract factory", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

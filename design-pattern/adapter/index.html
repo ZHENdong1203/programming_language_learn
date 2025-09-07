@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
-    <title>Decorator</title>
-    <meta name="title" content="Decorator">
-    <meta name="description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <title>Adapter</title>
+    <meta name="title" content="Adapter">
+    <meta name="description" content="适配器模式是一种结构型模式，用来 将一个类的接口转换为客户希望的另一个接口，使得原本由于接口不兼容而不能一起工作的类可以一起工作。">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/design-pattern/decorator/">
+    <link rel="canonical" href="/design-pattern/adapter/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/design-pattern/decorator/">
-    <meta property="og:title" content="Decorator">
-    <meta property="og:description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <meta property="og:url" content="/design-pattern/adapter/">
+    <meta property="og:title" content="Adapter">
+    <meta property="og:description" content="适配器模式是一种结构型模式，用来 将一个类的接口转换为客户希望的另一个接口，使得原本由于接口不兼容而不能一起工作的类可以一起工作。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/design-pattern/decorator/">
-    <meta property="twitter:title" content="Decorator">
-    <meta property="twitter:description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <meta property="twitter:url" content="/design-pattern/adapter/">
+    <meta property="twitter:title" content="Adapter">
+    <meta property="twitter:description" content="适配器模式是一种结构型模式，用来 将一个类的接口转换为客户希望的另一个接口，使得原本由于接口不兼容而不能一起工作的类可以一起工作。">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -164,163 +164,102 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="decorator" class="break-words">
+<doc-anchor-target id="adapter" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#decorator">#</doc-anchor-trigger>
-        <span>Decorator</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#adapter">#</doc-anchor-trigger>
+        <span>Adapter</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="概念">
+<doc-anchor-target id="section">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#概念">#</doc-anchor-trigger>
-        <span>概念</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#section">#</doc-anchor-trigger>
+        <span></span>
     </h2>
 </doc-anchor-target>
-<p>在不改变原有类的基础上，动态地给对象添加新的功能。</p>
-<doc-anchor-target id="结构">
+<p>适配器模式是一种结构型模式，用来 将一个类的接口转换为客户希望的另一个接口，使得原本由于接口不兼容而不能一起工作的类可以一起工作。</p>
+<ul>
+<li>有一个旧的接口（老代码 / 第三方库）。</li>
+<li>客户端需要一个新接口。</li>
+<li>写一个适配器类，在中间做“翻译”。</li>
+</ul>
+<doc-anchor-target id="section-1">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#结构">#</doc-anchor-trigger>
-        <span>结构</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#section-1">#</doc-anchor-trigger>
+        <span></span>
     </h2>
 </doc-anchor-target>
 <p><figure class="content-center">
-    <img src="../decorator_structure.png" alt="装饰器模式" class="rounded-image-rounded border-image-border border-image-border-width" />
-    <figcaption class="caption">装饰器模式</figcaption>
+    <img src="../adapter.png" alt="适配器模式" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">适配器模式</figcaption>
 </figure>
-装饰器模式主要包含四个角色：</p>
-<ul>
-<li>抽象组件（Component）：定义对象的接口。</li>
-<li>具体组件（ConcreteComponent）：被装饰的原始对象。</li>
-<li>抽象装饰器（Decorator）：持有一个 Component 对象，并实现 Component 接口。</li>
-<li>具体装饰器（ConcreteDecorator）：扩展装饰器，增加新功能。</li>
-</ul>
-<p>如果只有一个ConcreteComponent类而没有抽象的Component类，那么Decorator类可以是ConcreteComponent的一个子类。同样道理，如果只有一个ConcreteDecorator类，那么就没有必要建立一个单独的Decorator类，而可以把Decorator和ConcreteDecorator的责任合并成一个类。</p>
-<doc-anchor-target id="例子">
+</p>
+<doc-anchor-target id="section-2">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#例子">#</doc-anchor-trigger>
-        <span>例子</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#section-2">#</doc-anchor-trigger>
+        <span></span>
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象组件
-interface Coffee {
-    String getDescription();
-    double getCost();
+<pre translate="no" class="language-java"><code v-pre class="language-java">// 客户端需要的接口
+// 目标接口
+interface TypeCCharger {
+    void chargeWithTypeC();
 }
 
-// 具体组件 - 基础咖啡
-class SimpleCoffee implements Coffee {
-    @Override
-    public String getDescription() {
-        return &quot;普通咖啡&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return 5.0;
+// 被适配的类
+// 老的圆孔充电器
+class RoundCharger {
+    public void chargeWithRoundPort() {
+        System.out.println(&quot;使用圆孔充电器充电...&quot;);
     }
 }
 
-// 抽象装饰器
-abstract class CoffeeDecorator implements Coffee {
-    protected Coffee decoratedCoffee; // 被包装的咖啡
+//适配器类
+// 适配器：让圆孔充电器也能当 Type-C 使用
+class TypeCAdapter implements TypeCCharger {
+    private RoundCharger roundCharger;
 
-    public CoffeeDecorator(Coffee coffee) {
-        this.decoratedCoffee = coffee;
+    public TypeCAdapter(RoundCharger roundCharger) {
+        this.roundCharger = roundCharger;
     }
 
     @Override
-    public String getDescription() {
-        return decoratedCoffee.getDescription();
-    }
-
-    @Override
-    public double getCost() {
-        return decoratedCoffee.getCost();
-    }
-}
-
-// 具体装饰器 - 牛奶
-class MilkDecorator extends CoffeeDecorator {
-    public MilkDecorator(Coffee coffee) {
-        super(coffee);
-    }
-
-    @Override
-    public String getDescription() {
-        return super.getDescription() + &quot; + 牛奶&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return super.getCost() + 2.0;
-    }
-}
-
-// 具体装饰器 - 糖
-class SugarDecorator extends CoffeeDecorator {
-    public SugarDecorator(Coffee coffee) {
-        super(coffee);
-    }
-
-    @Override
-    public String getDescription() {
-        return super.getDescription() + &quot; + 糖&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return super.getCost() + 1.0;
+    public void chargeWithTypeC() {
+        System.out.println(&quot;适配器转换接口...&quot;);
+        roundCharger.chargeWithRoundPort();
     }
 }
 
 // 客户端
-public class DecoratorDemo {
-    public static void main(String[] args) {
-        Coffee coffee = new SimpleCoffee();
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+class Laptop {
+    private TypeCCharger charger;
 
-        // 加牛奶
-        coffee = new MilkDecorator(coffee);
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
-
-        // 再加糖
-        coffee = new SugarDecorator(coffee);
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+    public Laptop(TypeCCharger charger) {
+        this.charger = charger;
     }
-}</code></pre>
+
+    public void charge() {
+        System.out.println(&quot;笔记本开始充电：&quot;);
+        charger.chargeWithTypeC();
+    }
+}
+
+public class AdapterPatternDemo {
+    public static void main(String[] args) {
+        // 老的圆孔充电器
+        RoundCharger roundCharger = new RoundCharger();
+
+        // 用适配器转换成 Type-C
+        TypeCCharger adapter = new TypeCAdapter(roundCharger);
+
+        // 笔记本使用 Type-C 接口充电
+        Laptop laptop = new Laptop(adapter);
+        laptop.charge();
+    }
+}
+
+</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="优点">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#优点">#</doc-anchor-trigger>
-        <span>优点</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>可以在运行时动态组合功能（想加什么装饰就加什么）。</li>
-<li>避免了继承带来的类爆炸问题。</li>
-<li>符合开闭原则（扩展功能时无需修改已有代码）。</li>
-</ul>
-<doc-anchor-target id="缺点">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#缺点">#</doc-anchor-trigger>
-        <span>缺点</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>会产生很多小类，结构较复杂。</li>
-<li>多层装饰时调试比较困难。</li>
-</ul>
-<doc-anchor-target id="使用场景">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#使用场景">#</doc-anchor-trigger>
-        <span>使用场景</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Java IO 库（BufferedInputStream、DataInputStream）就是典型的装饰器模式。</li>
-<li>需要在运行时动态地组合对象的功能，而不是通过继承固定组合。</li>
-</ul>
 
                                 
                                 <!-- Required only on API pages -->
@@ -330,20 +269,20 @@ public class DecoratorDemo {
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/composite/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/abstract_factory/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">Composite</span>
+                                                <span class="block mt-1">Abstract factory</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/facade/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/builder/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">Facade</span>
+                                                <span class="block mt-1">Builder</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -387,6 +326,6 @@ public class DecoratorDemo {
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Decorator", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Adapter", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
-    <title>Decorator</title>
-    <meta name="title" content="Decorator">
-    <meta name="description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <title>State</title>
+    <meta name="title" content="State">
+    <meta name="description" content="状态模式（State Pattern）：允许对象在内部状态改变时改变它的行为，看起来好像修改了它的类。">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/design-pattern/decorator/">
+    <link rel="canonical" href="/design-pattern/state/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/design-pattern/decorator/">
-    <meta property="og:title" content="Decorator">
-    <meta property="og:description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <meta property="og:url" content="/design-pattern/state/">
+    <meta property="og:title" content="State">
+    <meta property="og:description" content="状态模式（State Pattern）：允许对象在内部状态改变时改变它的行为，看起来好像修改了它的类。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/design-pattern/decorator/">
-    <meta property="twitter:title" content="Decorator">
-    <meta property="twitter:description" content="在不改变原有类的基础上，动态地给对象添加新的功能。">
+    <meta property="twitter:url" content="/design-pattern/state/">
+    <meta property="twitter:title" content="State">
+    <meta property="twitter:description" content="状态模式（State Pattern）：允许对象在内部状态改变时改变它的行为，看起来好像修改了它的类。">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
@@ -164,10 +164,10 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="decorator" class="break-words">
+<doc-anchor-target id="state" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#decorator">#</doc-anchor-trigger>
-        <span>Decorator</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#state">#</doc-anchor-trigger>
+        <span>State</span>
     </h1>
 </doc-anchor-target>
 <doc-anchor-target id="概念">
@@ -176,7 +176,11 @@
         <span>概念</span>
     </h2>
 </doc-anchor-target>
-<p>在不改变原有类的基础上，动态地给对象添加新的功能。</p>
+<p>状态模式（State Pattern）：允许对象在内部状态改变时改变它的行为，看起来好像修改了它的类。</p>
+<ul>
+<li>把对象的状态抽象成独立的类，每种状态对应一种行为。</li>
+<li>状态的切换通过上下文（Context）来管理，而不是写一堆 if/else 或 switch。</li>
+</ul>
 <doc-anchor-target id="结构">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#结构">#</doc-anchor-trigger>
@@ -184,17 +188,10 @@
     </h2>
 </doc-anchor-target>
 <p><figure class="content-center">
-    <img src="../decorator_structure.png" alt="装饰器模式" class="rounded-image-rounded border-image-border border-image-border-width" />
-    <figcaption class="caption">装饰器模式</figcaption>
+    <img src="../state.png" alt="状态模式" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">状态模式</figcaption>
 </figure>
-装饰器模式主要包含四个角色：</p>
-<ul>
-<li>抽象组件（Component）：定义对象的接口。</li>
-<li>具体组件（ConcreteComponent）：被装饰的原始对象。</li>
-<li>抽象装饰器（Decorator）：持有一个 Component 对象，并实现 Component 接口。</li>
-<li>具体装饰器（ConcreteDecorator）：扩展装饰器，增加新功能。</li>
-</ul>
-<p>如果只有一个ConcreteComponent类而没有抽象的Component类，那么Decorator类可以是ConcreteComponent的一个子类。同样道理，如果只有一个ConcreteDecorator类，那么就没有必要建立一个单独的Decorator类，而可以把Decorator和ConcreteDecorator的责任合并成一个类。</p>
+</p>
 <doc-anchor-target id="例子">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#例子">#</doc-anchor-trigger>
@@ -202,91 +199,175 @@
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象组件
-interface Coffee {
-    String getDescription();
-    double getCost();
+<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象状态
+interface State {
+    void handle(Context context);
 }
 
-// 具体组件 - 基础咖啡
-class SimpleCoffee implements Coffee {
+// 具体状态：开
+class OnState implements State {
     @Override
-    public String getDescription() {
-        return &quot;普通咖啡&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return 5.0;
+    public void handle(Context context) {
+        System.out.println(&quot;电灯已开 -&gt; 关闭电灯&quot;);
+        context.setState(new OffState()); // 切换到关状态
     }
 }
 
-// 抽象装饰器
-abstract class CoffeeDecorator implements Coffee {
-    protected Coffee decoratedCoffee; // 被包装的咖啡
-
-    public CoffeeDecorator(Coffee coffee) {
-        this.decoratedCoffee = coffee;
-    }
-
+// 具体状态：关
+class OffState implements State {
     @Override
-    public String getDescription() {
-        return decoratedCoffee.getDescription();
-    }
-
-    @Override
-    public double getCost() {
-        return decoratedCoffee.getCost();
+    public void handle(Context context) {
+        System.out.println(&quot;电灯已关 -&gt; 打开电灯&quot;);
+        context.setState(new OnState()); // 切换到开状态
     }
 }
 
-// 具体装饰器 - 牛奶
-class MilkDecorator extends CoffeeDecorator {
-    public MilkDecorator(Coffee coffee) {
-        super(coffee);
+// 上下文
+class Context {
+    private State state;
+
+    public Context(State state) {
+        this.state = state;
     }
 
-    @Override
-    public String getDescription() {
-        return super.getDescription() + &quot; + 牛奶&quot;;
+    public void setState(State state) {
+        this.state = state;
     }
 
-    @Override
-    public double getCost() {
-        return super.getCost() + 2.0;
-    }
-}
-
-// 具体装饰器 - 糖
-class SugarDecorator extends CoffeeDecorator {
-    public SugarDecorator(Coffee coffee) {
-        super(coffee);
-    }
-
-    @Override
-    public String getDescription() {
-        return super.getDescription() + &quot; + 糖&quot;;
-    }
-
-    @Override
-    public double getCost() {
-        return super.getCost() + 1.0;
+    public void request() {
+        state.handle(this);
     }
 }
 
-// 客户端
-public class DecoratorDemo {
+// 测试
+public class StatePatternDemo {
     public static void main(String[] args) {
-        Coffee coffee = new SimpleCoffee();
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+        Context light = new Context(new OffState()); // 初始状态：关
 
-        // 加牛奶
-        coffee = new MilkDecorator(coffee);
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+        light.request(); // 关 -&gt; 开
+        light.request(); // 开 -&gt; 关
+        light.request(); // 关 -&gt; 开
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-java"><code v-pre class="language-java">// 抽象状态
+interface OrderState {
+    void next(OrderContext context);
+    void prev(OrderContext context);
+    void printStatus();
+}
 
-        // 再加糖
-        coffee = new SugarDecorator(coffee);
-        System.out.println(coffee.getDescription() + &quot; 价格: &quot; + coffee.getCost());
+// 待支付
+class PendingPaymentState implements OrderState {
+    public void next(OrderContext context) {
+        System.out.println(&quot;订单已支付，进入已支付状态。&quot;);
+        context.setState(new PaidState());
+    }
+
+    public void prev(OrderContext context) {
+        System.out.println(&quot;订单还在待支付状态，不能回退。&quot;);
+    }
+
+    public void printStatus() {
+        System.out.println(&quot;订单状态：待支付&quot;);
+    }
+}
+
+// 已支付
+class PaidState implements OrderState {
+    public void next(OrderContext context) {
+        System.out.println(&quot;订单已发货，进入已发货状态。&quot;);
+        context.setState(new ShippedState());
+    }
+
+    public void prev(OrderContext context) {
+        System.out.println(&quot;退回到待支付状态。&quot;);
+        context.setState(new PendingPaymentState());
+    }
+
+    public void printStatus() {
+        System.out.println(&quot;订单状态：已支付&quot;);
+    }
+}
+
+// 已发货
+class ShippedState implements OrderState {
+    public void next(OrderContext context) {
+        System.out.println(&quot;订单已完成，进入已完成状态。&quot;);
+        context.setState(new CompletedState());
+    }
+
+    public void prev(OrderContext context) {
+        System.out.println(&quot;退回到已支付状态。&quot;);
+        context.setState(new PaidState());
+    }
+
+    public void printStatus() {
+        System.out.println(&quot;订单状态：已发货&quot;);
+    }
+}
+
+// 已完成
+class CompletedState implements OrderState {
+    public void next(OrderContext context) {
+        System.out.println(&quot;订单已经是完成状态，不能再前进。&quot;);
+    }
+
+    public void prev(OrderContext context) {
+        System.out.println(&quot;退回到已发货状态。&quot;);
+        context.setState(new ShippedState());
+    }
+
+    public void printStatus() {
+        System.out.println(&quot;订单状态：已完成&quot;);
+    }
+}
+
+// 上下文
+class OrderContext {
+    private OrderState state;
+
+    public OrderContext() {
+        // 初始状态：待支付
+        state = new PendingPaymentState();
+    }
+
+    public void setState(OrderState state) {
+        this.state = state;
+    }
+
+    public void nextState() {
+        state.next(this);
+    }
+
+    public void prevState() {
+        state.prev(this);
+    }
+
+    public void printStatus() {
+        state.printStatus();
+    }
+}
+
+// 测试
+public class OrderStateDemo {
+    public static void main(String[] args) {
+        OrderContext order = new OrderContext();
+
+        order.printStatus(); // 待支付
+        order.nextState();   // 支付
+        order.printStatus(); // 已支付
+
+        order.nextState();   // 发货
+        order.printStatus(); // 已发货
+
+        order.nextState();   // 完成
+        order.printStatus(); // 已完成
+
+        order.nextState();   // 无效操作
+        order.prevState();   // 回退到已发货
+        order.printStatus(); // 已发货
     }
 }</code></pre>
 </doc-codeblock></div>
@@ -297,9 +378,9 @@ public class DecoratorDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>可以在运行时动态组合功能（想加什么装饰就加什么）。</li>
-<li>避免了继承带来的类爆炸问题。</li>
-<li>符合开闭原则（扩展功能时无需修改已有代码）。</li>
+<li>消除了臃肿的 if/else 或 switch。</li>
+<li>状态切换逻辑清晰，每个状态只关心自己的行为。</li>
+<li>满足开闭原则，增加新状态只需添加新类。</li>
 </ul>
 <doc-anchor-target id="缺点">
     <h2>
@@ -308,8 +389,8 @@ public class DecoratorDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>会产生很多小类，结构较复杂。</li>
-<li>多层装饰时调试比较困难。</li>
+<li>类数量增加（每种状态一个类）。</li>
+<li>状态切换可能比较分散，不如 if/else 直观。</li>
 </ul>
 <doc-anchor-target id="使用场景">
     <h2>
@@ -318,8 +399,9 @@ public class DecoratorDemo {
     </h2>
 </doc-anchor-target>
 <ul>
-<li>Java IO 库（BufferedInputStream、DataInputStream）就是典型的装饰器模式。</li>
-<li>需要在运行时动态地组合对象的功能，而不是通过继承固定组合。</li>
+<li>对象有多种状态，且状态之间会相互切换。</li>
+<li>状态切换时行为不同（比如工作流、订单状态、游戏角色状态）。</li>
+<li>替代大量 if/else 状态机逻辑。</li>
 </ul>
 
                                 
@@ -330,20 +412,20 @@ public class DecoratorDemo {
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/composite/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/proxy/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">Composite</span>
+                                                <span class="block mt-1">Proxy</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/facade/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../design-pattern/stretagy/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">Facade</span>
+                                                <span class="block mt-1">Stretagy</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -387,6 +469,6 @@ public class DecoratorDemo {
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Decorator", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "State", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
