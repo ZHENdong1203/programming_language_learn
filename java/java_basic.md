@@ -173,16 +173,17 @@ switch(expression){
 
 ### 10.java Number类
 所有包装类（Interger，Long，Byte，Double，Float，Short）都是抽象类Number的子类。
-| 类名        | 对应基本类型 | 描述                     |
-|-------------|----------------|--------------------------|
-| Byte        | byte           | 字节型包装类             |
-| Short       | short          | 短整型包装类             |
-| Integer     | int            | 整型包装类               |
-| Long        | long           | 长整型包装类             |
-| Float       | float          | 单精度浮点型包装类       |
-| Double      | double         | 双精度浮点型包装类       |
-| BigInteger  | -              | 不可变任意精度整数       |
-| BigDecimal  | -              | 不可变任意精度有符号十进制数 |
+| 类名       | 对应基本类型 | 描述                     |
+|------------|-------------|--------------------------|
+| Byte       | byte        | 字节型包装类             |
+| Short      | short       | 短整型包装类             |
+| Integer    | int         | 整型包装类               |
+| Long       | long        | 长整型包装类             |
+| Float      | float       | 单精度浮点型包装类       |
+| Double     | double      | 双精度浮点型包装类       |
+| BigInteger | -           | 不可变任意精度整数       |
+| BigDecimal | -           | 不可变任意精度十进制数   |
+
 
 基本数据类型的强制类型转换
 ```java
