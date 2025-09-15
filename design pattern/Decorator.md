@@ -109,3 +109,6 @@ public class DecoratorDemo {
 ## 使用场景
 - Java IO 库（BufferedInputStream、DataInputStream）就是典型的装饰器模式。
 - 需要在运行时动态地组合对象的功能，而不是通过继承固定组合。
+## 注意
+- 装饰者模式（Decorator）允许在不修改核心实现的情况下动态添加横切能力（如限流、埋点等），支持能力层按顺序组合和动态启停，同时所有装饰器都实现相同的接口（IOrderService），确保调用方感知不到变化。
+

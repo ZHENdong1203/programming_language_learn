@@ -85,3 +85,5 @@ public class ChainOfResponsibilityDemo {
 ## 缺点
 - 可能导致责任链过长，影响性能。
 - 不保证一定会有处理者接收请求。
+## 注意
+- 责任链用于请求传递处理，不支持原子事务。
