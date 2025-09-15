@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.810565287767">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.811249608411">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -30,12 +30,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.810565287767" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.811249608411" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.810565287767" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.811249608411" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -284,6 +284,16 @@ public class SimpleFactoryDemo {
 <ul>
 <li>需要创建的对象较少。</li>
 <li>客户端不想关心具体对象的创建过程。比如：日志类、图形类、数据库连接等场景。</li>
+</ul>
+<doc-anchor-target id="注意">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#注意">#</doc-anchor-trigger>
+        <span>注意</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>简单工厂模式不满足开闭原则。简单工厂模式使用if-else或switch语句来判断创建哪种产品对象，当需要增加新产品时，必须修改工厂类的代码，这违反了开闭原则。</li>
+<li>在JDBC中使用Class.forName()加载驱动类是工厂模式的典型应用。这里使用了反射机制来创建Driver实例,具体的驱动实现对用户是透明的,这正是工厂模式&quot;封装对象创建过程&quot;的体现。</li>
 </ul>
 
                                 

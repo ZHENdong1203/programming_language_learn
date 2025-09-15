@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.810565287767">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.811249608411">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -30,12 +30,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.810565287767" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.811249608411" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.810565287767" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.811249608411" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -310,6 +310,18 @@ public class FacadeDemo {
 <li>当系统复杂，客户端需要与多个子系统交互。</li>
 <li>提供统一接口，简化调用流程。</li>
 <li>需要对外屏蔽子系统内部实现，保证解耦性。</li>
+</ul>
+<doc-anchor-target id="注意">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#注意">#</doc-anchor-trigger>
+        <span>注意</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>单一职责原则要求一个类仅负责一项职责（或仅有一个变化原因）。外观类的职责是封装子系统接口、简化客户端调用，但其实现可能需要协调多个子系统的交互。若子系统接口变化，外观类可能需要同步调整，导致其变化原因可能涉及多个子系统，因此不一定严格符合单一职责原则。</li>
+<li>外观模式的核心作用是作为子系统的“统一入口”。子系统的外部（客户端）与内部（子系统模块）的通信必须通过外观对象完成，外部无需直接与子系统内部模块交互。</li>
+<li>客户端只需与外观对象交互即可完成功能调用，无需了解子系统的内部细节（如子系统包含哪些模块、如何协作等）。这是外观模式的主要设计目标。</li>
+<li>迪米特法则（最少知识原则）要求对象间交互尽可能简单，减少不必要的依赖。外观模式通过外观类隔离客户端与子系统，客户端仅需知道外观类，无需了解子系统内部，是迪米特法则的典型实现。</li>
 </ul>
 
                                 

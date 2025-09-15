@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.810565287767">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.811249608411">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -30,12 +30,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.810565287767" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.811249608411" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.810565287767" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.811249608411" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -313,6 +313,29 @@
     }
 }</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="注意">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#注意">#</doc-anchor-trigger>
+        <span>注意</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>在双重检查锁定（DCL）实现中，使用volatile关键字修饰单例实例变量是必须的，因为它可以防止指令重排序问题，确保线程安全（在Java 5及以上版本的内存模型中）。</li>
+<li>单例模式的设计初衷是为了确保一个类只有一个实例,并不是为了提高系统性能。事实上,对于不需要频繁创建和销毁的对象,我们有其他更合适的设计模式和优化方案。</li>
+<li>饿汉式：线程安全且无需显式同步，但实例在类加载时初始化，不符合延迟加载。</li>
+<li>懒汉式：线程安全且延迟加载，但使用synchronized方法，属于显式同步。</li>
+<li>双重检查锁定加volatile：线程安全且延迟加载，但使用synchronized块，属于显式同步，不符合要求。</li>
+<li>静态内部类单例：线程安全（由JVM类加载机制保证），延迟加载（通过静态内部类的加载机制实现，仅在首次调用getInstance时初始化实例），且无需显式同步（无synchronized代码）。</li>
+<li>在 Java 中实现单例，要求：惰性加载；在高并发下基本零运行时同步开销；实现简单、易读；不特别关心反序列化或反射攻击。
+<ul>
+<li>synchronized懒汉式：存在同步开销，高并发下性能差，不满足基本零运行时同步开销要求。</li>
+<li>使用volatile的双重检查锁：支持惰性加载，高并发下仅首次创建有同步开销，之后基本零开销，但实现相对复杂（需volatile和双重检查），易读性较差</li>
+<li>静态内部类Holder模式：支持惰性加载（类加载机制保证首次调用时初始化），无任何同步代码，高并发下零运行时同步开销，实现简洁易读，完美满足所有要求。</li>
+<li>枚举实现单例：非惰性加载（枚举常量在类加载时初始化），不符合惰性加载要求。</li>
+</ul>
+</li>
+<li>Spring框架中的bean默认是单例的,通过IOC容器来管理这些单例对象的生命周期。当使用@Autowired注解进行依赖注入时,容器会确保注入的是同一个单例对象,这完全符合单例模式的设计理念。</li>
+</ul>
 
                                 
                                 <!-- Required only on API pages -->

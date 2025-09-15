@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.810565287767">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.811249608411">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -30,11 +30,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.810565287767" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.811249608411" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.811249608411" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -190,6 +191,67 @@
 </ul>
 </li>
 </ul>
+<ol start="3">
+<li>数组常用的两种基本操作 -&gt; 插入与索引</li>
+<li>长度为N的顺序表中删除下标为i的元素(0 ≤ i ≤ N-1)，需要向前移动的元素个数是-&gt; N-i-1</li>
+<li>若有定义:</li>
+</ol>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">int c[4][5],( *pc)[5];
+pc=c;</code></pre>
+</doc-codeblock></div>
+<p>那么，下列对数组C的元素引用正确的是: -&gt; * (*pc+2)</p>
+<ul>
+<li>这里pc是一个指向包含5个整型元素的数组的指针，通过pc=c使其指向二维数组c的首地址。</li>
+<li>二维数组和一维数组的区别在于，二维数组可以理解为一维的一维。在一维中，*表示取数值，在二维中*表示取第几行的地址，**表示取值。</li>
+</ul>
+<ol start="6">
+<li>设A是n*n的对称矩阵，将A的对角线及对角线上方的元素以列为主的次序存放在一维数组B[1..n（n+1）/2]中，对上述任一元素aij (1≤i，j≤n，且i≤j)在B中的位置为 -&gt; j（j-1）/2+i</li>
+</ol>
+<ul>
+<li>对于n*n的对称矩阵，由于对称性质，只需存储对角线及对角线以上的元素。</li>
+<li>以列为主序存储意味着按列优先顺序存储元素，即:
+<ul>
+<li>第1列存储a11</li>
+<li>第2列存储a12,a22</li>
+<li>第3列存储a13,a23,a33
+以此类推</li>
+</ul>
+</li>
+<li>对于第j列(j≥i)，在该列之前已经存储了:
+1+2+...+(j-1) = j(j-1)/2 个元素</li>
+<li>在第j列中，位置aij是该列的第i个元素，所以其在B数组中的位置为:
+j(j-1)/2 + i</li>
+</ul>
+<ol start="7">
+<li>若定义char a[10] = &quot;good&quot;，则数组a在内存中所占的字节数为10</li>
+</ol>
+<ul>
+<li>char型数组a的长度为10，则其在内存中所占的字节数为就为10，与其赋值的字符串没有关系。</li>
+</ul>
+<ol start="8">
+<li>用数组 M[0..N-1] 用来表示一个循环队列， FRONT 指向队头元素，REAR 指向队尾元素的后一个位置，则当前队列中的元素个数是 -&gt; (rear-front+n)%n（注：队列总的元素数不会超过队列大小）</li>
+<li>C<ins>中字符串和字符数组初始化是不同的。使用双引号初始化会自动添加字符串结束符,而使用花括号列表初始化则只包含显式指定的字符。这是在C</ins>编程中需要特别注意的一个细节。</li>
+</ol>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-cpp"><code v-pre class="language-cpp">在C++中，以下定义和初始化的两数组a1和a2
+char a1[]= &quot;program&quot;;
+char a2[]={'p','r','o','g','r','a','m'}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>a1[] = &quot;program&quot; 会在字符串末尾自动添加&#x27;&#x27;(空字符),因此实际占用8个字节的存储空间。</li>
+<li>a2[] = {&#x27;p&#x27;,&#x27;r&#x27;,&#x27;o&#x27;,&#x27;g&#x27;,&#x27;r&#x27;,&#x27;a&#x27;,&#x27;m&#x27;} 只存储了7个字符,没有自动添加&#x27;&#x27;,因此只占用7个字节的存储空间。</li>
+</ul>
+<ol start="10">
+<li></li>
+</ol>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-c"><code v-pre class="language-c">char a[2][3];
+    strcpy(a[0], &quot;ab&quot;);
+    strcpy(a[1], &quot;cd&quot;);
+    printf(&quot;%s&quot;, a);</code></pre>
+</doc-codeblock></div>
+<p>输出ab。上述执行后相当于a[2][3] = {{&#x27;a&#x27;, &#x27;b&#x27;, &#x27;\0&#x27;}, {&#x27;c&#x27;, &#x27;d&#x27;, &#x27;\0&#x27;}};，在输出字符串的时候以&#x27;\0&#x27;为止结束字符串，所以输出的是字符串&quot;ab&quot;。</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -256,6 +318,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Array", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Array", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.810565287767">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.811249608411">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -30,12 +30,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.810565287767" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.811249608411" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.810565287767" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.810565287767" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.811249608411" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.811249608411" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -358,6 +358,16 @@ public class TemplateHookDemo {
 <ul>
 <li>继承结构会导致子类过多。</li>
 <li>子类必须遵循父类设计，不够灵活。</li>
+</ul>
+<doc-anchor-target id="注意">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#注意">#</doc-anchor-trigger>
+        <span>注意</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>在数据库操作中，不同类型的数据库（如MySQL、Oracle、SQLServer等）都需要经过连接、打开、使用、关闭这些固定的步骤，但每种数据库在连接方式上存在差异。模板方法模式可以在抽象类中定义这些操作的框架，而将特定的连接实现留给具体的子类完成。</li>
+<li>模板方法模式最适合实现这种具有固定操作步骤但细节实现可能不同的场景。</li>
 </ul>
 
                                 
