@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.811306007164">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.811857507712">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -30,12 +30,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.811306007164" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.811857507712" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.811306007164" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.811857507712" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.811306007164" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.811306007164" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.811857507712" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.811857507712" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -343,6 +343,96 @@ char a2[]={'p','r','o','g','r','a','m'}</code></pre>
 <li>频繁发生缓存未命中(cache miss)</li>
 <li>需要更多的内存访问操作,影响性能</li>
 </ul>
+<ol start="25">
+<li>快速排序的划分过程是通过选择一个基准元素，将数组分为两个部分，小于基准的放在左边，大于基准的放在右边。</li>
+<li>下三角矩阵的压缩存储空间节约量并不是完全的一半，这取决于矩阵的维度。</li>
+</ol>
+<p>具体分析如下：</p>
+<ul>
+<li>对于n阶方阵，完整存储需要n×n个元素空间</li>
+<li>下三角矩阵的非零元素个数为n×(n+1)/2，包括:</li>
+<li>主对角线上的n个元素</li>
+<li>下三角部分的n×(n-1)/2个元素</li>
+</ul>
+<p>实际节省的空间计算:</p>
+<ul>
+<li>原始存储空间: n×n</li>
+<li>压缩后存储空间: n×(n+1)/2</li>
+<li>节省空间比例 = (n×n - n×(n+1)/2) / (n×n)
+= (2n×n - n×(n+1)) / (2n×n)
+= (2n×n - n×n - n) / (2n×n)
+= (n×n - n) / (2n×n)
+= (n-1) / (2n)</li>
+</ul>
+<p>从计算结果可以看出:</p>
+<ul>
+<li>当n很大时，节省比例接近1/2</li>
+<li>当n较小时，节省比例小于1/2</li>
+</ul>
+<ol start="27">
+<li>在定义 int a[3][4][2]; 后，第 20 个元素是</li>
+</ol>
+<p>在C语言中,多维数组的元素按行优先顺序存储。对于int a[3][4][2]这个三维数组,总共有3×4×2=24个元素。</p>
+<p>查找第20个元素的位置,我们需要:</p>
+<ul>
+<li>先理解数组的存储顺序:从最右维度开始,按[0][0][0],[0][0][1],[0][1][0],[0][1][1]...这样的顺序排列</li>
+<li>计算具体位置:
+<ul>
+<li>每个a[i]包含8个元素(4×2)</li>
+<li>每个a[i][j]包含2个元素</li>
+<li>第20个元素的索引应该是19(因为数组索引从0开始)</li>
+</ul>
+</li>
+</ul>
+<p>具体计算:</p>
+<ul>
+<li>19 ÷ 8 = 2 (商)...3(余数) → 确定第一维是2</li>
+<li>3 ÷ 2 = 1 (商)...1(余数) → 确定第二维是1</li>
+<li>余数1就是第三维的索引</li>
+</ul>
+<ol start="28">
+<li></li>
+</ol>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-c"><code v-pre class="language-c">char s[5];
+    s = &quot;good&quot;;
+    printf(&quot;%s&quot;, s);</code></pre>
+</doc-codeblock></div>
+<p>定义了数组s，s为数组名，代表数组的首地址，不能直接赋值，所以编译出错。
+29. 有一个100*90的稀疏矩阵,非0元素有10个,设每个整型数占2字节,则用三元组表示该矩阵时,所需的字节数是 -&gt; 66</p>
+<p>三元组表示法需要存储的内容:</p>
+<ul>
+<li>矩阵的行数(100)、列数(90)和非零元素个数(10)各占2字节</li>
+<li>每个非零元素需要存储:行号(2字节)、列号(2字节)、元素值(2字节)</li>
+</ul>
+<p>计算总字节数:</p>
+<ul>
+<li>矩阵基本信息: 2 + 2 + 2 = 6字节</li>
+<li>非零元素信息: 10 * (2 + 2 + 2) = 60字节</li>
+<li>总计: 6 + 60 = 66字节</li>
+</ul>
+<ol start="30">
+<li>线性结构是指数据元素之间存在一对一的线性关系的数据结构,而二维数组和多维数组确实不属于线性结构</li>
+</ol>
+<p>线性结构的特点:</p>
+<ul>
+<li>数据元素之间是一对一的关系</li>
+<li>除第一个和最后一个外,每个数据元素只有一个前驱和一个后继</li>
+<li>典型的线性结构包括:顺序表、链表、栈、队列等</li>
+</ul>
+<p>二维数组和多维数组的特点:</p>
+<ul>
+<li>数据元素之间是一对多的关系</li>
+<li>一个元素可能有多个相邻元素</li>
+<li>数据在逻辑上呈现出网格状或立体状的组织形式</li>
+<li>存在行、列等多个维度的关系</li>
+</ul>
+<ol start="31">
+<li>数组除了可以在静态存储区和栈上创建，还可以在堆上动态创建。例如使用malloc函数分配的数组就是在堆上创建的。</li>
+</ol>
+<p>指针虽然可以指向不同类型的内存块，但必须遵循类型安全原则。随意指向任意类型的内存块可能导致类型安全问题，需要进行适当的类型转换。</p>
+<p>sizeof作用于指针变量时，只能得到指针本身的大小（通常是4字节或8字节），而不是指针所指向内容的大小。例如，int *p，sizeof(p)只会返回指针的字节数，而不是p所指向的内容大小。</p>
+<p>sizeof运算符确实可以计算出数组的总字节数，这是因为数组在定义时就确定了大小，其内存空间是连续且固定的。例如int arr[10]，使用sizeof(arr)会返回40（假设int为4字节）。</p>
 
                                 
                                 <!-- Required only on API pages -->
